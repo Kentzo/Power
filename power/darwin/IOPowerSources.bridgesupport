@@ -2,6 +2,12 @@
         <!--
         Generated in Mac OS X 10.8.2 using the following command:
         gen_bridge_metadata -c '-l/System/Library/Frameworks/IOKit.framework/IOKit -I/System/Library/Frameworks/IOKit.framework/Headers/ps/' /System/Library/Frameworks/IOKit.framework/Headers/ps/IOPowerSources.h /System/Library/Frameworks/IOKit.framework/Headers/ps/IOPSKeys.h
+
+        Following are added manually, because public headers misses their definitions:
+        - kIOPMUPSPowerKey
+        - kIOPMBatteryPowerKey
+        - kIOPMACPowerKey
+        They were found at http://opensource.apple.com/source/IOKitUser/IOKitUser-514.16.50/pwr_mgt.subproj/IOPMLibPrivate.h
         -->
 <!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
 <signatures version='1.0'>
@@ -73,6 +79,9 @@
     <string_constant name='kIOPSUSBTransportType' value='USB'/>
     <string_constant name='kIOPSVendorDataKey' value='Vendor Specific Data'/>
     <string_constant name='kIOPSVoltageKey' value='Voltage'/>
+    <string_constant name="kIOPMUPSPowerKey" value="UPS Power" />
+    <string_constant name="kIOPMBatteryPowerKey" value="Battery Power" />
+    <string_constant name="kIOPMACPowerKey" value="AC Power" />
     <enum name='kIOPSLowBatteryWarningEarly' value='2'/>
     <enum name='kIOPSLowBatteryWarningFinal' value='3'/>
     <enum name='kIOPSLowBatteryWarningNone' value='1'/>

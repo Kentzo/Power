@@ -9,7 +9,7 @@ __author__ = 'kulakov.ilya@gmail.com'
 
 import objc as _objc
 import os
-
+from CoreFoundation import *
 
 def IOPSCopyExternalPowerAdapterDetails():
     pass
@@ -257,6 +257,15 @@ kIOPSTimeRemainingUnknown = None
 
 
 kIOPSTimeRemainingUnlimited = None
+
+
+kIOPMUPSPowerKey = None
+
+
+kIOPMBatteryPowerKey = None
+
+
+kIOPMACPowerKey = None
 
 
 bridgesupport_path = os.path.join(os.path.dirname(__file__), "IOPowerSources.bridgesupport")
