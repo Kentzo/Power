@@ -34,7 +34,7 @@ class SYSTEM_POWER_STATUS(Structure):
         ('Reserved1', wintypes.BYTE),
         ('BatteryLifeTime', wintypes.DWORD),
         ('BatteryFullLifeTime', wintypes.DWORD),
-    ]
+        ]
 
 LPSYSTEM_POWER_STATUS = POINTER(SYSTEM_POWER_STATUS)
 

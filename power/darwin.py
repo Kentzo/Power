@@ -1,14 +1,21 @@
-<?xml version='1.0'?>
-        <!--
-        Generated in Mac OS X 10.8.2 using the following command:
-        gen_bridge_metadata -c '-l/System/Library/Frameworks/IOKit.framework/IOKit -I/System/Library/Frameworks/IOKit.framework/Headers/ps/' /System/Library/Frameworks/IOKit.framework/Headers/ps/IOPowerSources.h /System/Library/Frameworks/IOKit.framework/Headers/ps/IOPSKeys.h
+# coding=utf-8
+__author__ = 'kulakov.ilya@gmail.com'
 
-        Following are added manually, because public headers misses their definitions:
-        - kIOPMUPSPowerKey
-        - kIOPMBatteryPowerKey
-        - kIOPMACPowerKey
-        They were found at http://opensource.apple.com/source/IOKitUser/IOKitUser-514.16.50/pwr_mgt.subproj/IOPMLibPrivate.h
-        -->
+import base
+import objc
+from CoreFoundation import *
+
+
+#Generated in Mac OS X 10.8.2 using the following command:
+#gen_bridge_metadata -c '-l/System/Library/Frameworks/IOKit.framework/IOKit -I/System/Library/Frameworks/IOKit.framework/Headers/ps/' /System/Library/Frameworks/IOKit.framework/Headers/ps/IOPowerSources.h /System/Library/Frameworks/IOKit.framework/Headers/ps/IOPSKeys.h
+#
+#Following are added manually, because public headers misses their definitions:
+#- kIOPMUPSPowerKey
+#- kIOPMBatteryPowerKey
+#- kIOPMACPowerKey
+#They were found at http://opensource.apple.com/source/IOKitUser/IOKitUser-514.16.50/pwr_mgt.subproj/IOPMLibPrivate.h
+IO_POWER_SOURCES_BRIDGESUPPORT = """
+<?xml version='1.0'?>
 <!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
 <signatures version='1.0'>
     <depends_on path="/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation" />
@@ -121,3 +128,68 @@
         <retval type='^{__CFRunLoopSource=}' already_retained='true'/>
     </function>
 </signatures>
+"""
+
+_objc.parseBridgeSupport(IO_POWER_SOURCES_BRIDGESUPPORT,
+    globals(),
+    _objc.pathForFramework("/System/Library/Frameworks/IOKit.framework"))
+
+
+POWER_TYPE_MAP = {
+    kIOPMACPowerKey : base.POWER_TYPE_AC,
+    kIOPMBatteryPowerKey : base.POWER_TYPE_BATTERY,
+    kIOPMUPSPowerKey : base.POWER_TYPE_UPS
+}
+
+
+WARNING_LEVEL_MAP = {
+    kIOPSLowBatteryWarningNone : base.LOW_BATTERY_WARNING_NONE,
+    kIOPSLowBatteryWarningEarly : base.LOW_BATTERY_WARNING_EARLY,
+    kIOPSLowBatteryWarningFinal : base.LOW_BATTERY_WARNING_FINAL
+}
+
+
+class PowerManagement(base.PowerManagementBase):
+
+    @property
+    def providing_power_source_type(self):
+        providing_source = IOPSCopyPowerSourcesInfo()
+        power_type = IOPSGetProvidingPowerSourceType(providing_source)
+        return POWER_TYPE_MAP[power_type]
+
+    @property
+    def low_battery_warning_level(self):
+        warning_level = IOPSGetBatteryWarningLevel()
+        return WARNING_LEVEL_MAP[warning_level]
+
+    @property
+    def time_remaining_estimate(self):
+        return int(IOPSGetTimeRemainingEstimate())
+
+    def get_external_power_adapter_info(self):
+        return IOPSCopyExternalPowerAdapterDetails()
+
+    def get_power_sources_info(self):
+        blob = IOPSCopyPowerSourcesInfo()
+        return [IOPSGetPowerSourceDescription(blob, source) for source in IOPSCopyPowerSourcesList(blob)]
+
+    def add_observer(self, observer):
+        was_empty = len(self._weak_observers) == 0
+        super(PowerManagement, self).add_observer(observer)
+        if was_empty:
+
+            @objc.callbackFor(IOPSNotificationCreateRunLoopSource)
+            def on_power_sources_change(context):
+                for weak_observer in self._weak_observers:
+                    observer = weak_observer()
+                    if observer:
+                        observer.on_power_sources_change(self)
+
+            self._source = IOPSNotificationCreateRunLoopSource(on_power_sources_change, None)
+            CFRunLoopAddSource(CFRunLoopGetMain(), self._source, kCFRunLoopDefaultMode)
+
+    def remove_observer(self, observer):
+        super(PowerManagement, self).remove_observer(observer)
+        if len(self._weak_observers) == 0:
+            CFRunLoopRemoveSource(CFRunLoopGetMain(), self._source, kCFRunLoopDefaultMode)
+            self._source = None
