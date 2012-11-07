@@ -136,41 +136,31 @@ _objc.parseBridgeSupport(IO_POWER_SOURCES_BRIDGESUPPORT,
 
 
 POWER_TYPE_MAP = {
-    kIOPMACPowerKey : base.POWER_TYPE_AC,
-    kIOPMBatteryPowerKey : base.POWER_TYPE_BATTERY,
-    kIOPMUPSPowerKey : base.POWER_TYPE_UPS
+    kIOPMACPowerKey: base.POWER_TYPE_AC,
+    kIOPMBatteryPowerKey: base.POWER_TYPE_BATTERY,
+    kIOPMUPSPowerKey: base.POWER_TYPE_UPS
 }
 
 
 WARNING_LEVEL_MAP = {
-    kIOPSLowBatteryWarningNone : base.LOW_BATTERY_WARNING_NONE,
-    kIOPSLowBatteryWarningEarly : base.LOW_BATTERY_WARNING_EARLY,
-    kIOPSLowBatteryWarningFinal : base.LOW_BATTERY_WARNING_FINAL
+    kIOPSLowBatteryWarningNone: base.LOW_BATTERY_WARNING_NONE,
+    kIOPSLowBatteryWarningEarly: base.LOW_BATTERY_WARNING_EARLY,
+    kIOPSLowBatteryWarningFinal: base.LOW_BATTERY_WARNING_FINAL
 }
 
 
 class PowerManagement(base.PowerManagementBase):
-
-    @property
-    def providing_power_source_type(self):
+    def get_providing_power_source_type(self):
         providing_source = IOPSCopyPowerSourcesInfo()
         power_type = IOPSGetProvidingPowerSourceType(providing_source)
         return POWER_TYPE_MAP[power_type]
 
-    @property
-    def low_battery_warning_level(self):
+    def get_low_battery_warning_level(self):
         warning_level = IOPSGetBatteryWarningLevel()
         return WARNING_LEVEL_MAP[warning_level]
 
-    @property
-    def time_remaining_estimate(self):
-        time_remaining = IOPSGetTimeRemainingEstimate()
-        if time_remaining == -1.0:
-            return base.TIME_REMAINING_UNKNOWN
-        elif time_remaining == -2.0:
-            return base.TIME_REMAINING_UNLIMITED
-        else:
-            return time_remaining
+    def get_time_remaining_estimate(self):
+        return int(IOPSGetTimeRemainingEstimate())
 
     def get_external_power_adapter_info(self):
         return IOPSCopyExternalPowerAdapterDetails()

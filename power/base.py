@@ -1,24 +1,19 @@
 # coding=utf-8
+__author__ = 'kulakov.ilya@gmail.com'
+
 from abc import ABCMeta, abstractmethod, abstractproperty
 import weakref
 
-__author__ = 'kulakov.ilya@gmail.com'
 
-
-# The system is not in a low battery situation, or is on drawing from an external power source.
 LOW_BATTERY_WARNING_NONE = 1
 
-# The battery has dropped below 22% remaining power.
 LOW_BATTERY_WARNING_EARLY = 2
 
-# The battery can provide no more than 10 minutes of runtime.
 LOW_BATTERY_WARNING_FINAL = 3
 
 
-# The system is connected to a limited power source, but still calculating time remaining.
 TIME_REMAINING_UNKNOWN = -1
 
-# The system is connected to an external power source.
 TIME_REMAINING_UNLIMITED = -2
 
 
@@ -98,16 +93,16 @@ class PowerManagementBase(object):
     def __init__(self):
         self._weak_observers = set()
 
-    @abstractproperty
-    def providing_power_source_type(self):
+    @abstractmethod
+    def get_providing_power_source_type(self):
         pass
 
-    @abstractproperty
-    def low_battery_warning_level(self):
+    @abstractmethod
+    def get_low_battery_warning_level(self):
         pass
 
-    @abstractproperty
-    def time_remaining_estimate(self):
+    @abstractmethod
+    def get_time_remaining_estimate(self):
         pass
 
     @abstractmethod

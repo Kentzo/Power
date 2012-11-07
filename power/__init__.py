@@ -1,8 +1,8 @@
 # coding=utf-8
 __author__ = 'kulakov.ilya@gmail.com'
 
-
 from sys import platform
+
 
 if platform.startswith('darwin'):
     from darwin import PowerManagement

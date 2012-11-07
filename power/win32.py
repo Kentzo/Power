@@ -29,23 +29,20 @@ GetSystemPowerStatus.restype = wintypes.BOOL
 
 
 POWER_TYPE_MAP = {
-    0 : base.POWER_TYPE_BATTERY,
-    1 : base.POWER_TYPE_AC,
-    255 : base.POWER_TYPE_AC
+    0: base.POWER_TYPE_BATTERY,
+    1: base.POWER_TYPE_AC,
+    255: base.POWER_TYPE_AC
 }
 
 
 class PowerManagement(base.PowerManagementBase):
-
-    @property
-    def providing_power_source_type(self):
+    def get_providing_power_source_type(self):
         power_status = SYSTEM_POWER_STATUS()
         if not GetSystemPowerStatus(pointer(power_status)):
             raise WinError()
         return POWER_TYPE_MAP[power_status.ACLineStatus]
 
-    @property
-    def low_battery_warning_level(self):
+    def get_low_battery_warning_level(self):
         power_status = SYSTEM_POWER_STATUS()
         if not GetSystemPowerStatus(pointer(power_status)):
             raise WinError()
@@ -60,8 +57,7 @@ class PowerManagement(base.PowerManagementBase):
             else:
                 return base.LOW_BATTERY_WARNING_NONE
 
-    @property
-    def time_remaining_estimate(self):
+    def get_time_remaining_estimate(self):
         power_status = SYSTEM_POWER_STATUS()
         if not GetSystemPowerStatus(pointer(power_status)):
             raise WinError()
