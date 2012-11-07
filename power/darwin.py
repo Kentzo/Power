@@ -14,8 +14,7 @@ from CoreFoundation import *
 #- kIOPMBatteryPowerKey
 #- kIOPMACPowerKey
 #They were found at http://opensource.apple.com/source/IOKitUser/IOKitUser-514.16.50/pwr_mgt.subproj/IOPMLibPrivate.h
-IO_POWER_SOURCES_BRIDGESUPPORT = """
-<?xml version='1.0'?>
+IO_POWER_SOURCES_BRIDGESUPPORT = """<?xml version='1.0'?>
 <!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
 <signatures version='1.0'>
     <depends_on path="/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation" />
@@ -127,8 +126,7 @@ IO_POWER_SOURCES_BRIDGESUPPORT = """
         <arg type='^v'/>
         <retval type='^{__CFRunLoopSource=}' already_retained='true'/>
     </function>
-</signatures>
-"""
+</signatures>"""
 
 objc.parseBridgeSupport(IO_POWER_SOURCES_BRIDGESUPPORT,
     globals(),
