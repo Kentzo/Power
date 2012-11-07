@@ -1,6 +1,6 @@
 # coding=utf-8
 """
-    This module import Power Sources functionality of IOKit into Python.
+    Import Power Sources functionality of IOKit into Python.
     Refer to /System/Library/Frameworks/IOKit.framework/Headers/ps/IOPowerSources.h
     and /System/Library/Frameworks/IOKit.framework/Headers/ps/IOPSKeys.h for the most recent documentation.
 

@@ -12,17 +12,19 @@ POWER_TYPE_MAP = {
     IOPowerSources.kIOPMUPSPowerKey : POWER_TYPE_UPS
 }
 
-def get_providing_power_type():
-    providing_source = IOPowerSources.IOPSCopyPowerSourcesInfo()
-    power_type = IOPowerSources.IOPSGetProvidingPowerSourceType(providing_source)
-    return POWER_TYPE_MAP[power_type]
-
 
 WARNING_LEVEL_MAP = {
     IOPowerSources.kIOPSLowBatteryWarningNone : LOW_BATTERY_WARNING_NONE,
     IOPowerSources.kIOPSLowBatteryWarningEarly : LOW_BATTERY_WARNING_EARLY,
     IOPowerSources.kIOPSLowBatteryWarningFinal : LOW_BATTERY_WARNING_FINAL
 }
+
+
+def get_providing_power_source_type():
+    providing_source = IOPowerSources.IOPSCopyPowerSourcesInfo()
+    power_type = IOPowerSources.IOPSGetProvidingPowerSourceType(providing_source)
+    return POWER_TYPE_MAP[power_type]
+
 
 def get_low_battery_warning_level():
     warning_level = IOPowerSources.IOPSGetBatteryWarningLevel()
