@@ -130,9 +130,9 @@ IO_POWER_SOURCES_BRIDGESUPPORT = """
 </signatures>
 """
 
-_objc.parseBridgeSupport(IO_POWER_SOURCES_BRIDGESUPPORT,
+objc.parseBridgeSupport(IO_POWER_SOURCES_BRIDGESUPPORT,
     globals(),
-    _objc.pathForFramework("/System/Library/Frameworks/IOKit.framework"))
+    objc.pathForFramework("/System/Library/Frameworks/IOKit.framework"))
 
 
 POWER_TYPE_MAP = {
