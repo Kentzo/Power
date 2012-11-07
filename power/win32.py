@@ -6,32 +6,16 @@
 """
 __author__ = 'kulakov.ilya@gmail.com'
 
-from ctypes import Structure, wintypes, POINTER, windll, GetLastError, WinError
-
-class SYSTEM_BATTERY_STATE(Structure):
-    _fields_ = [
-        ("AcOnLine", wintypes.BOOLEAN),
-        ("BatteryPresent", wintypes.BOOLEAN),
-        ("Charging", wintypes.BOOLEAN),
-        ("Discharging", wintypes.BOOLEAN),
-        ("Spare1", wintypes.BOOLEAN * 4),
-        ("MaxCapacity", wintypes.DWORD),
-        ("RemainingCapacity", wintypes.DWORD),
-        ("Rate", wintypes.DWORD),
-        ("EstimatedTime", wintypes.DWORD),
-        ("DefaultAlert1", wintypes.DWORD),
-        ("DefaultAlert2", wintypes.DWORD)
-    ]
-
-PSYSTEM_BATTERY_STATE = POINTER(SYSTEM_BATTERY_STATE)
+from ctypes import Structure, wintypes, POINTER, windll, GetLastError, WinError, pointer, c_ubyte
+import base
 
 
 class SYSTEM_POWER_STATUS(Structure):
     _fields_ = [
-        ('ACLineStatus', wintypes.BYTE),
-        ('BatteryFlag', wintypes.BYTE),
-        ('BatteryLifePercent', wintypes.BYTE),
-        ('Reserved1', wintypes.BYTE),
+        ('ACLineStatus', c_ubyte),
+        ('BatteryFlag', c_ubyte),
+        ('BatteryLifePercent', c_ubyte),
+        ('Reserved1', c_ubyte),
         ('BatteryLifeTime', wintypes.DWORD),
         ('BatteryFullLifeTime', wintypes.DWORD),
         ]
@@ -39,14 +23,64 @@ class SYSTEM_POWER_STATUS(Structure):
 LPSYSTEM_POWER_STATUS = POINTER(SYSTEM_POWER_STATUS)
 
 
-SystemBatteryState = 5
-
-
 GetSystemPowerStatus = windll.kernel32.GetSystemPowerStatus
-GetSystemPowerStatus.argtypes = (LPSYSTEM_POWER_STATUS)
+GetSystemPowerStatus.argtypes = [LPSYSTEM_POWER_STATUS]
 GetSystemPowerStatus.restype = wintypes.BOOL
 
 
-CallNtPowerInformation = windll.powrprof.CallNtPowerInformation
-CallNtPowerInformation.argtypes = (wintypes.c_int, wintypes.LPVOID, wintypes.ULONG, wintypes.LPVOID, wintypes.ULONG)
-CallNtPowerInformation = wintypes.LONG
+POWER_TYPE_MAP = {
+    0 : base.POWER_TYPE_BATTERY,
+    1 : base.POWER_TYPE_AC,
+    255 : base.POWER_TYPE_AC
+}
+
+
+class PowerManagement(base.PowerManagementBase):
+
+    @property
+    def providing_power_source_type(self):
+        power_status = SYSTEM_POWER_STATUS()
+        if not GetSystemPowerStatus(pointer(power_status)):
+            raise WinError()
+        return POWER_TYPE_MAP[power_status.ACLineStatus]
+
+    @property
+    def low_battery_warning_level(self):
+        power_status = SYSTEM_POWER_STATUS()
+        if not GetSystemPowerStatus(pointer(power_status)):
+            raise WinError()
+
+        if POWER_TYPE_MAP[power_status.ACLineStatus] == base.POWER_TYPE_AC:
+            return base.LOW_BATTERY_WARNING_NONE
+        else:
+            if power_status.BatteryLifeTime != -1 and power_status.BatteryLifeTime <= 600:
+                return base.LOW_BATTERY_WARNING_FINAL
+            elif power_status.BatteryLifePercent <= 22:
+                return base.LOW_BATTERY_WARNING_EARLY
+            else:
+                return base.LOW_BATTERY_WARNING_NONE
+
+    @property
+    def time_remaining_estimate(self):
+        power_status = SYSTEM_POWER_STATUS()
+        if not GetSystemPowerStatus(pointer(power_status)):
+            raise WinError()
+
+        if POWER_TYPE_MAP[power_status.ACLineStatus] == base.POWER_TYPE_AC:
+            return base.TIME_REMAINING_UNLIMITED
+        elif power_status.BatteryLifeTime == -1:
+            return base.TIME_REMAINING_UNKNOWN
+        else:
+            return float(power_status.BatteryLifeTime) / 60
+
+    def get_external_power_adapter_info(self):
+        pass
+
+    def get_power_sources_info(self):
+        pass
+
+    def add_observer(self, observer):
+        pass
+
+    def remove_observer(self, observer):
+        pass

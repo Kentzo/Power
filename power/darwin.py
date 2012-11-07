@@ -164,7 +164,13 @@ class PowerManagement(base.PowerManagementBase):
 
     @property
     def time_remaining_estimate(self):
-        return int(IOPSGetTimeRemainingEstimate())
+        time_remaining = IOPSGetTimeRemainingEstimate()
+        if time_remaining == -1.0:
+            return base.TIME_REMAINING_UNKNOWN
+        elif time_remaining == -2.0:
+            return base.TIME_REMAINING_UNLIMITED
+        else:
+            return time_remaining
 
     def get_external_power_adapter_info(self):
         return IOPSCopyExternalPowerAdapterDetails()

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+
+
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+    <head><link rel="canonical" href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373212(v=vs.85).aspx" />
+        <title>SYSTEM_BATTERY_STATE structure (Windows)</title>
+
+
+
+<meta name="DCS.dcsuri" content="/en-us/library/windows/desktop/aa373212(d=default,l=en-us,v=vs.85).aspx" />
+
+<meta name="NormalizedUrl" content="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373212(d=default,l=en-us,v=vs.85).aspx" />
+
+<meta name="VotingContextUrl" content="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373212(d=default,l=en-us,v=vs.85).aspx" />
+
+<meta name="MN" content="D7264B64-2:32:48 AM" />
+
+<meta name="Search.ShortId" content="aa373212" />
+
+<meta name="Ms.Locale" content="en-us" />
+
+
+
+
+
+
+
+        
+    
+
+    <link rel="stylesheet" type="text/css" href="http://i3.msdn.microsoft.com/Combined.css?resources=0:Topic,0:CodeSnippet,0:ProgrammingSelector,0:ExpandableCollapsibleArea,0:CommunityContent,0:TopicNotInScope,0:FeedViewerBasic,0:ImageSprite,0:jquery-ui-1.8.14.custom,1:header,1:SearchBox,1:ImageSprite,0:Breadcrumbs,2:Toc,2:NavigationResize,3:FeedbackCounter,3:Feedback,1:footer,1:Metro;/Areas/Epx/Content/Css:0,/Areas/Epx/Themes/Metro/Content:1,/Areas/Epx/Library/Content:2,/Areas/Epx/Shared/Content:3&amp;amp;hashKey=A2F1F8F4A99260FE434A290AA2986BFA" /></head>
+    <body class="library">
+        <div id="page">
+                
+            
+  
+            
+    
+
+
+<div id="ux-header">
+    <div class="GlobalBar">
+        <div class="PassportScarab">
+        
+        <a id="idPPScarab" class="scarabLink" href="https://login.live.com/login.srf?wa=wsignin1.0&amp;rpsnv=11&amp;ct=1352284368&amp;rver=6.0.5276.0&amp;wp=MCLBI&amp;wlcxt=msdn%24msdn%24msdn&amp;wreply=http%3a%2f%2fmsdn.microsoft.com%2fen-us%2flibrary%2fwindows%2fdesktop%2faa373212%2528v%3dvs.85%2529.aspx&amp;lc=1033&amp;id=254354&amp;mkt=en-US"><span id="idPPScarabSIT">Sign in</span></a>
+        </div>
+    </div>
+    <div class="Clear"></div>
+    <div class="Search">
+        <div class="SearchBox">
+        <form id="HeaderSearchForm" method="get" action="http://social.msdn.microsoft.com/search/en-us/windows/desktop" onsubmit="return SearchBoxOnSubmit('Search Dev Center with Bing');">
+            <input name="query" id="HeaderSearchTextBox" class="TextBoxSearchLoaded" type="text" value="Search Dev Center with Bing" maxlength="100" title="Search Dev Center with Bing" onfocus="WatermarkFocus(this, 'Search Dev Center with Bing', 'TextBoxSearchLoaded TextBoxSearch')" onblur="WatermarkBlur(this, 'Search Dev Center with Bing', 'TextBoxSearchLoaded')" />
+            <input name="Refinement" type="hidden" value="181" />
+            <input id="HeaderSearchButton" value="" class="SearchButton" type="submit" title="Search Dev Center with Bing" />
+            <input id="HeaderSearchButtonHidden" value="" style="display:none;" type="submit" />       
+        </form>
+        </div>
+    </div>
+    <div class="siteLogo">
+        <a href="http://msdn.microsoft.com/en-us/windows/desktop" title="Dev Center - Desktop">
+          
+            <div class="sitelogoImage" alt="Dev Center - Desktop" title="Dev Center - Desktop"></div>
+            
+            <span>Dev Center - Desktop</span>
+        </a>
+    </div>
+    <div class="tabs">
+     
+         
+         <a class="" href="http://msdn.microsoft.com/windows/desktop/aa904944" title="Home">Home</a>
+
+         
+         
+         <a class="" href="https://sysdev.microsoft.com/en-US/desktop/" title="Dashboard">Dashboard</a>
+
+         
+         
+         <a class="highlightedTab" href="http://msdn.microsoft.com/library/windows/desktop/" title="Docs">Docs</a>
+
+         
+         
+         <a class="" href="http://code.msdn.microsoft.com/en-us/windowsdesktop" title="Samples">Samples</a>
+
+         
+         
+         <a class="" href="http://msdn.microsoft.com/windows/desktop/aa904949" title="Downloads">Downloads</a>
+
+         
+         
+         <a class="" href="http://msdn.microsoft.com/windows/desktop/aa905013" title="Support">Support</a>
+
+         
+         
+         <a class="" href="http://msdn.microsoft.com/windows/desktop/aa904945" title="Community">Community</a>
+
+             
+    </div>
+    <div class="masthead_hr"></div>
+</div>
+
+
+
+
+    <div class="breadCrumb">
+<a href="http://msdn.microsoft.com/en-us/windows/desktop/" title="Dev Center - Desktop">Dev Center - Desktop</a>            <span>&gt;</span>
+<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/" title="Docs">Docs</a>            <span>&gt;</span>
+<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh447209(v=vs.85).aspx" title="Windows Development Reference">Windows Development Reference</a>            <span>&gt;</span>
+<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ee663297(v=vs.85).aspx" title="System Services">System Services</a>            <span>&gt;</span>
+<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/bb968807(v=vs.85).aspx" title="Power Management">Power Management</a>            <span>&gt;</span>
+<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373170(v=vs.85).aspx" title="Power Management Reference">Power Management Reference</a>            <span>&gt;</span>
+<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373173(v=vs.85).aspx" title="Power Management Structures">Power Management Structures</a>            <span>&gt;</span>
+
+        <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373212(v=vs.85).aspx" title="SYSTEM_BATTERY_STATE">SYSTEM_BATTERY_STATE</a>
+    </div>
+        <h1 id="TopicTitle">SYSTEM_BATTERY_STATE structure (Windows)</h1>
+
+        
+            <div id="body">
+                
+
+
+
+
+
+
+
+
+
+
+
+<div id="leftNav">
+
+
+
+
+<div id="tocnav">
+            <div class="toclevel0" data-toclevel="0">
+                <a data-tochassubtree="true" href="/en-us/library/windows/desktop/aa904962.aspx" id="aa906041_MSDN.10_en-us" title="Learn how to develop for Windows desktop">Learn how to develop for Windows desktop</a>
+            </div>
+            <div class="toclevel0" data-toclevel="0">
+                <a data-tochassubtree="true" href="/en-us/library/windows/desktop/hh447209(v=vs.85).aspx" id="br230310_VS.85_en-us" title="Windows Development Reference">Windows Development Reference</a>
+            </div>
+            <div class="toclevel0" data-toclevel="0">
+                <a data-tochassubtree="true" href="/en-us/library/windows/desktop/ee663297(v=vs.85).aspx" id="hh309619_VS.85_en-us" title="System Services">System Services</a>
+            </div>
+            <div class="toclevel0" data-toclevel="0">
+                <a data-tochassubtree="true" href="/en-us/library/windows/desktop/bb968807(v=vs.85).aspx" id="ms763443_VS.85_en-us" title="Power Management">Power Management</a>
+            </div>
+            <div class="toclevel0" data-toclevel="0">
+                <a data-tochassubtree="true" href="/en-us/library/windows/desktop/aa373170(v=vs.85).aspx" id="ms763452_VS.85_en-us" title="Power Management Reference">Power Management Reference</a>
+            </div>
+            <div class="toclevel1" data-toclevel="1">
+                <a data-tochassubtree="true" href="/en-us/library/windows/desktop/aa373173(v=vs.85).aspx" id="ms763481_VS.85_en-us" title="Power Management Structures">Power Management Structures</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372653(v=vs.85).aspx" title="ADMINISTRATOR_POWER_POLICY structure">ADMINISTRATOR_POWER_POLICY structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372661(v=vs.85).aspx" title="BATTERY_INFORMATION structure">BATTERY_INFORMATION structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372664(v=vs.85).aspx" title="BATTERY_MANUFACTURE_DATE structure">BATTERY_MANUFACTURE_DATE structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372667(v=vs.85).aspx" title="BATTERY_QUERY_INFORMATION structure">BATTERY_QUERY_INFORMATION structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372668(v=vs.85).aspx" title="BATTERY_REPORTING_SCALE structure">BATTERY_REPORTING_SCALE structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372670(v=vs.85).aspx" title="BATTERY_SET_INFORMATION structure">BATTERY_SET_INFORMATION structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372671(v=vs.85).aspx" title="BATTERY_STATUS structure">BATTERY_STATUS structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372672(v=vs.85).aspx" title="BATTERY_WAIT_STATUS structure">BATTERY_WAIT_STATUS structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372686(v=vs.85).aspx" title="DISPLAY_BRIGHTNESS structure">DISPLAY_BRIGHTNESS structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/jj552971(v=vs.85).aspx" title="DEVICE_NOTIFY_CALLBACK_ROUTINE function pointer">DEVICE_NOTIFY_CALLBACK_ROUTINE function pointer</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/jj552972(v=vs.85).aspx" title="DEVICE_NOTIFY_SUBSCRIBE_PARAMETERS structure">DEVICE_NOTIFY_SUBSCRIBE_PARAMETERS structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372695(v=vs.85).aspx" title="GLOBAL_MACHINE_POWER_POLICY structure">GLOBAL_MACHINE_POWER_POLICY structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372696(v=vs.85).aspx" title="GLOBAL_POWER_POLICY structure">GLOBAL_POWER_POLICY structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372697(v=vs.85).aspx" title="GLOBAL_USER_POWER_POLICY structure">GLOBAL_USER_POWER_POLICY structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372709(v=vs.85).aspx" title="MACHINE_POWER_POLICY structure">MACHINE_POWER_POLICY structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372710(v=vs.85).aspx" title="MACHINE_PROCESSOR_POWER_POLICY structure">MACHINE_PROCESSOR_POWER_POLICY structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373148(v=vs.85).aspx" title="POWER_ACTION_POLICY structure">POWER_ACTION_POLICY structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373179(v=vs.85).aspx" title="POWER_POLICY structure">POWER_POLICY structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372723(v=vs.85).aspx" title="POWERBROADCAST_SETTING structure">POWERBROADCAST_SETTING structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373184(v=vs.85).aspx" title="PROCESSOR_POWER_INFORMATION structure">PROCESSOR_POWER_INFORMATION structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373187(v=vs.85).aspx" title="PROCESSOR_POWER_POLICY structure">PROCESSOR_POWER_POLICY structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373185(v=vs.85).aspx" title="PROCESSOR_POWER_POLICY_INFO structure">PROCESSOR_POWER_POLICY_INFO structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/dd405536(v=vs.85).aspx" title="REASON_CONTEXT structure">REASON_CONTEXT structure</a>
+            </div>
+            <div class="toclevel2 current" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373212(v=vs.85).aspx" title="SYSTEM_BATTERY_STATE structure">SYSTEM_BATTERY_STATE structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373215(v=vs.85).aspx" title="SYSTEM_POWER_CAPABILITIES structure">SYSTEM_POWER_CAPABILITIES structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373217(v=vs.85).aspx" title="SYSTEM_POWER_INFORMATION structure">SYSTEM_POWER_INFORMATION structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373220(v=vs.85).aspx" title="SYSTEM_POWER_LEVEL structure">SYSTEM_POWER_LEVEL structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373225(v=vs.85).aspx" title="SYSTEM_POWER_POLICY structure">SYSTEM_POWER_POLICY structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373232(v=vs.85).aspx" title="SYSTEM_POWER_STATUS structure">SYSTEM_POWER_STATUS structure</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373239(v=vs.85).aspx" title="USER_POWER_POLICY structure">USER_POWER_POLICY structure</a>
+            </div>
+</div>    
+    
+    
+    
+
+
+<a id="NavigationResize" href="javascript:epx.library.navigationResize.resize()">
+    <img class="cl_nav_resize_open" src="http://i.msdn.microsoft.com/Areas/Epx/Content/Images/ImageSprite.png" title="Expand" alt="Expand" />
+    <img class="cl_nav_resize_close" src="http://i.msdn.microsoft.com/Areas/Epx/Content/Images/ImageSprite.png" title="Minimize" alt="Minimize" />
+</a>
+
+
+
+</div>
+<div id="content" class="content">
+
+
+
+
+
+
+    
+
+    
+    
+
+    <div id="ratingCounterSeperator" class="cl_lw_vs_seperator" style="display: none;"></div>
+
+    <div id="ratingCounter">
+        <span id="rcA" class="ratingText">
+            1 out of 1 rated this helpful <span id="rateThisPrefix">- </span><a id="rateThisTopic" href="#feedback" title="Rate this topic">Rate this topic</a>
+            
+        </span>
+    </div>
+
+        
+
+<div class="topic" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div id="mainSection">
+<div class="clsServerSDKContent">
+
+</div>
+<p>Contains information about the current state of the system battery.</p>
+<h3>Syntax</h3>
+
+<div id="code-snippet-1" class="codeSnippetContainer" xmlns="">
+    <div class="codeSnippetContainerTabs">
+        <div class="codeSnippetContainerTabSingle" dir="ltr"><a>C++</a></div>
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" style="display: none;" title="Copy to clipboard." href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_bf76ce65-9bb7-4a04-a4fc-7c89a693c5f4');">Copy</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_bf76ce65-9bb7-4a04-a4fc-7c89a693c5f4" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre>
+
+typedef <span style="color:Blue;">struct</span> {
+  BOOLEAN AcOnLine;
+  BOOLEAN BatteryPresent;
+  BOOLEAN Charging;
+  BOOLEAN Discharging;
+  BOOLEAN Spare1[4];
+  DWORD   MaxCapacity;
+  DWORD   RemainingCapacity;
+  DWORD   Rate;
+  DWORD   EstimatedTime;
+  DWORD   DefaultAlert1;
+  DWORD   DefaultAlert2;
+} SYSTEM_BATTERY_STATE, *PSYSTEM_BATTERY_STATE;
+
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+
+<h3>Members</h3>
+<dl>
+<dt><strong>AcOnLine</strong></dt>
+<dd>
+<p>If this member is <strong>TRUE</strong>, the system battery charger is currently operating on external 
+      power.</p>
+</dd>
+<dt><strong>BatteryPresent</strong></dt>
+<dd>
+<p>If this member is <strong>TRUE</strong>, at least one battery is present in the system.</p>
+</dd>
+<dt><strong>Charging</strong></dt>
+<dd>
+<p>If this member is <strong>TRUE</strong>, a battery is currently charging.</p>
+</dd>
+<dt><strong>Discharging</strong></dt>
+<dd>
+<p>If this member is <strong>TRUE</strong>, a battery is currently discharging.</p>
+</dd>
+<dt><strong>Spare1</strong></dt>
+<dd>
+<p>Reserved.</p>
+</dd>
+<dt><strong>MaxCapacity</strong></dt>
+<dd>
+<p>The theoretical capacity of the battery when new, in mWh.</p>
+</dd>
+<dt><strong>RemainingCapacity</strong></dt>
+<dd>
+<p>The estimated remaining capacity of the battery, in mWh.</p>
+</dd>
+<dt><strong>Rate</strong></dt>
+<dd>
+<p>The current rate of discharge of the battery, in mW. A nonzero, positive rate indicates charging; a 
+      negative rate indicates discharging. Some batteries report only discharging rates. This value should be treated 
+      as a <strong>LONG</strong> as it can contain negative values (with the high bit set).</p>
+</dd>
+<dt><strong>EstimatedTime</strong></dt>
+<dd>
+<p>The estimated time remaining on the battery, in seconds.</p>
+</dd>
+<dt><strong>DefaultAlert1</strong></dt>
+<dd>
+<p>The manufacturer's suggestion of a capacity, in mWh, at which a low battery alert should occur. Definitions 
+      of low vary from manufacturer to manufacturer. In general, a warning state will occur before a low state, but 
+      you should not assume that it always will. To reduce risk of data loss, this value is usually used as the 
+      default setting for the critical battery alarm.</p>
+</dd>
+<dt><strong>DefaultAlert2</strong></dt>
+<dd>
+<p>The manufacturer's suggestion of a capacity, in mWh, at which a warning battery alert should occur. 
+      Definitions of warning vary from manufacturer to manufacturer. In general, a warning state will occur before a 
+      low state, but you should not assume that it always will. To reduce risk of data loss, this value is usually 
+      used as the default setting for the low battery alarm.</p>
+</dd>
+</dl>
+<h3>Requirements</h3>
+<table>
+<tr><th>
+<p>Minimum supported client</p>
+</th><td>Windows XP [desktop apps only]</td></tr>
+<tr><th>
+<p>Minimum supported server</p>
+</th><td>Windows Server 2003 [desktop apps only]</td></tr>
+<tr><th>
+<p>Header</p>
+</th><td>
+<dl>
+<dt>WinNT.h (include Windows.h)</dt>
+</dl>
+</td></tr>
+</table>
+<h3><a id="see_also"></a>See also</h3>
+<dl>
+<dt>
+<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa372675(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">CallNtPowerInformation</strong></a>
+</dt>
+</dl>
+<p> </p>
+<p> </p>
+<p><a href="mailto:wsddocfb@microsoft.com?subject=Documentation%20feedback [power\base]:%20SYSTEM_BATTERY_STATE structure%20 RELEASE:%20(10/16/2012)&amp;body=%0A%0APRIVACY STATEMENT%0A%0AThe doc team uses your feedback to improve the documentation. We don't use your email address for any other purpose. We'll remove your email address from our system after the issue that you are reporting is resolved. While we are working to resolve this issue, we may send you an email message to request more info about your feedback. After the issue is addressed, we may send you an email message to let you know that your feedback has been addressed.%0A%0AFor more info about Microsoft's privacy policy, see http://privacy.microsoft.com/en-us/default.aspx." title="Send comments about this topic to Microsoft">Send comments about this topic to Microsoft</a></p>
+<p>Build date: 10/16/2012</p>
+</div>
+</div>
+    
+
+
+
+
+<div id="contentFeedback">
+    <form method="post" action="/en-us/library/windows/desktop/feedback/add/aa373212(v=vs.85).aspx">
+        <input name="__RequestVerificationToken" type="hidden" value="baXWGSvMIJo7LFqsx+7HbakE5eoPCaGI+BwJjBmQyXQn08AkWt3ESu4nPKOO0LDzkswUHj3H+Vl6JKrNHPxviRXiOzx8fauAzEZPEV5/DJFglTT6ybe7EOA6mNbBBOo+CkjZWw==" />
+    <div id="contentFeedbackContainer">
+        <div class="FeedbackTitleContainer">
+            <a name="feedback"></a>
+        Did you find this helpful?
+            <input id="rdIsUsefulYes" name="rdIsUseful" type="radio" value="1" onclick="toggleContentFeedback('Yes');" /><label for="rdIsUsefulYes">Yes</label>
+            <input id="rdIsUsefulNo" name="rdIsUseful" type="radio" value="0" onclick="toggleContentFeedback('No');" /><label for="rdIsUsefulNo">No</label>
+        
+        </div>
+        
+            <div id="contentFeedbackQAContainer">
+                
+                    <div id="feedbackListNoContainer" class="FeedbackListContainer">
+                        
+                            <div>
+                                <input id="chkbxNo201" name="chkbxNo" type="checkbox" value="201" />
+                                <label for="chkbxNo201">Not accurate</label>
+                            </div>
+                        
+                            <div>
+                                <input id="chkbxNo202" name="chkbxNo" type="checkbox" value="202" />
+                                <label for="chkbxNo202">Not enough depth</label>
+                            </div>
+                        
+                            <div>
+                                <input id="chkbxNo203" name="chkbxNo" type="checkbox" value="203" />
+                                <label for="chkbxNo203">Need more code examples</label>
+                            </div>
+                        
+                    </div>
+                
+                <div class="FeedbackTellUsMoreContainer">
+                    <textarea id="feedbackText" name="feedbackText" class="TellUsMoreTextBoxSearchLoaded" onfocus="WatermarkFocus(this, 'Tell us more...', 'TellUsMoreTextBoxSearch')" onblur="WatermarkBlur(this, 'Tell us more...', 'TellUsMoreTextBoxSearchLoaded')" onmouseover="TextBoxCharactersCounter(this, document.getElementById('feedbackTextCounter'), 1500)" onkeydown="TextBoxCharactersCounter(this, document.getElementById('feedbackTextCounter'), 1500)" onkeyup="TextBoxCharactersCounter(this, document.getElementById('feedbackTextCounter'), 1500)">Tell us more...</textarea>
+                </div>
+                <span class="counter">(<span id="feedbackTextCounter">1500</span> characters remaining)</span>
+                <input type="hidden" id="returnUrl" name="returnUrl" value="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373212(v=vs.85).aspx" />
+                <input type="submit" id="submit" value="Submit" title="Click to Submit Feedback" onclick="WatermarkOnSubmit(document.getElementById('feedbackText'), 'Tell us more...', 'TellUsMoreTextBoxSearch')" />
+                <div style="clear: both;"></div>
+            </div>  
+        
+    </div>
+    </form>
+</div>
+
+    
+
+
+
+
+<script id="CommentTemplate" type="text/x-jquery-tmpl">
+    <div class="communityContentAnnotation">
+        <a name="${Index}"></a>
+        <h3>
+            ${Title}
+        </h3>
+        <div class="communityContentAnnotationBody">
+            {{html Body}}
+        </div>
+        <div class="communityContentAnnotationInfo">
+            <div class="communityContentAnnotationAvatarContainer">
+                <a href="${UserAvatar.Href}" title="${UserAvatar.ToolTip}" class="communityContentAnnotationAvatar"><img src="${UserAvatar.ImageUrl}" alt="${UserAvatar.ImageAltText}" width="34" height="34" /></a>
+            </div>
+            <div class="communityContentAnnotationUserDateContainer">
+                <div class="communityContentAnnotationUserContainer">
+                    <a href="${UserAvatar.Href}">
+                        ${User}
+                    </a>
+                </div>
+                <div class="communityContentAnnotationDateContainer">
+                    <span>${Date}</span>
+                    
+                    {{if EditLink}}
+                        <span>
+                            <a href="${EditLink.Href}" title="${EditLink.ToolTip}" class="communityContentCommentEditLink">${EditLink.Title}</a>
+                        </span>
+                    {{/if}}
+
+                    {{if DeleteLink}}
+                        <span>
+                            <a href="${DeleteLink.Href}" title="${DeleteLink.ToolTip}" class="communityContentDeleteLink">${DeleteLink.Title}</a>
+                        </span>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<div class="communityContentContainer">
+    <div id="CommunityContentHeader" class="communityContentHeader">
+        <div class="communityContentHeaderTitleContainer">
+            <h2>Community Additions</h2>
+                <a class="communityContentAddLink" href="http://msdn.microsoft.com/en-us/library/windows/desktop/community/add/aa373212(v=vs.85).aspx">
+                    <span class="communityContentAddButton" title="Add">
+                        ADD
+                    </span>
+                </a>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+    
+    <div id="CommunityComments" data-url="/en-us/library/windows/desktop/community/comments/aa373212(v=vs.85).aspx"></div>
+</div>
+
+
+
+</div>
+
+
+            </div>
+            <div class="clear"></div>
+        
+            
+
+<div id="ux-footer">
+
+    <div class="blocks">
+        <div class="footerPrimaryBlock">
+            <div class="footerLinksTitles">Network sites</div>
+            <div style="padding-top: 5px; padding-bottom: 14px;">
+              <a href="http://msdn.microsoft.com" title="Microsoft Developer Network">
+                <div class="clip49x17">
+                  <img alt="Network sites" title="Microsoft Developer Network" class="footerLogoImage" src="http://i.msdn.microsoft.com/Areas/Epx/Themes/Metro/Content/ImageSprite.png" />
+                </div>
+              </a>
+            </div>
+            <div style="padding-bottom: 71px;"><span class="footerLinks"></span></div>
+        </div>
+        <div class="footerSubBlock"> </div><div class="footerSubBlock">
+          <div class="footerLinksTitles">Windows Dev Center</div>
+          
+                    <div style="padding-top: 5px;" class="footerLinks">
+                      <a href="http://msdn.microsoft.com/windows" title="Windows Dev Center home">Windows Dev Center home</a>
+                    </div>
+                    
+                    <div style="padding-top: 5px;" class="footerLinks">
+                      <a href="http://msdn.microsoft.com/windows/apps" title="Windows Store apps">Windows Store apps</a>
+                    </div>
+                    
+                    <div style="padding-top: 5px;" class="footerLinks">
+                      <a href="http://msdn.microsoft.com/ie" title="Internet Explorer">Internet Explorer</a>
+                    </div>
+                    
+                    <div style="padding-top: 5px;" class="footerLinks">
+                      <a href="http://msdn.microsoft.com/windows/desktop" title="Desktop">Desktop</a>
+                    </div>
+                    
+                    <div style="padding-top: 5px;" class="footerLinks">
+                      <a href="http://msdn.microsoft.com/windows/hardware" title="Hardware">Hardware</a>
+                    </div>
+                    
+        </div><div class="footerFinalBlock">
+          <div class="footerLinksTitles">Other links</div>
+          
+                    <div style="padding-top: 5px;" class="footerLinks">
+                      <a href="http://msdn.microsoft.com/windows/desktop/aa905013" title="Support">Support</a>
+                    </div>
+                    
+                    <div style="padding-top: 5px;" class="footerLinks">
+                      <a href="https://connect.microsoft.com/dashboard/" title="Microsoft Connect">Microsoft Connect</a>
+                    </div>
+                    
+                    <div style="padding-top: 5px;" class="footerLinks">
+                      <a href="http://dev.windowsphone.com/" title="Windows Phone Dev Center">Windows Phone Dev Center</a>
+                    </div>
+                    
+        </div>
+        </div>
+    
+    <div class="footerMSLogo">
+      <a href="http://www.microsoft.com" title="Microsoft">
+        <div class="clip104x20">
+          <img src="http://i.msdn.microsoft.com/Areas/Epx/Themes/Metro/Content/ImageSprite.png" class="footerMsLogo" title="Microsoft" alt="" />
+        </div>
+      </a>
+    </div>
+    <div class="footerSubLinksContainer">
+        <div class="footerSubLinks">
+            <a href="http://msdn.microsoft.com/windows/desktop/cc300389" title="Terms of use">Terms of use</a>
+              <span class="footerSubLinksDivider">|</span>
+            <a href="http://www.microsoft.com/library/toolbar/3.0/trademarks/en-us.mspx" title="Trademarks">Trademarks</a>
+              <span class="footerSubLinksDivider">|</span>
+            <a href="http://www.microsoft.com/info/privacy.mspx" title="Privacy statement">Privacy statement</a>
+              <span class="footerSubLinksDivider">|</span>
+            
+          <a href="http://lab.msdn.microsoft.com/mailform/contactus.aspx?refurl=%2flibrary%2fwindows%2fdesktop%2faa373212" title="Site feedback" target="_blank" onclick="SiteFeedbackNewWindow('http://lab.msdn.microsoft.com/mailform/contactus.aspx?refurl=%2flibrary%2fwindows%2fdesktop%2faa373212'); return false;">Site feedback</a>
+          <span class="footerSubLinksDivider">|</span>
+          <a href="http://msdn.microsoft.com/en-us/windows/desktop/SelectLocale?fromPage=%2flibrary%2fwindows%2fdesktop%2faa373212" title=" United States (English)"> United States (English)</a>
+        </div>
+        <div class="footerCopyright" title="© 2012 Microsoft. All rights reserved.">© 2012 Microsoft. All rights reserved.</div>
+    </div>
+</div>
+
+            <div class="footerPrintView">
+                <div class="footerCopyrightPrintView">© 2012 Microsoft. All rights reserved.</div>
+            </div>
+
+            
+            
+    
+
+
+        
+            <input id="MtpsDevice" type="hidden" value="Default" />
+
+
+<![CDATA[ Third party scripts and code linked to or referenced from this website are licensed to you by the parties that own such code, not by Microsoft.  See ASP.NET Ajax CDN Terms of Use – http://www.asp.net/ajaxlibrary/CDN.ashx. ]]>        
+            
+            
+            
+            
+            
+        
+
+
+
+<noscript><div><img alt="DCSIMG" id="Img1" width="1" height="1" src="http://m.webtrends.com/dcsmgru7m99k7mqmgrhudo0k8_8c6m/njs.gif?dcsuri=/nojavascript&amp;WT.js=No" /></div></noscript>
+
+
+
+
+<noscript>
+  <a href="http://www.omniture.com" title="Web Analytics">
+    <img src="//msstonojsmsdn.112.2o7.net/b/ss/msstonojsmsdn/1/H.20.2--NS/0" height="1" width="1" border="0" alt="" />
+  </a>
+</noscript>
+
+
+        </div>
+    <script type="text/javascript" class="mtps-injected">
+/*<![CDATA[*/
+(function(window,document){"use strict";function preload(scripts){for(var result=[],script,e,i=0;i<scripts.length;i++)script=scripts[i],script.hasOwnProperty("url")&&(e=document.createElement("script"),e.src=script.url,script.throwaway=e),result.push(script);return result}function inject(scripts,index){var script,elem;if(index>=scripts.length){delete mtps.injectScripts;return}script=scripts[index],elem=document.createElement("script"),elem.className="mtps-injected",elem.async=!1;var isLoaded=!1,timeoutId=0,injectNextFnName="",injectNext=elem.onerror=function(){isLoaded||(isLoaded=!0,inject(scripts,index+1),window.clearTimeout(timeoutId),elem.onload=elem.onerror=elem.onreadystatechange=null,injectNextFnName&&delete mtps[injectNextFnName],elem.removeEventListener&&elem.removeEventListener("load",injectNext,!1))};elem.addEventListener?elem.addEventListener("load",injectNext,!1):elem.readyState==="uninitialized"?elem.onreadystatechange=function(){(this.readyState==="loaded"||this.readyState==="complete")&&injectNext()}:elem.onload=injectNext,script.hasOwnProperty("url")?(timeoutId=window.setTimeout(injectNext,12e4),elem.src=script.url):(injectNextFnName="_injectNextScript_"+index,mtps[injectNextFnName]=injectNext,timeoutId=window.setTimeout(injectNext,2e3),elem.text="try {\n"+script.txt+"\n} finally { MTPS."+injectNextFnName+" && MTPS."+injectNextFnName+"(); }"),parent.appendChild(elem)}var mtps=window.MTPS||(window.MTPS={}),parent=document.getElementsByTagName("head")[0];mtps.injectScripts=function(scripts){inject(preload(scripts),0)}})(window,document);
+MTPS.injectScripts([
+	{ txt: "/**/\r\n(window.MTPS || (window.MTPS = {})).cdnDomains || (window.MTPS.cdnDomains = { \r\n\t\"image\": \"http://i.msdn.microsoft.com\", \r\n\t\"js\": \"http://i2.msdn.microsoft.com\", \r\n\t\"css\": \"http://i3.msdn.microsoft.com\"\r\n});\r\n/**/" },
+	{ txt: "//\n  var literalNormalizedUrl = \u0027/en-us/library/windows/desktop/aa373212(d=default,l=en-us,v=vs.85).aspx\u0027;\n  var wt_nvr_ru = \u0027WT_NVR_RU\u0027;\n  var wt_fpcdom = \u0027.microsoft.com\u0027;\n  var wt_domlist = \u0027msdn.microsoft.com\u0027;\n  var wt_pathlist = \u0027\u0027;\n  var wt_paramlist = \u0027DCSext.mtps_devcenter\u0027;\n  var wt_siteid = \u0027MSDN\u0027;\n  var gDomain = \u0027m.webtrends.com\u0027;\n  var gDcsId = \u0027dcsmgru7m99k7mqmgrhudo0k8_8c6m\u0027;\n  var gFpc = \u0027WT_FPC\u0027;\n  if (document.cookie.indexOf(gFpc + \"=\") == -1) {\n    var wtidJs = document.createElement(\"script\");\n    wtidJs.src = \"//\" + gDomain + \"/\" + gDcsId + \"/wtid.js\";\n    document.getElementsByTagName(\"head\")[0].appendChild(wtidJs);\n  }\n  var detectedLocale = \u0027en-us\u0027;\n  var wtsp = \u0027_msdnlib_es_dev_win32com_\u0027;\n  var gTrackEvents = \u00270\u0027;\n/**/" },
+	{ txt: "/**/\n  var omni_guid = \"a477690c-8be9-4931-932d-1c396d5762e1\";\n/**/" },
+	{ url: "http://i2.msdn.microsoft.com/Combined.js?resources=0:webtrendsscript,1:omni_rsid_MSDN;/Areas/Global/Content/Webtrends/resources:0,/Areas/Global/Content/Omniture/resources/MSDN:1&amp;hashKey=2A2EA78286FAF39A313149F2A3E6EE83" },
+	{ url: "http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js" },
+	{ url: "http://i2.msdn.microsoft.com/Combined.js?resources=0:Utilities,0:jquery-ui-1.8.24.custom.min,1:header,2:Toc,2:NavigationResize,3:FeedbackCounter,3:Feedback;/Areas/Epx/Content/Scripts:0,/Areas/Epx/Themes/Metro/Content:1,/Areas/Epx/Library/Content:2,/Areas/Epx/Shared/Content:3&amp;hashKey=7C16E8E14B7301E694D1E1CCEEB6BF2B" },
+	{ url: "http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js" },
+	{ url: "http://i2.msdn.microsoft.com/Combined.js?resources=0:CommunityContent,0:Topic,0:CodeSnippet,0:TopicNotInScope,0:CollapsibleArea,0:VersionSelector,0:SurveyBroker;/Areas/Epx/Content/Scripts:0&amp;hashKey=5741CA4DDB5D4AB2BF8B1A843F0A39F9" }
+]);
+
+/*]]>*/
+</script></body>
+</html>

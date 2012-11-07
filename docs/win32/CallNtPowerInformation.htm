@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+
+
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+    <head><link rel="canonical" href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa372675(v=vs.85).aspx" />
+        <title>CallNtPowerInformation function</title>
+
+
+
+<meta name="DCS.dcsuri" content="/en-us/library/windows/desktop/aa372675(d=default,l=en-us,v=vs.85).aspx" />
+
+<meta name="NormalizedUrl" content="http://msdn.microsoft.com/en-us/library/windows/desktop/aa372675(d=default,l=en-us,v=vs.85).aspx" />
+
+<meta name="VotingContextUrl" content="http://msdn.microsoft.com/en-us/library/windows/desktop/aa372675(d=default,l=en-us,v=vs.85).aspx" />
+
+<meta name="MN" content="91D76233-3:58:57 AM" />
+
+<meta name="Search.ShortId" content="aa372675" />
+
+<meta name="Ms.Locale" content="en-us" />
+
+
+
+
+
+
+
+        
+    
+
+    <link rel="stylesheet" type="text/css" href="http://i3.msdn.microsoft.com/Combined.css?resources=0:Topic,0:CodeSnippet,0:ProgrammingSelector,1:ExpandableCollapsibleArea,1:CommunityContent,0:TopicNotInScope,0:FeedViewerBasic,0:ImageSprite,0:jquery-ui-1.8.14.custom,2:header,2:SearchBox,2:ImageSprite,0:Breadcrumbs,3:Toc,3:NavigationResize,4:FeedbackCounter,4:Feedback,2:footer,2:Metro;/Areas/Epx/Content/Css:0,/Areas/Octagon/Content:1,/Areas/Epx/Themes/Metro/Content:2,/Areas/Epx/Library/Content:3,/Areas/Epx/Shared/Content:4&amp;amp;hashKey=45E00C685957A563574AB407405DE0B2" /></head>
+    <body class="library">
+        <div id="page">
+                
+            
+  
+            
+    
+
+
+<div id="ux-header">
+    <div class="GlobalBar">
+        <div class="PassportScarab">
+        
+        <a id="idPPScarab" class="scarabLink" href="https://login.live.com/login.srf?wa=wsignin1.0&amp;rpsnv=11&amp;ct=1352203137&amp;rver=6.0.5276.0&amp;wp=MCLBI&amp;wlcxt=msdn%24msdn%24msdn&amp;wreply=http%3a%2f%2fmsdn.microsoft.com%2fen-us%2flibrary%2fwindows%2fdesktop%2faa372675%2528v%3dvs.85%2529.aspx&amp;lc=1033&amp;id=254354&amp;mkt=en-US"><span id="idPPScarabSIT">Sign in</span></a>
+        </div>
+    </div>
+    <div class="Clear"></div>
+    <div class="Search">
+        <div class="SearchBox">
+        <form id="HeaderSearchForm" method="get" action="http://social.msdn.microsoft.com/search/en-us/windows/desktop" onsubmit="return SearchBoxOnSubmit('Search Dev Center with Bing');">
+            <input name="query" id="HeaderSearchTextBox" class="TextBoxSearchLoaded" type="text" value="Search Dev Center with Bing" maxlength="100" title="Search Dev Center with Bing" onfocus="WatermarkFocus(this, 'Search Dev Center with Bing', 'TextBoxSearchLoaded TextBoxSearch')" onblur="WatermarkBlur(this, 'Search Dev Center with Bing', 'TextBoxSearchLoaded')" />
+            <input name="Refinement" type="hidden" value="181" />
+            <input id="HeaderSearchButton" value="" class="SearchButton" type="submit" title="Search Dev Center with Bing" />
+            <input id="HeaderSearchButtonHidden" value="" style="display:none;" type="submit" />       
+        </form>
+        </div>
+    </div>
+    <div class="siteLogo">
+        <a href="http://msdn.microsoft.com/en-us/windows/desktop" title="Dev Center - Desktop">
+          
+            <div class="sitelogoImage" alt="Dev Center - Desktop" title="Dev Center - Desktop"></div>
+            
+            <span>Dev Center - Desktop</span>
+        </a>
+    </div>
+    <div class="tabs">
+     
+         
+         <a class="" href="http://msdn.microsoft.com/windows/desktop/aa904944" title="Home">Home</a>
+
+         
+         
+         <a class="" href="https://sysdev.microsoft.com/en-US/desktop/" title="Dashboard">Dashboard</a>
+
+         
+         
+         <a class="highlightedTab" href="http://msdn.microsoft.com/library/windows/desktop/" title="Docs">Docs</a>
+
+         
+         
+         <a class="" href="http://code.msdn.microsoft.com/en-us/windowsdesktop" title="Samples">Samples</a>
+
+         
+         
+         <a class="" href="http://msdn.microsoft.com/windows/desktop/aa904949" title="Downloads">Downloads</a>
+
+         
+         
+         <a class="" href="http://msdn.microsoft.com/windows/desktop/aa905013" title="Support">Support</a>
+
+         
+         
+         <a class="" href="http://msdn.microsoft.com/windows/desktop/aa904945" title="Community">Community</a>
+
+             
+    </div>
+    <div class="masthead_hr"></div>
+</div>
+
+
+
+
+    <div class="breadCrumb">
+<a href="http://msdn.microsoft.com/en-us/windows/desktop/" title="Dev Center - Desktop">Dev Center - Desktop</a>            <span>&gt;</span>
+<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/" title="Docs">Docs</a>            <span>&gt;</span>
+<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh447209(v=vs.85).aspx" title="Windows Development Reference">Windows Development Reference</a>            <span>&gt;</span>
+<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ee663297(v=vs.85).aspx" title="System Services">System Services</a>            <span>&gt;</span>
+<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/bb968807(v=vs.85).aspx" title="Power Management">Power Management</a>            <span>&gt;</span>
+<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373170(v=vs.85).aspx" title="Power Management Reference">Power Management Reference</a>            <span>&gt;</span>
+<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373163(v=vs.85).aspx" title="Power Management Functions">Power Management Functions</a>            <span>&gt;</span>
+
+        <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa372675(v=vs.85).aspx" title="CallNtPowerInformation">CallNtPowerInformation</a>
+    </div>
+        <h1 id="TopicTitle">CallNtPowerInformation function</h1>
+
+        
+            <div id="body">
+                
+
+
+
+
+
+
+
+
+
+
+<div id="leftNav">
+
+
+
+
+<div id="tocnav">
+            <div class="toclevel0" data-toclevel="0">
+                <a data-tochassubtree="true" href="/en-us/library/windows/desktop/aa904962.aspx" id="aa906041_MSDN.10_en-us" title="Windows Desktop App Development">Windows Desktop App Development</a>
+            </div>
+            <div class="toclevel0" data-toclevel="0">
+                <a data-tochassubtree="true" href="/en-us/library/windows/desktop/hh447209(v=vs.85).aspx" id="br230310_VS.85_en-us" title="Windows Development Reference">Windows Development Reference</a>
+            </div>
+            <div class="toclevel0" data-toclevel="0">
+                <a data-tochassubtree="true" href="/en-us/library/windows/desktop/ee663297(v=vs.85).aspx" id="hh309619_VS.85_en-us" title="System Services">System Services</a>
+            </div>
+            <div class="toclevel0" data-toclevel="0">
+                <a data-tochassubtree="true" href="/en-us/library/windows/desktop/bb968807(v=vs.85).aspx" id="ms763443_VS.85_en-us" title="Power Management">Power Management</a>
+            </div>
+            <div class="toclevel0" data-toclevel="0">
+                <a data-tochassubtree="true" href="/en-us/library/windows/desktop/aa373170(v=vs.85).aspx" id="ms763452_VS.85_en-us" title="Power Management Reference">Power Management Reference</a>
+            </div>
+            <div class="toclevel1" data-toclevel="1">
+                <a data-tochassubtree="true" href="/en-us/library/windows/desktop/aa373163(v=vs.85).aspx" id="ms763475_VS.85_en-us" title="Power Management Functions">Power Management Functions</a>
+            </div>
+            <div class="toclevel2 current" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372675(v=vs.85).aspx" title="CallNtPowerInformation">CallNtPowerInformation</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372676(v=vs.85).aspx" title="CanUserWritePwrScheme">CanUserWritePwrScheme</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372678(v=vs.85).aspx" title="DeletePwrScheme">DeletePwrScheme</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372680(v=vs.85).aspx" title="DevicePowerClose">DevicePowerClose</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372681(v=vs.85).aspx" title="DevicePowerEnumDevices">DevicePowerEnumDevices</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372682(v=vs.85).aspx" title="DevicePowerOpen">DevicePowerOpen</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372683(v=vs.85).aspx" title="DevicePowerSetDeviceState">DevicePowerSetDeviceState</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372687(v=vs.85).aspx" title="EnumPwrSchemes">EnumPwrSchemes</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372688(v=vs.85).aspx" title="GetActivePwrScheme">GetActivePwrScheme</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372689(v=vs.85).aspx" title="GetCurrentPowerPolicies">GetCurrentPowerPolicies</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372690(v=vs.85).aspx" title="GetDevicePowerState">GetDevicePowerState</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372691(v=vs.85).aspx" title="GetPwrCapabilities">GetPwrCapabilities</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372692(v=vs.85).aspx" title="GetPwrDiskSpindownRange">GetPwrDiskSpindownRange</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372693(v=vs.85).aspx" title="GetSystemPowerStatus">GetSystemPowerStatus</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372705(v=vs.85).aspx" title="IsPwrHibernateAllowed">IsPwrHibernateAllowed</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372706(v=vs.85).aspx" title="IsPwrShutdownAllowed">IsPwrShutdownAllowed</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372707(v=vs.85).aspx" title="IsPwrSuspendAllowed">IsPwrSuspendAllowed</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372708(v=vs.85).aspx" title="IsSystemResumeAutomatic">IsSystemResumeAutomatic</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372724(v=vs.85).aspx" title="PowerCanRestoreIndividualDefaultPowerScheme">PowerCanRestoreIndividualDefaultPowerScheme</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/dd405532(v=vs.85).aspx" title="PowerClearRequest">PowerClearRequest</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372725(v=vs.85).aspx" title="PowerCreatePossibleSetting">PowerCreatePossibleSetting</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/dd405533(v=vs.85).aspx" title="PowerCreateRequest">PowerCreateRequest</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372726(v=vs.85).aspx" title="PowerCreateSetting">PowerCreateSetting</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372727(v=vs.85).aspx" title="PowerDeleteScheme">PowerDeleteScheme</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372728(v=vs.85).aspx" title="PowerDeterminePlatformRole">PowerDeterminePlatformRole</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/hh448379(v=vs.85).aspx" title="PowerDeterminePlatformRoleEx">PowerDeterminePlatformRoleEx</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372729(v=vs.85).aspx" title="PowerDuplicateScheme">PowerDuplicateScheme</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372730(v=vs.85).aspx" title="PowerEnumerate">PowerEnumerate</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372731(v=vs.85).aspx" title="PowerGetActiveScheme">PowerGetActiveScheme</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372732(v=vs.85).aspx" title="PowerImportPowerScheme">PowerImportPowerScheme</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/hh769079(v=vs.85).aspx" title="PowerIsSettingRangeDefined">PowerIsSettingRangeDefined</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372733(v=vs.85).aspx" title="PowerReadACDefaultIndex">PowerReadACDefaultIndex</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372734(v=vs.85).aspx" title="PowerReadACValue">PowerReadACValue</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372735(v=vs.85).aspx" title="PowerReadACValueIndex">PowerReadACValueIndex</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372736(v=vs.85).aspx" title="PowerReadDCDefaultIndex">PowerReadDCDefaultIndex</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372737(v=vs.85).aspx" title="PowerReadDCValue">PowerReadDCValue</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372738(v=vs.85).aspx" title="PowerReadDCValueIndex">PowerReadDCValueIndex</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372739(v=vs.85).aspx" title="PowerReadDescription">PowerReadDescription</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372740(v=vs.85).aspx" title="PowerReadFriendlyName">PowerReadFriendlyName</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372741(v=vs.85).aspx" title="PowerReadIconResourceSpecifier">PowerReadIconResourceSpecifier</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372742(v=vs.85).aspx" title="PowerReadPossibleDescription">PowerReadPossibleDescription</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372743(v=vs.85).aspx" title="PowerReadPossibleFriendlyName">PowerReadPossibleFriendlyName</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372744(v=vs.85).aspx" title="PowerReadPossibleValue">PowerReadPossibleValue</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372745(v=vs.85).aspx" title="PowerReadSettingAttributes">PowerReadSettingAttributes</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372746(v=vs.85).aspx" title="PowerReadValueIncrement">PowerReadValueIncrement</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372747(v=vs.85).aspx" title="PowerReadValueMax">PowerReadValueMax</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372748(v=vs.85).aspx" title="PowerReadValueMin">PowerReadValueMin</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372750(v=vs.85).aspx" title="PowerReadValueUnitsSpecifier">PowerReadValueUnitsSpecifier</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/hh769080(v=vs.85).aspx" title="PowerRegisterSuspendResumeNotification">PowerRegisterSuspendResumeNotification</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372752(v=vs.85).aspx" title="PowerRemovePowerSetting">PowerRemovePowerSetting</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372754(v=vs.85).aspx" title="PowerReplaceDefaultPowerSchemes">PowerReplaceDefaultPowerSchemes</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372755(v=vs.85).aspx" title="PowerRestoreDefaultPowerSchemes">PowerRestoreDefaultPowerSchemes</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372756(v=vs.85).aspx" title="PowerRestoreIndividualDefaultPowerScheme">PowerRestoreIndividualDefaultPowerScheme</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372758(v=vs.85).aspx" title="PowerSetActiveScheme">PowerSetActiveScheme</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/dd405534(v=vs.85).aspx" title="PowerSetRequest">PowerSetRequest</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372761(v=vs.85).aspx" title="PowerSettingAccessCheck">PowerSettingAccessCheck</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/hh769081(v=vs.85).aspx" title="PowerSettingAccessCheckEx">PowerSettingAccessCheckEx</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/hh769082(v=vs.85).aspx" title="PowerSettingRegisterNotification">PowerSettingRegisterNotification</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/hh769083(v=vs.85).aspx" title="PowerSettingUnregisterNotification">PowerSettingUnregisterNotification</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/hh769084(v=vs.85).aspx" title="PowerUnregisterSuspendResumeNotification">PowerUnregisterSuspendResumeNotification</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372763(v=vs.85).aspx" title="PowerWriteACDefaultIndex">PowerWriteACDefaultIndex</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372765(v=vs.85).aspx" title="PowerWriteACValueIndex">PowerWriteACValueIndex</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372767(v=vs.85).aspx" title="PowerWriteDCDefaultIndex">PowerWriteDCDefaultIndex</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372769(v=vs.85).aspx" title="PowerWriteDCValueIndex">PowerWriteDCValueIndex</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372772(v=vs.85).aspx" title="PowerWriteDescription">PowerWriteDescription</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372773(v=vs.85).aspx" title="PowerWriteFriendlyName">PowerWriteFriendlyName</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372778(v=vs.85).aspx" title="PowerWriteIconResourceSpecifier">PowerWriteIconResourceSpecifier</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa372779(v=vs.85).aspx" title="PowerWritePossibleDescription">PowerWritePossibleDescription</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373116(v=vs.85).aspx" title="PowerWritePossibleFriendlyName">PowerWritePossibleFriendlyName</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373120(v=vs.85).aspx" title="PowerWritePossibleValue">PowerWritePossibleValue</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373127(v=vs.85).aspx" title="PowerWriteSettingAttributes">PowerWriteSettingAttributes</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373135(v=vs.85).aspx" title="PowerWriteValueIncrement">PowerWriteValueIncrement</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373137(v=vs.85).aspx" title="PowerWriteValueMax">PowerWriteValueMax</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373139(v=vs.85).aspx" title="PowerWriteValueMin">PowerWriteValueMin</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373143(v=vs.85).aspx" title="PowerWriteValueUnitsSpecifier">PowerWriteValueUnitsSpecifier</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373189(v=vs.85).aspx" title="ReadGlobalPwrPolicy">ReadGlobalPwrPolicy</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373190(v=vs.85).aspx" title="ReadProcessorPwrScheme">ReadProcessorPwrScheme</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373192(v=vs.85).aspx" title="ReadPwrScheme">ReadPwrScheme</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373196(v=vs.85).aspx" title="RegisterPowerSettingNotification">RegisterPowerSettingNotification</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/jj613321(v=vs.85).aspx" title="RegisterSuspendResumeNotification">RegisterSuspendResumeNotification</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373199(v=vs.85).aspx" title="RequestWakeupLatency">RequestWakeupLatency</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373200(v=vs.85).aspx" title="SetActivePwrScheme">SetActivePwrScheme</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373201(v=vs.85).aspx" title="SetSuspendState">SetSuspendState</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373206(v=vs.85).aspx" title="SetSystemPowerState">SetSystemPowerState</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373208(v=vs.85).aspx" title="SetThreadExecutionState">SetThreadExecutionState</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373237(v=vs.85).aspx" title="UnregisterPowerSettingNotification">UnregisterPowerSettingNotification</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/jj613322(v=vs.85).aspx" title="UnregisterSuspendResumeNotification">UnregisterSuspendResumeNotification</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373250(v=vs.85).aspx" title="WriteGlobalPwrPolicy">WriteGlobalPwrPolicy</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373251(v=vs.85).aspx" title="WriteProcessorPwrScheme">WriteProcessorPwrScheme</a>
+            </div>
+            <div class="toclevel2" data-toclevel="2">
+                <a href="/en-us/library/windows/desktop/aa373253(v=vs.85).aspx" title="WritePwrScheme">WritePwrScheme</a>
+            </div>
+</div>    
+    
+    
+    
+
+
+<a id="NavigationResize" href="javascript:epx.library.navigationResize.resize()">
+    <img class="cl_nav_resize_open" src="http://i.msdn.microsoft.com/Areas/Epx/Content/Images/ImageSprite.png" title="Expand" alt="Expand" />
+    <img class="cl_nav_resize_close" src="http://i.msdn.microsoft.com/Areas/Epx/Content/Images/ImageSprite.png" title="Minimize" alt="Minimize" />
+</a>
+
+
+
+</div>
+<div id="content" class="content">
+
+
+
+
+
+    
+
+    
+    
+
+    <div id="ratingCounterSeperator" class="cl_lw_vs_seperator" style="display: none;"></div>
+
+    <div id="ratingCounter">
+        <span id="rcA" class="ratingText">
+            1 out of 6 rated this helpful <span id="rateThisPrefix">- </span><a id="rateThisTopic" href="#feedback" title="Rate this topic">Rate this topic</a>
+            
+        </span>
+    </div>
+
+        
+
+<div class="topic" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div id="mainSection">
+<div class="clsServerSDKContent">
+
+</div>
+<p>Sets or retrieves power information.</p>
+<h3>Syntax</h3>
+
+<div class="codeSnippetContainer" xmlns="">
+    <div class="codeSnippetContainerTabs">
+        <div class="codeSnippetContainerTabSingle" dir="ltr"><a>C++</a></div>
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" style="display: none;" title="Copy to clipboard." href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_4f283161-cc49-48f1-86c9-1f484f88a82c');">Copy</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_4f283161-cc49-48f1-86c9-1f484f88a82c" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre>
+
+NTSTATUS WINAPI CallNtPowerInformation(
+  _In_   POWER_INFORMATION_LEVEL InformationLevel,
+  _In_   PVOID lpInputBuffer,
+  _In_   ULONG nInputBufferSize,
+  _Out_  PVOID lpOutputBuffer,
+  _In_   ULONG nOutputBufferSize
+);
+
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+
+<h3>Parameters</h3>
+<dl>
+<dt><em>InformationLevel</em> [in]</dt>
+<dd>
+<p>The information level requested. This value indicates the specific power information to be set or 
+      retrieved. This parameter must be one of the following 
+      <strong>POWER_INFORMATION_LEVEL</strong> enumeration type values.</p>
+<table>
+<tr><th>Value</th><th>Meaning</th></tr>
+<tr><td><a id="AdministratorPowerPolicy"></a><a id="administratorpowerpolicy"></a><a id="ADMINISTRATORPOWERPOLICY"></a><dl>
+<dt><strong>AdministratorPowerPolicy</strong></dt>
+<dt>9</dt>
+</dl>
+</td><td>
+<p>This information level is not supported.
+        </p>
+<blockquote><div><strong>Windows Server 2003 and Windows XP:  </strong>If lpInBuffer is not <strong>NULL</strong> and the current user has 
+          administrator privileges, the function applies the 
+          <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa372653(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">ADMINISTRATOR_POWER_POLICY</strong></a> passed 
+          in lpInBuffer to the system.
+          <p>The <em>lpOutputBuffer</em> buffer receives the current system 
+           <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa372653(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">ADMINISTRATOR_POWER_POLICY</strong></a> 
+           structure.</p>
+<p>Applications can use this level to optionally set or retrieve the current administrator overrides. The 
+           caller must have administrator rights to apply an administrator override; otherwise, the function returns 
+           <strong>STATUS_ACCESS_DENIED</strong>.</p>
+</div></blockquote>
+</td></tr>
+<tr><td><a id="LastSleepTime"></a><a id="lastsleeptime"></a><a id="LASTSLEEPTIME"></a><dl>
+<dt><strong>LastSleepTime</strong></dt>
+<dt>15</dt>
+</dl>
+</td><td>
+<p>The <em>lpInBuffer</em> parameter must be <strong>NULL</strong>; otherwise, the 
+        function returns <strong>ERROR_INVALID_PARAMETER</strong>.
+        </p>
+<p>The <em>lpOutputBuffer</em> buffer receives a <strong>ULONGLONG</strong> that 
+         specifies the interrupt-time count, in 100-nanosecond units, at the last system sleep time.</p>
+</td></tr>
+<tr><td><a id="LastWakeTime"></a><a id="lastwaketime"></a><a id="LASTWAKETIME"></a><dl>
+<dt><strong>LastWakeTime</strong></dt>
+<dt>14</dt>
+</dl>
+</td><td>
+<p>The <em>lpInBuffer</em> parameter must be <strong>NULL</strong>; otherwise, the 
+        function returns <strong>ERROR_INVALID_PARAMETER</strong>.
+        </p>
+<p>The <em>lpOutputBuffer</em> buffer receives a <strong>ULONGLONG</strong> that 
+         specifies the interrupt-time count, in 100-nanosecond units, at the last system wake time.</p>
+</td></tr>
+<tr><td><a id="ProcessorInformation"></a><a id="processorinformation"></a><a id="PROCESSORINFORMATION"></a><dl>
+<dt><strong>ProcessorInformation</strong></dt>
+<dt>11</dt>
+</dl>
+</td><td>
+<p>The <em>lpInBuffer</em> parameter must be <strong>NULL</strong>; otherwise the 
+        function returns <strong>ERROR_INVALID_PARAMETER</strong>.
+        </p>
+<p>The <em>lpOutputBuffer</em> buffer receives one 
+         <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373184(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">PROCESSOR_POWER_INFORMATION</strong></a> 
+         structure for each processor that is installed on the system. Use the <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ms724381(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">GetSystemInfo</strong></a> function to retrieve the number of processors.</p>
+</td></tr>
+<tr><td><a id="ProcessorPowerPolicyAc"></a><a id="processorpowerpolicyac"></a><a id="PROCESSORPOWERPOLICYAC"></a><dl>
+<dt><strong>ProcessorPowerPolicyAc</strong></dt>
+<dt>18</dt>
+</dl>
+</td><td>
+<p>This information level is not supported.
+        </p>
+<blockquote><div><strong>Windows Server 2003 and Windows XP:  </strong>The lpInBuffer parameter must be <strong>NULL</strong>, otherwise, 
+          the function returns <strong>ERROR_INVALID_PARAMETER</strong>.
+          <p>The <em>lpOutputBuffer</em> buffer receives a 
+           <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373187(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">PROCESSOR_POWER_POLICY</strong></a> structure 
+           containing the current system processor power policy used while the system is running on AC (utility) 
+           power.</p>
+</div></blockquote>
+</td></tr>
+<tr><td><a id="ProcessorPowerPolicyCurrent"></a><a id="processorpowerpolicycurrent"></a><a id="PROCESSORPOWERPOLICYCURRENT"></a><dl>
+<dt><strong>ProcessorPowerPolicyCurrent</strong></dt>
+<dt>22</dt>
+</dl>
+</td><td>
+<p>This information level is not supported.
+        </p>
+<blockquote><div><strong>Windows Server 2003 and Windows XP:  </strong>The lpInBuffer parameter must be <strong>NULL</strong>; otherwise, 
+          the function returns <strong>ERROR_INVALID_PARAMETER</strong>.
+          <p>The <em>lpOutputBuffer</em> buffer receives a 
+           <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373187(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">PROCESSOR_POWER_POLICY</strong></a> 
+           structure containing the current system processor power policy in use.</p>
+</div></blockquote>
+</td></tr>
+<tr><td><a id="ProcessorPowerPolicyDc"></a><a id="processorpowerpolicydc"></a><a id="PROCESSORPOWERPOLICYDC"></a><dl>
+<dt><strong>ProcessorPowerPolicyDc</strong></dt>
+<dt>19</dt>
+</dl>
+</td><td>
+<p>This information level is not supported.
+        </p>
+<blockquote><div><strong>Windows Server 2003 and Windows XP:  </strong>The lpInBuffer parameter must be <strong>NULL</strong>; otherwise, 
+          the function returns <strong>ERROR_INVALID_PARAMETER</strong>.
+          <p>The <em>lpOutputBuffer</em> buffer receives a 
+           <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373187(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">PROCESSOR_POWER_POLICY</strong></a> 
+           structure containing the current system processor power policy used while the system is running on battery 
+           power.</p>
+</div></blockquote>
+</td></tr>
+<tr><td><a id="SystemBatteryState"></a><a id="systembatterystate"></a><a id="SYSTEMBATTERYSTATE"></a><dl>
+<dt><strong>SystemBatteryState</strong></dt>
+<dt>5</dt>
+</dl>
+</td><td>
+<p>The <em>lpInBuffer</em> parameter must be <strong>NULL</strong>; otherwise, the 
+        function returns <strong>ERROR_INVALID_PARAMETER</strong>.
+        </p>
+<p>The <em>lpOutputBuffer</em> buffer receives a 
+         <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373212(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">SYSTEM_BATTERY_STATE</strong></a> structure containing 
+         information about the current system battery.</p>
+</td></tr>
+<tr><td><a id="SystemExecutionState"></a><a id="systemexecutionstate"></a><a id="SYSTEMEXECUTIONSTATE"></a><dl>
+<dt><strong>SystemExecutionState</strong></dt>
+<dt>16</dt>
+</dl>
+</td><td>
+<p>The <em>lpInBuffer</em> parameter must be <strong>NULL</strong>; otherwise the 
+        function returns <strong>ERROR_INVALID_PARAMETER</strong>.
+        </p>
+<p>The <em>lpOutputBuffer</em> buffer receives a <strong>ULONG</strong> value 
+         containing the system execution state buffer. This value may contain any combination of the following values: 
+         <strong>ES_SYSTEM_REQUIRED</strong>, <strong>ES_DISPLAY_REQUIRED</strong>, or 
+         <strong>ES_USER_PRESENT</strong>. For more information, see the 
+         <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373208(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">SetThreadExecutionState</strong></a> function.</p>
+</td></tr>
+<tr><td><a id="SystemPowerCapabilities"></a><a id="systempowercapabilities"></a><a id="SYSTEMPOWERCAPABILITIES"></a><dl>
+<dt><strong>SystemPowerCapabilities</strong></dt>
+<dt>4</dt>
+</dl>
+</td><td>
+<p>The <em>lpInBuffer</em> parameter must be <strong>NULL</strong>, otherwise, the 
+        function returns <strong>ERROR_INVALID_PARAMETER</strong>.
+        </p>
+<p>The <em>lpOutputBuffer</em> buffer receives a 
+         <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373215(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">SYSTEM_POWER_CAPABILITIES</strong></a> structure 
+         containing the current system power capabilities.</p>
+<p>This information represents the currently supported power capabilities. It may change as drivers are 
+         installed in the system. For example, installation of legacy device drivers that do not support power 
+         management disables all system sleep states.</p>
+</td></tr>
+<tr><td><a id="SystemPowerInformation"></a><a id="systempowerinformation"></a><a id="SYSTEMPOWERINFORMATION"></a><dl>
+<dt><strong>SystemPowerInformation</strong></dt>
+<dt>12</dt>
+</dl>
+</td><td>
+<p>The <em>lpInBuffer</em> parameter must be <strong>NULL</strong>; otherwise, the 
+        function returns <strong>ERROR_INVALID_PARAMETER</strong>.
+        </p>
+<p>The <em>lpOutputBuffer</em> buffer receives a 
+         <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373217(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">SYSTEM_POWER_INFORMATION</strong></a> structure.</p>
+<p>Applications can use this level to retrieve information about the idleness of the system.</p>
+</td></tr>
+<tr><td><a id="SystemPowerPolicyAc"></a><a id="systempowerpolicyac"></a><a id="SYSTEMPOWERPOLICYAC"></a><dl>
+<dt><strong>SystemPowerPolicyAc</strong></dt>
+<dt>0</dt>
+</dl>
+</td><td>
+<p>If <em>lpInBuffer</em> is not <strong>NULL</strong>, the function applies the 
+        <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373225(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">SYSTEM_POWER_POLICY</strong></a> values passed in 
+        <em>lpInBuffer</em> to the current system power policy used while the system is running on AC 
+        (utility) power.
+        </p>
+<p>The <em>lpOutputBuffer</em> buffer receives a 
+         <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373225(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">SYSTEM_POWER_POLICY</strong></a> structure containing 
+         the current system power policy used while the system is running on AC (utility) power.</p>
+</td></tr>
+<tr><td><a id="SystemPowerPolicyCurrent"></a><a id="systempowerpolicycurrent"></a><a id="SYSTEMPOWERPOLICYCURRENT"></a><dl>
+<dt><strong>SystemPowerPolicyCurrent</strong></dt>
+<dt>8</dt>
+</dl>
+</td><td>
+<p>The <em>lpInBuffer</em> parameter must be <strong>NULL</strong>; otherwise, the 
+        function returns <strong>ERROR_INVALID_PARAMETER</strong>.
+        </p>
+<p>The <em>lpOutputBuffer</em> buffer receives a 
+         <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373225(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">SYSTEM_POWER_POLICY</strong></a> structure 
+         containing the current system power policy used while the system is running on AC (utility) power.</p>
+</td></tr>
+<tr><td><a id="SystemPowerPolicyDc"></a><a id="systempowerpolicydc"></a><a id="SYSTEMPOWERPOLICYDC"></a><dl>
+<dt><strong>SystemPowerPolicyDc</strong></dt>
+<dt>1</dt>
+</dl>
+</td><td>
+<p>If <em>lpInBuffer</em> is not <strong>NULL</strong>, the function applies the 
+        <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373225(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">SYSTEM_POWER_POLICY</strong></a> values 
+        passed in <em>lpInBuffer</em> to the current system power policy used while the system is 
+        running on battery power.
+        </p>
+<p>The <em>lpOutputBuffer</em> buffer receives a 
+         <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373225(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">SYSTEM_POWER_POLICY</strong></a> structure containing 
+         the current system power policy used while the system is running on battery power.</p>
+</td></tr>
+<tr><td><a id="SystemReserveHiberFile"></a><a id="systemreservehiberfile"></a><a id="SYSTEMRESERVEHIBERFILE"></a><dl>
+<dt><strong>SystemReserveHiberFile</strong></dt>
+<dt>10</dt>
+</dl>
+</td><td>
+<p>If <em>lpInBuffer</em> is not <strong>NULL</strong> and the current user has 
+        sufficient privileges, the function commits or decommits the storage required to hold the hibernation image on 
+        the boot volume.
+        </p>
+<p>The <em>lpInBuffer</em> parameter must point to a <strong>BOOLEAN</strong> 
+         value indicating the desired request. If the value is <strong>TRUE</strong>, the hibernation file is 
+         reserved; if the value is <strong>FALSE</strong>, the hibernation file is removed.</p>
+</td></tr>
+<tr><td><a id="VerifyProcessorPowerPolicyAc"></a><a id="verifyprocessorpowerpolicyac"></a><a id="VERIFYPROCESSORPOWERPOLICYAC"></a><dl>
+<dt><strong>VerifyProcessorPowerPolicyAc</strong></dt>
+<dt>20</dt>
+</dl>
+</td><td>
+<p>This information level is not supported.
+        </p>
+<blockquote><div><strong>Windows Server 2003 and Windows XP:  </strong>If lpInBuffer and lpOutputBuffer are not 
+          <strong>NULL</strong>, the function copies the 
+          <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373187(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">PROCESSOR_POWER_POLICY</strong></a> 
+          structure passed in lpInBuffer to lpOutputBuffer and 
+          updates it to represent processor capabilities and other requirements while the system is running on AC 
+          power. If the input policy has some setting which cannot be updated, an error occurs.</div></blockquote>
+</td></tr>
+<tr><td><a id="VerifyProcessorPowerPolicyDc"></a><a id="verifyprocessorpowerpolicydc"></a><a id="VERIFYPROCESSORPOWERPOLICYDC"></a><dl>
+<dt><strong>VerifyProcessorPowerPolicyDc</strong></dt>
+<dt>21</dt>
+</dl>
+</td><td>
+<p>This information level is not supported.
+        </p>
+<blockquote><div><strong>Windows Server 2003 and Windows XP:  </strong>If lpInBuffer and lpOutputBuffer are not 
+          <strong>NULL</strong>, the function copies the 
+          <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373187(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">PROCESSOR_POWER_POLICY</strong></a> 
+          structure passed in lpInBuffer to lpOutputBuffer and 
+          updates it to represent processor capabilities and other requirements while the system is running on battery 
+          power. If the input policy has some setting that cannot be updated, an error occurs.</div></blockquote>
+</td></tr>
+<tr><td><a id="VerifySystemPolicyAc"></a><a id="verifysystempolicyac"></a><a id="VERIFYSYSTEMPOLICYAC"></a><dl>
+<dt><strong>VerifySystemPolicyAc</strong></dt>
+<dt>2</dt>
+</dl>
+</td><td>
+<p>This information level is not supported.
+        </p>
+<blockquote><div><strong>Windows Server 2003 and Windows XP:  </strong>If lpInBuffer and lpOutputBuffer are not 
+          <strong>NULL</strong>, the function copies the 
+          <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373225(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">SYSTEM_POWER_POLICY</strong></a> structure 
+          passed in lpInBuffer to lpOutputBuffer and updates it to 
+          represent system capabilities and other requirements while the system is running on AC power. If the input 
+          policy has some setting that cannot be updated, an error occurs.
+          <p>Applications can use this level to verify all power action policy settings, and update all system states 
+           to match what is supported by the platform. If an administrator override exists, it is applied to the 
+           <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373225(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">SYSTEM_POWER_POLICY</strong></a> structure returned in 
+           <em>lpOutputBuffer</em>.</p>
+</div></blockquote>
+</td></tr>
+<tr><td><a id="VerifySystemPolicyDc"></a><a id="verifysystempolicydc"></a><a id="VERIFYSYSTEMPOLICYDC"></a><dl>
+<dt><strong>VerifySystemPolicyDc</strong></dt>
+<dt>3</dt>
+</dl>
+</td><td>
+<p>This information level is not supported.
+        </p>
+<blockquote><div><strong>Windows Server 2003 and Windows XP:  </strong>If lpInBuffer and lpOutputBuffer are not 
+          <strong>NULL</strong>, the function copies the 
+          <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373225(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">SYSTEM_POWER_POLICY</strong></a> structure 
+          passed in lpInBuffer to lpOutputBuffer and updates it to 
+          represent system capabilities and other requirements while the system is running on battery power. If the 
+          input policy has some setting that cannot be updated, an error occurs.
+          <p>Applications can use this level to verify all power action policy settings, and update all system states 
+           to match what is supported by the platform. If an administrator override exists, it is applied to the 
+           <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373225(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">SYSTEM_POWER_POLICY</strong></a> structure returned in 
+           <em>lpOutputBuffer</em>.</p>
+</div></blockquote>
+</td></tr>
+</table>
+<p> </p>
+</dd>
+<dt><em>lpInputBuffer</em> [in]</dt>
+<dd>
+<p>A pointer to an optional input buffer. The data type of this buffer depends on the information level 
+      requested in the <em>InformationLevel</em> parameter.</p>
+</dd>
+<dt><em>nInputBufferSize</em> [in]</dt>
+<dd>
+<p>The size of the input buffer, in bytes.</p>
+</dd>
+<dt><em>lpOutputBuffer</em> [out]</dt>
+<dd>
+<p>A pointer to an optional output buffer. The data type of this buffer depends on the information level 
+      requested in the <em>InformationLevel</em> parameter. If the buffer is too small to contain the 
+      information, the function returns STATUS_BUFFER_TOO_SMALL.</p>
+</dd>
+<dt><em>nOutputBufferSize</em> [in]</dt>
+<dd>
+<p>The size of the output buffer, in bytes. Depending on the information level requested, this may be a 
+      variably sized buffer.</p>
+</dd>
+</dl>
+<h3>Return value</h3>
+<p>If the function succeeds, the return value is <strong>STATUS_SUCCESS</strong>.</p>
+<p>If the function fails, the return value can be one the following status codes.</p>
+<table>
+<tr><th>Status</th><th>Meaning</th></tr>
+<tr><td>
+<dl>
+<dt><strong>STATUS_BUFFER_TOO_SMALL</strong></dt>
+</dl>
+</td><td>
+<p>The output buffer is of insufficient size to contain the data to be returned.</p>
+</td></tr>
+<tr><td>
+<dl>
+<dt><strong>STATUS_ACCESS_DENIED</strong></dt>
+</dl>
+</td><td>
+<p>The caller had insufficient access rights to perform the requested action.</p>
+</td></tr>
+</table>
+<p> </p>
+<h3>Remarks</h3>
+<p>Changes made to the current system power policy using 
+    <strong>CallNtPowerInformation</strong> are immediate, but they 
+    are not persistent; that is, the changes are not stored as part of a power scheme. Any changes to system power 
+    policy made with <strong>CallNtPowerInformation</strong> may be 
+    overwritten by changes to a policy scheme made by the user in the Power Options control panel program, or by 
+    subsequent calls to <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373253(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">WritePwrScheme</strong></a>, 
+    <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373200(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">SetActivePwrScheme</strong></a>, or other power scheme 
+    functions.</p>
+<p>For more information on using PowrProf.h, see <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373182(v=vs.85).aspx">Power 
+    Schemes</a>.</p>
+<h3>Requirements</h3>
+<table>
+<tr><th>
+<p>Minimum supported client</p>
+</th><td>Windows XP [desktop apps only]</td></tr>
+<tr><th>
+<p>Minimum supported server</p>
+</th><td>Windows Server 2003 [desktop apps only]</td></tr>
+<tr><th>
+<p>Header</p>
+</th><td>
+<dl>
+<dt>Powerbase.h; </dt>
+<dt>PowrProf.h on Windows Server 2008 R2, Windows 7, Windows Server 2008, Windows Vista, Windows Server 2003, and Windows XP</dt>
+</dl>
+</td></tr>
+<tr><th>
+<p>Library</p>
+</th><td>
+<dl>
+<dt>PowrProf.lib</dt>
+</dl>
+</td></tr>
+<tr><th>
+<p>DLL</p>
+</th><td>
+<dl>
+<dt>PowrProf.dll</dt>
+</dl>
+</td></tr>
+</table>
+<h3><a id="see_also"></a>See also</h3>
+<dl>
+<dt>
+<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373163(v=vs.85).aspx">Power Management Functions</a>
+</dt>
+<dt>
+<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa372653(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">ADMINISTRATOR_POWER_POLICY</strong></a>
+</dt>
+<dt>
+<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373184(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">PROCESSOR_POWER_INFORMATION</strong></a>
+</dt>
+<dt>
+<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373187(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">PROCESSOR_POWER_POLICY</strong></a>
+</dt>
+<dt>
+<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373212(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">SYSTEM_BATTERY_STATE</strong></a>
+</dt>
+<dt>
+<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373215(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">SYSTEM_POWER_CAPABILITIES</strong></a>
+</dt>
+<dt>
+<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373217(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">SYSTEM_POWER_INFORMATION</strong></a>
+</dt>
+<dt>
+<a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa373225(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">SYSTEM_POWER_POLICY</strong></a>
+</dt>
+</dl>
+<p> </p>
+<p> </p>
+<p><a href="mailto:wsddocfb@microsoft.com?subject=Documentation%20feedback [power\base]:%20CallNtPowerInformation function%20 RELEASE:%20(10/16/2012)&amp;body=%0A%0APRIVACY STATEMENT%0A%0AThe doc team uses your feedback to improve the documentation. We don't use your email address for any other purpose. We'll remove your email address from our system after the issue that you are reporting is resolved. While we are working to resolve this issue, we may send you an email message to request more info about your feedback. After the issue is addressed, we may send you an email message to let you know that your feedback has been addressed.%0A%0AFor more info about Microsoft's privacy policy, see http://privacy.microsoft.com/en-us/default.aspx." title="Send comments about this topic to Microsoft">Send comments about this topic to Microsoft</a></p>
+<p>Build date: 10/16/2012</p>
+</div>
+</div>
+    
+
+
+
+
+<div id="contentFeedback">
+    <form method="post" action="/en-us/library/windows/desktop/feedback/add/aa372675(v=vs.85).aspx">
+        <input name="__RequestVerificationToken" type="hidden" value="grD1TVnZL2jTQDeExk+lHtpeOhQFBZiLJ/noV8xnySnMvo4winX3gnivq4d47YjUTyaX03s3ckG80hiv/WELSl8RI/zXNU3fSeWDByqEma7eTue9KCWfHX9VoY/3JgBr8cbgLg==" />
+    <div id="contentFeedbackContainer">
+        <div class="FeedbackTitleContainer">
+            <a name="feedback"></a>
+        Did you find this helpful?
+            <input id="rdIsUsefulYes" name="rdIsUseful" type="radio" value="1" onclick="toggleContentFeedback('Yes');" /><label for="rdIsUsefulYes">Yes</label>
+            <input id="rdIsUsefulNo" name="rdIsUseful" type="radio" value="0" onclick="toggleContentFeedback('No');" /><label for="rdIsUsefulNo">No</label>
+        
+        </div>
+        
+            <div id="contentFeedbackQAContainer">
+                
+                    <div id="feedbackListNoContainer" class="FeedbackListContainer">
+                        
+                            <div>
+                                <input id="chkbxNo201" name="chkbxNo" type="checkbox" value="201" />
+                                <label for="chkbxNo201">Not accurate</label>
+                            </div>
+                        
+                            <div>
+                                <input id="chkbxNo202" name="chkbxNo" type="checkbox" value="202" />
+                                <label for="chkbxNo202">Not enough depth</label>
+                            </div>
+                        
+                            <div>
+                                <input id="chkbxNo203" name="chkbxNo" type="checkbox" value="203" />
+                                <label for="chkbxNo203">Need more code examples</label>
+                            </div>
+                        
+                    </div>
+                
+                <div class="FeedbackTellUsMoreContainer">
+                    <textarea id="feedbackText" name="feedbackText" class="TellUsMoreTextBoxSearchLoaded" onfocus="WatermarkFocus(this, 'Tell us more...', 'TellUsMoreTextBoxSearch')" onblur="WatermarkBlur(this, 'Tell us more...', 'TellUsMoreTextBoxSearchLoaded')" onmouseover="TextBoxCharactersCounter(this, document.getElementById('feedbackTextCounter'), 1500)" onkeydown="TextBoxCharactersCounter(this, document.getElementById('feedbackTextCounter'), 1500)" onkeyup="TextBoxCharactersCounter(this, document.getElementById('feedbackTextCounter'), 1500)">Tell us more...</textarea>
+                </div>
+                <span class="counter">(<span id="feedbackTextCounter">1500</span> characters remaining)</span>
+                <input type="hidden" id="returnUrl" name="returnUrl" value="http://msdn.microsoft.com/en-us/library/windows/desktop/aa372675(v=vs.85).aspx" />
+                <input type="submit" id="submit" value="Submit" title="Click to Submit Feedback" onclick="WatermarkOnSubmit(document.getElementById('feedbackText'), 'Tell us more...', 'TellUsMoreTextBoxSearch')" />
+                <div style="clear: both;"></div>
+            </div>  
+        
+    </div>
+    </form>
+</div>
+
+    
+
+
+
+
+
+
+
+<script id="CommentTemplate" type="text/x-jquery-tmpl">
+    <div class="communityContentAnnotation">
+        <a name="${Index}"></a>
+        <div class="communityContentAnnotationTitle h3">
+            <span>
+                ${Title}
+            </span>
+        </div>
+        <div class="communityContentAnnotationBody">
+            {{html Body}}
+        </div>
+        <div class="communityContentAnnotationInfo">
+            <div class="communityContentAnnotationAvatarContainer">
+                <a href="${UserAvatar.Href}" title="${UserAvatar.ToolTip}" class="communityContentAnnotationAvatar"><img src="${UserAvatar.ImageUrl}" alt="${UserAvatar.ImageAltText}" width="34" height="34" /></a>
+            </div>
+            <div class="communityContentAnnotationUserDateContainer">
+                <div class="communityContentAnnotationUserContainer">
+                    <a href="${UserAvatar.Href}">
+                        ${User}
+                    </a>
+                </div>
+                <div class="communityContentAnnotationDateContainer">
+                    <span>${Date}</span>
+                    
+                    {{if EditLink}}
+                        <span>
+                            <a href="${EditLink.Href}" title="${EditLink.ToolTip}" class="communityContentCommentEditLink">${EditLink.Title}</a>
+                        </span>
+                    {{/if}}
+
+                    {{if DeleteLink}}
+                        <span>
+                            <a href="${DeleteLink.Href}" title="${DeleteLink.ToolTip}" class="communityContentDeleteLink">${DeleteLink.Title}</a>
+                        </span>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<div class="communityContentContainer">
+    <div id="CommunityContentHeader" class="communityContentHeader">
+        <div class="communityContentHeaderTitleContainer">
+            <span class="communityContentHeaderTitle h1">Community Additions</span>
+                <a class="communityContentAddLink" href="http://msdn.microsoft.com/en-us/library/windows/desktop/community/add/aa372675(v=vs.85).aspx">
+                    <span class="communityContentAddButton" title="Add">
+                        ADD
+                    </span>
+                </a>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+    
+    <div id="CommunityComments" data-url="/en-us/library/windows/desktop/community/comments/aa372675(v=vs.85).aspx"></div>
+</div>
+
+</div>
+
+
+            </div>
+            <div class="clear"></div>
+        
+            
+
+<div id="ux-footer">
+
+    <div class="blocks">
+        <div class="footerPrimaryBlock">
+            <div class="footerLinksTitles">Network sites</div>
+            <div style="padding-top: 5px; padding-bottom: 14px;">
+              <a href="http://msdn.microsoft.com" title="Microsoft Developer Network">
+                <div class="clip49x17">
+                  <img alt="Network sites" title="Microsoft Developer Network" class="footerLogoImage" src="http://i.msdn.microsoft.com/Areas/Epx/Themes/Metro/Content/ImageSprite.png" />
+                </div>
+              </a>
+            </div>
+            <div style="padding-bottom: 71px;"><span class="footerLinks"></span></div>
+        </div>
+        <div class="footerSubBlock"> </div><div class="footerSubBlock">
+          <div class="footerLinksTitles">Windows Dev Center</div>
+          
+                    <div style="padding-top: 5px;" class="footerLinks">
+                      <a href="http://msdn.microsoft.com/windows" title="Windows Dev Center home">Windows Dev Center home</a>
+                    </div>
+                    
+                    <div style="padding-top: 5px;" class="footerLinks">
+                      <a href="http://msdn.microsoft.com/windows/apps" title="Windows Store apps">Windows Store apps</a>
+                    </div>
+                    
+                    <div style="padding-top: 5px;" class="footerLinks">
+                      <a href="http://msdn.microsoft.com/ie" title="Internet Explorer">Internet Explorer</a>
+                    </div>
+                    
+                    <div style="padding-top: 5px;" class="footerLinks">
+                      <a href="http://msdn.microsoft.com/windows/desktop" title="Desktop">Desktop</a>
+                    </div>
+                    
+                    <div style="padding-top: 5px;" class="footerLinks">
+                      <a href="http://msdn.microsoft.com/windows/hardware" title="Hardware">Hardware</a>
+                    </div>
+                    
+        </div><div class="footerFinalBlock">
+          <div class="footerLinksTitles">Other links</div>
+          
+                    <div style="padding-top: 5px;" class="footerLinks">
+                      <a href="http://msdn.microsoft.com/windows/desktop/aa905013" title="Support">Support</a>
+                    </div>
+                    
+                    <div style="padding-top: 5px;" class="footerLinks">
+                      <a href="https://connect.microsoft.com/dashboard/" title="Microsoft Connect">Microsoft Connect</a>
+                    </div>
+                    
+                    <div style="padding-top: 5px;" class="footerLinks">
+                      <a href="http://dev.windowsphone.com/" title="Windows Phone Dev Center">Windows Phone Dev Center</a>
+                    </div>
+                    
+        </div>
+        </div>
+    
+    <div class="footerMSLogo">
+      <a href="http://www.microsoft.com" title="Microsoft">
+        <div class="clip104x20">
+          <img src="http://i.msdn.microsoft.com/Areas/Epx/Themes/Metro/Content/ImageSprite.png" class="footerMsLogo" title="Microsoft" alt="" />
+        </div>
+      </a>
+    </div>
+    <div class="footerSubLinksContainer">
+        <div class="footerSubLinks">
+            <a href="http://msdn.microsoft.com/windows/desktop/cc300389" title="Terms of use">Terms of use</a>
+              <span class="footerSubLinksDivider">|</span>
+            <a href="http://www.microsoft.com/library/toolbar/3.0/trademarks/en-us.mspx" title="Trademarks">Trademarks</a>
+              <span class="footerSubLinksDivider">|</span>
+            <a href="http://www.microsoft.com/info/privacy.mspx" title="Privacy statement">Privacy statement</a>
+              <span class="footerSubLinksDivider">|</span>
+            
+          <a href="http://lab.msdn.microsoft.com/mailform/contactus.aspx?refurl=%2flibrary%2fwindows%2fdesktop%2faa372675" title="Site feedback" target="_blank" onclick="SiteFeedbackNewWindow('http://lab.msdn.microsoft.com/mailform/contactus.aspx?refurl=%2flibrary%2fwindows%2fdesktop%2faa372675'); return false;">Site feedback</a>
+          <span class="footerSubLinksDivider">|</span>
+          <a href="http://msdn.microsoft.com/en-us/windows/desktop/SelectLocale?fromPage=%2flibrary%2fwindows%2fdesktop%2faa372675" title=" United States (English)"> United States (English)</a>
+        </div>
+        <div class="footerCopyright" title="© 2012 Microsoft. All rights reserved.">© 2012 Microsoft. All rights reserved.</div>
+    </div>
+</div>
+
+            <div class="footerPrintView">
+                <div class="footerCopyrightPrintView">© 2012 Microsoft. All rights reserved.</div>
+            </div>
+
+            
+            
+    
+
+
+        
+            <input id="MtpsDevice" type="hidden" value="Default" />
+
+
+<![CDATA[ Third party scripts and code linked to or referenced from this website are licensed to you by the parties that own such code, not by Microsoft.  See ASP.NET Ajax CDN Terms of Use – http://www.asp.net/ajaxlibrary/CDN.ashx. ]]>        
+            
+            
+            
+            
+            
+        
+
+
+
+<noscript><div><img alt="DCSIMG" id="Img1" width="1" height="1" src="http://m.webtrends.com/dcsmgru7m99k7mqmgrhudo0k8_8c6m/njs.gif?dcsuri=/nojavascript&amp;WT.js=No" /></div></noscript>
+
+
+
+
+<noscript>
+  <a href="http://www.omniture.com" title="Web Analytics">
+    <img src="//msstonojsmsdn.112.2o7.net/b/ss/msstonojsmsdn/1/H.20.2--NS/0" height="1" width="1" border="0" alt="" />
+  </a>
+</noscript>
+
+
+        </div>
+    <script type="text/javascript" class="mtps-injected">
+/*<![CDATA[*/
+(function(window,document){"use strict";function preload(scripts){for(var result=[],script,e,i=0;i<scripts.length;i++)script=scripts[i],script.hasOwnProperty("url")&&(e=document.createElement("script"),e.src=script.url,script.throwaway=e),result.push(script);return result}function inject(scripts,index){var script,elem;if(index>=scripts.length){delete mtps.injectScripts;return}script=scripts[index],elem=document.createElement("script"),elem.className="mtps-injected",elem.async=!1;var isLoaded=!1,timeoutId=0,injectNextFnName="",injectNext=elem.onerror=function(){isLoaded||(isLoaded=!0,inject(scripts,index+1),window.clearTimeout(timeoutId),elem.onload=elem.onerror=elem.onreadystatechange=null,injectNextFnName&&delete mtps[injectNextFnName],elem.removeEventListener&&elem.removeEventListener("load",injectNext,!1))};elem.addEventListener?elem.addEventListener("load",injectNext,!1):elem.readyState==="uninitialized"?elem.onreadystatechange=function(){(this.readyState==="loaded"||this.readyState==="complete")&&injectNext()}:elem.onload=injectNext,script.hasOwnProperty("url")?(timeoutId=window.setTimeout(injectNext,12e4),elem.src=script.url):(injectNextFnName="_injectNextScript_"+index,mtps[injectNextFnName]=injectNext,timeoutId=window.setTimeout(injectNext,2e3),elem.text="try {\n"+script.txt+"\n} finally { MTPS."+injectNextFnName+" && MTPS."+injectNextFnName+"(); }"),parent.appendChild(elem)}var mtps=window.MTPS||(window.MTPS={}),parent=document.getElementsByTagName("head")[0];mtps.injectScripts=function(scripts){inject(preload(scripts),0)}})(window,document);
+MTPS.injectScripts([
+	{ txt: "/**/\r\n\"use strict\"; \r\n(window.MTPS || (window.MTPS = {})).cdnDomains || (window.MTPS.cdnDomains = { \r\n\t\"image\": \"http://i.msdn.microsoft.com\", \r\n\t\"js\": \"http://i2.msdn.microsoft.com\", \r\n\t\"css\": \"http://i3.msdn.microsoft.com\"\r\n});\r\n/**/" },
+	{ txt: "//\n  var literalNormalizedUrl = \u0027/en-us/library/windows/desktop/aa372675(d=default,l=en-us,v=vs.85).aspx\u0027;\n  var wt_nvr_ru = \u0027WT_NVR_RU\u0027;\n  var wt_fpcdom = \u0027.microsoft.com\u0027;\n  var wt_domlist = \u0027msdn.microsoft.com\u0027;\n  var wt_pathlist = \u0027\u0027;\n  var wt_paramlist = \u0027DCSext.mtps_devcenter\u0027;\n  var wt_siteid = \u0027MSDN\u0027;\n  var gDomain = \u0027m.webtrends.com\u0027;\n  var gDcsId = \u0027dcsmgru7m99k7mqmgrhudo0k8_8c6m\u0027;\n  var gFpc = \u0027WT_FPC\u0027;\n  if (document.cookie.indexOf(gFpc + \"=\") == -1) {\n    var wtidJs = document.createElement(\"script\");\n    wtidJs.src = \"//\" + gDomain + \"/\" + gDcsId + \"/wtid.js\";\n    document.getElementsByTagName(\"head\")[0].appendChild(wtidJs);\n  }\n  var detectedLocale = \u0027en-us\u0027;\n  var wtsp = \u0027_msdnlib_es_dev_win32com_\u0027;\n  var gTrackEvents = \u00270\u0027;\n/**/" },
+	{ txt: "/**/\n  var omni_guid = \"f36afae6-312d-458b-b212-eb02074b452b\";\n/**/" },
+	{ url: "http://i2.msdn.microsoft.com/Combined.js?resources=0:webtrendsscript,1:omni_rsid_MSDN;/Areas/Global/Content/Webtrends/resources:0,/Areas/Global/Content/Omniture/resources/MSDN:1&amp;hashKey=2A2EA78286FAF39A313149F2A3E6EE83" },
+	{ url: "http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js" },
+	{ url: "http://i2.msdn.microsoft.com/Combined.js?resources=0:Utilities,1:jquery-ui-1.8.16.custom.min,2:header,3:Toc,3:NavigationResize,4:FeedbackCounter,4:Feedback;/Areas/Epx/Content/Scripts:0,/Areas/Epx/Themes/WindowsAzure/Content:1,/Areas/Epx/Themes/Metro/Content:2,/Areas/Epx/Library/Content:3,/Areas/Epx/Shared/Content:4&amp;hashKey=CEFC9D7F83BFB67521DA33BE4ED575E6" },
+	{ url: "http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js" },
+	{ url: "http://i2.msdn.microsoft.com/Combined.js?resources=0:CommunityContent,0:Topic,0:CodeSnippet,0:TopicNotInScope,0:CollapsibleArea,0:VersionSelector,0:SurveyBroker;/Areas/Epx/Content/Scripts:0&amp;hashKey=490EB45CA5D10CA44E394B73DE62BCD4" }
+]);
+
+/*]]>*/
+</script></body>
+</html>
