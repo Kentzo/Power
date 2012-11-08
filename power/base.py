@@ -91,7 +91,7 @@ class PowerManagementBase(object):
     __metaclass__ = ABCMeta
 
     def __init__(self):
-        self._weak_observers = set()
+        self._weak_observers = []
 
     @abstractmethod
     def get_providing_power_source_type(self):
@@ -123,7 +123,7 @@ class PowerManagementBase(object):
         """
         if not isinstance(observer, PowerManagementObserver):
             raise TypeError("observer MUST conform to power.PowerManagementObserver")
-        self._weak_observers.add(weakref.ref(observer))
+        self._weak_observers.append(weakref.ref(observer))
 
     @abstractmethod
     def remove_observer(self, observer):
@@ -131,6 +131,7 @@ class PowerManagementBase(object):
         Removes observer if it was registered. Subsequent calls for already removed observers are ignored.
         """
         self._weak_observers.remove(weakref.ref(observer))
+        return len(self._weak_observers) == 0
 
     def remove_all_observers(self):
         """
@@ -140,7 +141,6 @@ class PowerManagementBase(object):
             observer = weak_observer()
             if observer:
                 self.remove_observer(observer)
-        self._weak_observers = set()
 
 
 class PowerManagementObserver:

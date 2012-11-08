@@ -1,0 +1,730 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="ctl00_Head1"><link rel="canonical" href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh448380(v=vs.85).aspx" /><title>
+	
+  Power Setting GUIDs (Windows)
+
+</title>
+    
+
+
+<link rel="alternate" media="print" href="http://msdn.microsoft.com/en-us/library/hh448380(d=printer,v=vs.85).aspx" />
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+
+<meta name="DCS.dcsuri" content="/en-us/library/hh448380(d=lightweight,l=en-us,v=vs.85).aspx" />
+
+<meta name="NormalizedUrl" content="http://msdn.microsoft.com/en-us/library/hh448380(d=lightweight,l=en-us,v=vs.85).aspx" />
+
+<meta name="VotingContextUrl" content="http://msdn.microsoft.com/en-us/library/hh448380(l=en-us,v=vs.85).aspx" />
+
+<meta name="MN" content="1C75349C-2:59:45 AM" />
+
+<meta name="Search.ShortId" content="hh448380" />
+
+<meta name="Ms.Locale" content="en-us" />
+<link rel="stylesheet" type="text/css" href="http://i3.msdn.microsoft.com/Combined.css?resources=0:LibraryView,0:Msdn_ImageSprite,0:MSDN.Header,1:FeedbackCounter,1:Feedback,0:Footer;/Areas/Brand/Content:0,/Areas/Epx/Shared/Content:1&amp;amp;hashKey=E9EDE43B58C92076FD9587BEAB4A97F2" /><link rel="stylesheet" type="text/css" href="http://i3.msdn.microsoft.com/areas/brand/content/printview.css" media="print" /></head>
+<body>
+    
+        
+        
+  <div class="header">
+    
+
+<table border="0" cellpadding="0" cellspacing="0" class="headerBar cl_lightweight_topnav_slice">
+		<tr>
+			<td class="leftSection cl_lightweight_header_leftSection_wave leftSectionImageClusterOverride">
+        <div class="tabContainer">
+          <a href="http://msdn.microsoft.com/en-us/default.aspx" title="Home" class=" headerTab">Home</a>
+          <a href="http://msdn.microsoft.com/en-us/library/default.aspx" title="Library" class="headerTabSelected cl_lightweight_selected_tab_repeatX ">Library</a>
+          <a href="http://msdn.microsoft.com/en-us/bb188199.aspx" title="Learn" class=" headerTab">Learn</a>
+          <a href="http://msdn.microsoft.com/en-us/aa570309.aspx" title="Downloads" class=" headerTab">Downloads</a>
+          <a href="http://msdn.microsoft.com/en-us/hh361695.aspx" title="Support" class=" headerTab">Support</a>
+          <a href="http://msdn.microsoft.com/en-us/aa497440.aspx" title="Community" class=" headerTab">Community</a>
+          
+        </div>
+      </td>
+			<td class="rightSection cl_lightweight_header_rightSection_wave rightSectionImageClusterOverride">
+        <div class="tabContainer">
+            
+            <a href="https://login.live.com/login.srf?wa=wsignin1.0&amp;rpsnv=11&amp;ct=1352372385&amp;rver=6.0.5276.0&amp;wp=MCLBI&amp;wlcxt=msdn%24msdn%24msdn&amp;wreply=http%3a%2f%2fmsdn.microsoft.com%2fen-us%2flibrary%2fhh448380%2528v%3dvs.85%2529.aspx&amp;lc=1033&amp;id=254354&amp;mkt=en-US" title="Sign in" rel="nofollow">Sign in </a>
+            <span class="pipe">|</span>
+            <a href="http://msdn.microsoft.com/en-us/library/preferences/locale/?returnurl=%252fen-us%252flibrary%252fhh448380(v%253dvs.85).aspx" title="United States - English" rel="nofollow">United States - English </a>
+            <span class="pipe">|</span>
+            <a class="dispinline clip15x15" href="http://msdn.microsoft.com/en-us/library/preferences/experience/?returnurl=%252fen-us%252flibrary%252fhh448380(v%253dvs.85).aspx" title="Preferences" rel="nofollow"><img class="head_gear" src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" alt="" /></a>
+            <span class="pipe">|</span>
+            <a id="exportPrintLink" class="dispinline clip30x15 moveToDown" href="/en-us/library/hh448380(d=printer,v=vs.85).aspx" title="Print/Export"><img class="head_print_noarrow" src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" alt="" /></a>
+            
+            <div id="exportPrintLinkArrowDiv" class="exportPrintLinkArrow">
+            <a id="exportPrintLinkArrow" class="dispinline clip30x15 moveToDown" href="javascript:void(0);" title="Print/Export"><img class="head_print_arrow" src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" alt="" /></a>
+            </div>
+            
+        </div>
+			</td>
+	</tr>
+</table>
+
+  </div>
+  <div class="contentPlaceHolder">
+    
+    
+  <div class="navigation" id="Navigation" style="width:280px;padding-bottom:96px;">
+    <div class="searchcontainer">
+      
+<form id="SearchForm" action="http://social.msdn.microsoft.com/search/en-us" method="get" style="margin: 0; padding: 0;" onsubmit="return checkSearchBox()">
+<div class="searchBoxContainer" style="">
+  <table class="searchBox" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td class="searchTextBoxTd">
+        <input id="SearchInput" type="text" maxlength="200" class="searchTextBox" name="query" />
+        
+      </td>
+      <td class="searchButtonTd">
+        <a href="javascript:void(0)" class="clip20x20" style="display: block; overflow: hidden; position: relative;           padding: 0; margin: 0;" onclick="javascript:if(document.getElementById('SearchInput').value == 'Search MSDN with Bing')document.getElementById('SearchInput').value=''; document.getElementById('SearchForm').submit();">
+          <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" style="position: relative;" title="Search " class="isd_search" alt="Search" /></a>
+      </td>
+    </tr>
+  </table>
+</div>
+</form>
+
+
+
+    </div>
+    <div class="navcontainer">
+      
+
+<div class="nav">
+    
+    <div id="tocnav">
+        
+        <div class="toclevel0 ancestry">
+            
+            <div class="clip5x9 nav_root">
+                <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_bullet" alt="" />
+            </div>
+            
+            <div class="nav_div_currentroot">
+                <a data-tochassubtree="true" href="/en-us/library/ms123401.aspx" id="ms310241_MSDN.10_en-us" title="MSDN Library">MSDN Library</a>
+            </div>
+            
+            <div class="clip5x9 nav_arrows">
+                <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_arrow" alt="" />
+            </div>
+            
+            <div class="nav_div_currentroot">
+                <a data-tochassubtree="true" href="/en-us/library/ee663300(v=vs.85).aspx" id="aa139672_MSDN.10_en-us" title="Windows Development">Windows Development</a>
+            </div>
+            
+            <div class="clip5x9 nav_arrows">
+                <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_arrow" alt="" />
+            </div>
+            
+            <div class="nav_div_currentroot">
+                <a data-tochassubtree="true" href="/en-us/library/ee663297(v=vs.85).aspx" id="hh309619_VS.85_en-us" title="System Services">System Services</a>
+            </div>
+            
+            <div class="clip5x9 nav_arrows">
+                <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_arrow" alt="" />
+            </div>
+            
+            <div class="nav_div_currentroot">
+                <a data-tochassubtree="true" href="/en-us/library/bb968807(v=vs.85).aspx" id="ms763443_VS.85_en-us" title="Power Management">Power Management</a>
+            </div>
+            
+            <div class="clip5x9 nav_arrows">
+                <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_arrow" alt="" />
+            </div>
+            
+            <div class="nav_div_currentroot">
+                <a data-tochassubtree="true" href="/en-us/library/aa373170(v=vs.85).aspx" id="ms763452_VS.85_en-us" title="Power Management Reference">Power Management Reference</a>
+            </div>
+            
+            <div class="clip13x9 nav_arrows">
+                <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+            </div>
+            
+            <div class="nav_div_currentroot">
+                <a data-tochassubtree="true" href="/en-us/library/aa373153(v=vs.85).aspx" id="ms763457_VS.85_en-us" title="Power Management Constants">Power Management Constants</a>
+            </div>
+            
+        </div>
+        
+        <div class="toclevel1 children" style="border-bottom: 1px solid #bbbbbb;">
+            
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372685(v=vs.85).aspx" title="Discharge Policy Constants">Discharge Policy Constants</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372694(v=vs.85).aspx" title="Global Flags Constants">Global Flags Constants</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa373183(v=vs.85).aspx" title="Processor Performance Control Policy Constants">Processor Performance Control Policy Constants</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div class="toclevel1 current">
+                    <a href="/en-us/library/hh448380(v=vs.85).aspx" title="Power Setting GUIDs">Power Setting GUIDs</a>
+                </div>
+                
+        </div>
+        
+    </div>
+    
+    
+    
+        <img src="http://i3.msdn.microsoft.com/Areas/Global/Content/clear.gif" alt="Separator" class="communityContentNavigationSeparator cl_lt_cc_line_top" />
+    
+    <div class="communityContentNavigation">
+        <div class="communityContentNavigationHeader">
+            Community Content</div>
+        
+        <div class="communityContentNavigationPost">
+            <div class="communityContentNavigationAvatarContainer">
+                <a class="communityContentNavigationLinkAvatar" href="#1" title=""><img alt="" class="cl_default_avatar" src="http://i1.social.s-msft.com/profile/u/avatar.jpg?displayname=di%c3%b3genesgg&amp;size=small"></img></a>
+            </div>
+            
+            <div class="communityContentNavigationLink">
+                <ul>
+                    <li><a href="#1" title="">
+                        GUID for any power scheme change...</a></li>
+                    <li>
+                        Hi,<br />Is there any GUID for d...</li>
+                </ul>
+            </div>
+            
+        </div>
+        
+        <div class="communityContentNavigationMoreLink">
+            <a href="#CommunityContent" title="More...">More...</a></div>
+    </div>
+    
+</div>
+
+
+
+    </div>
+    
+  </div>
+  <div id="tocResizeContainer" style="visibility:hidden">
+  <a href="#" class="tocResize" id="TocResize" style="left:280px">
+    <img id="ResizeImageIncrease" class="cl_nav_resize_open" src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" title="Expand" alt="Expand" />
+      <img id="ResizeImageReset" class="cl_nav_resize_close" src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" style="display:none" title="Minimize" alt="Minimize" />
+  </a>
+  </div>
+  <div class="content">
+    
+    
+
+<div class="clip75x25 logo">
+  <a href="http://msdn.microsoft.com/en-us/default.aspx">
+    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="msdn_body_logo" alt="MSDN" title="MSDN" />
+  </a>
+</div>
+
+    <div class="topicContainer">
+        
+    
+    
+
+    <div id="ratingCounterSeperator" class="cl_lw_vs_seperator" style="display: none;"></div>
+
+    <div id="ratingCounter">
+        <span id="rcA" class="ratingText">
+            0 out of 2 rated this helpful <span id="rateThisPrefix">- </span><a id="rateThisTopic" href="#feedback" title="Rate this topic">Rate this topic</a>
+            
+        </span>
+    </div>
+
+<div class="topic" xmlns="http://www.w3.org/1999/xhtml">
+  <h1 class="title">Power Setting GUIDs</h1>
+  
+  <div id="mainSection">
+<div class="clsServerSDKContent">
+
+</div>
+<p>Power setting <strong>GUID</strong>s identify power change events. This topic 
+    lists power setting <strong>GUID</strong>s for notifications that are most useful to applications. An 
+    application should register for each power change event that might impact its behavior. Notification is sent each 
+    time a setting changes.</p>
+<p>Power setting <strong>GUID</strong>s are defined in 
+    WinNT.h.</p>
+<p></p>
+<dl>
+<dt><a id="GUID_ACDC_POWER_SOURCE"></a><a id="guid_acdc_power_source"></a><strong>GUID_ACDC_POWER_SOURCE</strong></dt>
+<dd>
+<dl>
+<dt>5d3e9a59-e9D5-4b00-a6bd-ff34ff516548</dt>
+<dt>
+<p>The system power source has changed. The <strong>Data</strong> member is a 
+      <strong>DWORD</strong> with values from the 
+      <a href="http://msdn.microsoft.com/en-us/library/aa373216(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">SYSTEM_POWER_CONDITION</strong></a> enumeration that indicates 
+      the current power source.</p>
+<dl>
+<dt><strong>PoAc</strong> (0) - The computer is powered by an AC power source (or similar, such as a 
+       laptop powered by a 12V automotive adapter).</dt>
+<dt><strong>PoDc</strong> (1) - The computer is powered by an onboard battery power source.</dt>
+<dt><strong>PoHot</strong> (2) - The computer is powered by a short-term power source such as a UPS 
+       device.</dt>
+</dl>
+</dt>
+</dl>
+</dd>
+<dt><a id="GUID_BATTERY_PERCENTAGE_REMAINING"></a><a id="guid_battery_percentage_remaining"></a><strong>GUID_BATTERY_PERCENTAGE_REMAINING</strong></dt>
+<dd>
+<dl>
+<dt>a7ad8041-b45a-4cae-87a3-eecbb468a9e1</dt>
+<dt>
+<p>The remaining battery capacity has changed. The granularity varies from system to system but the finest 
+     granularity is 1 percent. The <strong>Data</strong> member is a <strong>DWORD</strong> that 
+     indicates the current battery capacity remaining as a percentage from 0 through 100.</p>
+</dt>
+</dl>
+</dd>
+<dt><a id="GUID_CONSOLE_DISPLAY_STATE"></a><a id="guid_console_display_state"></a><strong>GUID_CONSOLE_DISPLAY_STATE</strong></dt>
+<dd>
+<dl>
+<dt>6fe69556-704a-47a0-8f24-c28d936fda47</dt>
+<dt>
+<p>The current monitor's display state has changed.</p>
+<blockquote><div><strong>Windows 7, Windows Server 2008 R2, Windows Vista, and Windows Server 2008:  </strong>This notification is available starting with Windows 8 and 
+       Windows Server 2012.</div></blockquote>
+<p>The 
+      <strong>Data</strong> member is a <strong>DWORD</strong> with one of the following 
+      values.</p>
+<dl>
+<dt>0x0 - The display is off.</dt>
+<dt>0x1 - The display is on.</dt>
+<dt>0x2 - The display is dimmed.</dt>
+</dl>
+</dt>
+</dl>
+</dd>
+<dt><a id="GUID_GLOBAL_USER_PRESENCE"></a><a id="guid_global_user_presence"></a><strong>GUID_GLOBAL_USER_PRESENCE</strong></dt>
+<dd>
+<dl>
+<dt>786E8A1D-B427-4344-9207-09E70BDCBEA9</dt>
+<dt>
+<p>The user status associated with any session has changed. This represents the combined status of user presence 
+      across all local and remote sessions on the system.</p>
+<p>This notification is sent only services and other programs running in session 0. User-mode applications should 
+      register for <strong>GUID_SESSION_USER_PRESENCE</strong> instead.</p>
+<blockquote><div><strong>Windows 7, Windows Server 2008 R2, Windows Vista, and Windows Server 2008:  </strong>This notification is available starting with Windows 8 and 
+       Windows Server 2012.</div></blockquote>
+<p>The <strong>Data</strong> member is a <strong>DWORD</strong> with one of the following 
+      values.</p>
+<dl>
+<dt><strong>PowerUserPresent</strong> (0) - The user is present in any local or remote session on 
+       the system.</dt>
+<dt><strong>PowerUserInactive</strong> (2) - The user is not present in any local or remote session 
+       on the system.</dt>
+</dl>
+</dt>
+</dl>
+</dd>
+<dt><a id="GUID_IDLE_BACKGROUND_TASK"></a><a id="guid_idle_background_task"></a><strong>GUID_IDLE_BACKGROUND_TASK</strong></dt>
+<dd>
+<dl>
+<dt>515c31d8-f734-163d-a0fd-11a0-8c91e8f1</dt>
+<dt>
+<p>The system is busy. This indicates that the system will not be moving into an idle state in the near future 
+      and that the current time is a good time for components to perform background or idle tasks that would otherwise 
+      prevent the computer from entering an idle state.</p>
+<p>There is no notification when the system is able to move into an idle state.  The idle background task 
+      notification does not indicate whether a user is present at the computer. The <strong>Data</strong> 
+      member has no information and can be ignored.</p>
+</dt>
+</dl>
+</dd>
+<dt><a id="GUID_MONITOR_POWER_ON"></a><a id="guid_monitor_power_on"></a><strong>GUID_MONITOR_POWER_ON</strong></dt>
+<dd>
+<dl>
+<dt>02731015-4510-4526-99e6-e5a17ebd1aea</dt>
+<dt>
+<p>The primary system monitor has been powered on or off. This notification is useful for components that 
+     actively render content to the display device, such as media visualization. These applications should register 
+     for this notification and stop rendering graphics content when the monitor is off to reduce system power 
+     consumption. The <strong>Data</strong> member is a <strong>DWORD</strong> that indicates 
+     the current monitor state.
+     </p>
+<dl>
+<dt>0x0 - The monitor is off.</dt>
+<dt>0x1 - The monitor is on.</dt>
+</dl>
+<blockquote><div><strong>Windows 8 and Windows Server 2012:  </strong>New applications should use <strong>GUID_CONSOLE_DISPLAY_STATE</strong> instead of this notification.</div></blockquote>
+</dt>
+</dl>
+</dd>
+<dt><a id="GUID_POWERSCHEME_PERSONALITY"></a><a id="guid_powerscheme_personality"></a><strong>GUID_POWERSCHEME_PERSONALITY</strong></dt>
+<dd>
+<dl>
+<dt>245d8541-3943-4422-b025-13A7-84F679B7</dt>
+<dt>
+<p>The active power scheme personality has changed. All power schemes map to one of these personalities. The 
+     <strong>Data</strong> member is a <strong>GUID</strong> that indicates the new active power 
+     scheme personality.
+     </p>
+<dl>
+<dt>
+<p><strong>GUID_MIN_POWER_SAVINGS</strong> (8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c)</p>
+<p>High Performance - The scheme is designed to deliver maximum performance at the expense of power consumption 
+        savings.</p>
+</dt>
+<dt>
+<p><strong>GUID_MAX_POWER_SAVINGS</strong> (a1841308-3541-4fab-bc81-f71556f20b4a)</p>
+<p>Power Saver - The scheme is designed to deliver maximum power consumption savings at the expense of system 
+        performance and responsiveness.</p>
+</dt>
+<dt>
+<p><strong>GUID_TYPICAL_POWER_SAVINGS</strong> (381b4222-f694-41f0-9685-ff5bb260df2e)</p>
+<p>Automatic - The scheme is designed to automatically balance performance and power consumption savings.</p>
+</dt>
+</dl>
+</dt>
+</dl>
+</dd>
+<dt><a id="GUID_SESSION_DISPLAY_STATUS"></a><a id="guid_session_display_status"></a><strong>GUID_SESSION_DISPLAY_STATUS</strong></dt>
+<dd>
+<dl>
+<dt>2B84C20E-AD23-4ddf-93DB-05FFBD7EFCA5</dt>
+<dt>
+<p>The display associated with the application's session has been powered on or off.</p>
+<blockquote><div><strong>Windows 7, Windows Server 2008 R2, Windows Vista, and Windows Server 2008:  </strong>This notification is available starting with Windows 8 and 
+       Windows Server 2012.</div></blockquote>
+<p>This notification is sent only to user-mode applications. Services and other programs running in session 0 do 
+      not receive this notification. The <strong>Data</strong> member is a 
+      <strong>DWORD</strong> with one of the following values.</p>
+<dl>
+<dt>0x0 - The display is off.</dt>
+<dt>0x1 - The display is on.</dt>
+<dt>0x2 - The display is dimmed.</dt>
+</dl>
+</dt>
+</dl>
+</dd>
+<dt><a id="GUID_SESSION_USER_PRESENCE"></a><a id="guid_session_user_presence"></a><strong>GUID_SESSION_USER_PRESENCE</strong></dt>
+<dd>
+<dl>
+<dt>3C0F4548-C03F-4c4d-B9F2-237EDE686376</dt>
+<dt>
+<p>The user status associated with the application's session has changed.
+     </p>
+<blockquote><div><strong>Windows 7, Windows Server 2008 R2, Windows Vista, and Windows Server 2008:  </strong>This notification is available starting with Windows 8 and 
+       Windows Server 2012.</div></blockquote>
+<p>This notification is sent only to user-mode applications running in an interactive session. Services and other 
+      programs running in session 0 should register for <strong>GUID_GLOBAL_USER_PRESENCE</strong>. The 
+      <strong>Data</strong> member is a <strong>DWORD</strong> with one of the following 
+      values.</p>
+<dl>
+<dt><strong>PowerUserPresent</strong> (0) - The user is providing input to the session.</dt>
+<dt><strong>PowerUserInactive</strong> (2) - The user activity timeout has elapsed with no 
+       interaction from the user.</dt>
+</dl>
+<p class="note"><strong>Note</strong>  All applications that run in an interactive user-mode session should use this setting. When kernel mode applications register for monitor status they should use <strong>GUID_CONSOLE_DISPLAY_STATUS</strong> instead. </p>
+</dt>
+</dl>
+</dd>
+<dt><a id="GUID_SYSTEM_AWAYMODE"></a><a id="guid_system_awaymode"></a><strong>GUID_SYSTEM_AWAYMODE</strong></dt>
+<dd>
+<dl>
+<dt>98a7f580-01f7-48aa-9c0f-44352c29e5C0</dt>
+<dt>
+<p>The system is entering or exiting away mode. The <strong>Data</strong> member is a 
+     <strong>DWORD</strong> that indicates the current away mode state.
+     </p>
+<dl>
+<dt>0x0 - The computer is exiting away mode.</dt>
+<dt>0x1 - The computer is entering away mode.</dt>
+</dl>
+</dt>
+</dl>
+</dd>
+</dl>
+<h3>Requirements</h3>
+<table>
+<tr><th>
+<p>Header</p>
+</th><td>
+<dl>
+<dt>WinNT.h</dt>
+</dl>
+</td></tr>
+</table>
+<p> </p>
+<p> </p>
+<p><a href="mailto:wsddocfb@microsoft.com?subject=Documentation%20feedback [power\base]:%20Power Setting GUIDs%20 RELEASE:%20(10/16/2012)&amp;body=%0A%0APRIVACY STATEMENT%0A%0AThe doc team uses your feedback to improve the documentation. We don't use your email address for any other purpose. We'll remove your email address from our system after the issue that you are reporting is resolved. While we are working to resolve this issue, we may send you an email message to request more info about your feedback. After the issue is addressed, we may send you an email message to let you know that your feedback has been addressed.%0A%0AFor more info about Microsoft's privacy policy, see http://privacy.microsoft.com/en-us/default.aspx." title="Send comments about this topic to Microsoft">Send comments about this topic to Microsoft</a></p>
+<p>Build date: 10/16/2012</p>
+</div>
+</div>
+
+        
+
+
+
+<div id="contentFeedback">
+    <form method="post" action="/en-us/library/feedback/add/hh448380(v=vs.85).aspx">
+        <input name="__RequestVerificationToken" type="hidden" value="VOQo4FvctrA7mlZ2cSJbfm8VzNqt3KDmM7fO28te4kA+M7IlrViJHOnKNA3loCyccy7NbHicxbZJ+oYJtYZCQYm1TAucDHr7n3TFLZNZB5pgm2Bsmj7EkPyOZxiC3tdiS+H15w==" />
+    <div id="contentFeedbackContainer">
+        <div class="FeedbackTitleContainer">
+            <a name="feedback"></a>
+        Did you find this helpful?
+            <input id="rdIsUsefulYes" name="rdIsUseful" type="radio" value="1" onclick="toggleContentFeedback('Yes');" /><label for="rdIsUsefulYes">Yes</label>
+            <input id="rdIsUsefulNo" name="rdIsUseful" type="radio" value="0" onclick="toggleContentFeedback('No');" /><label for="rdIsUsefulNo">No</label>
+        
+        </div>
+        
+            <div id="contentFeedbackQAContainer">
+                
+                    <div id="feedbackListNoContainer" class="FeedbackListContainer">
+                        
+                            <div>
+                                <input id="chkbxNo201" name="chkbxNo" type="checkbox" value="201" />
+                                <label for="chkbxNo201">Not accurate</label>
+                            </div>
+                        
+                            <div>
+                                <input id="chkbxNo202" name="chkbxNo" type="checkbox" value="202" />
+                                <label for="chkbxNo202">Not enough depth</label>
+                            </div>
+                        
+                            <div>
+                                <input id="chkbxNo203" name="chkbxNo" type="checkbox" value="203" />
+                                <label for="chkbxNo203">Need more code examples</label>
+                            </div>
+                        
+                    </div>
+                
+                <div class="FeedbackTellUsMoreContainer">
+                    <textarea id="feedbackText" name="feedbackText" class="TellUsMoreTextBoxSearchLoaded" onfocus="WatermarkFocus(this, 'Tell us more...', 'TellUsMoreTextBoxSearch')" onblur="WatermarkBlur(this, 'Tell us more...', 'TellUsMoreTextBoxSearchLoaded')" onmouseover="TextBoxCharactersCounter(this, document.getElementById('feedbackTextCounter'), 1500)" onkeydown="TextBoxCharactersCounter(this, document.getElementById('feedbackTextCounter'), 1500)" onkeyup="TextBoxCharactersCounter(this, document.getElementById('feedbackTextCounter'), 1500)">Tell us more...</textarea>
+                </div>
+                <span class="counter">(<span id="feedbackTextCounter">1500</span> characters remaining)</span>
+                <input type="hidden" id="returnUrl" name="returnUrl" value="http://msdn.microsoft.com/en-us/library/hh448380(v=vs.85).aspx" />
+                <input type="submit" id="submit" value="Submit" title="Click to Submit Feedback" onclick="WatermarkOnSubmit(document.getElementById('feedbackText'), 'Tell us more...', 'TellUsMoreTextBoxSearch')" />
+                <div style="clear: both;"></div>
+            </div>  
+        
+    </div>
+    </form>
+</div>
+
+    </div>
+    
+    <div class="topicEndLine">
+    </div>
+    <div id="CommunityContent" class="CommunityContent">
+      
+<div class="CommunityContentContainer">
+    <div id="CommunityContentHeader" class="CommunityContentHeader">
+      <div class="CommunityContentHeaderTitleContainer">
+        <span class="CommunityContentHeaderTitle h1">Community Content</span>
+          
+        <a href="http://msdn.microsoft.com/en-us/library/community/add/hh448380(v=vs.85).aspx" title="Add" rel="nofollow">Add</a>
+          
+        </div>
+        <div class="CommunityContentFaq">
+            <a href="/en-us/library/community-edits.rss?topic=hh448380|en-us|VS.85" title="Annotations" rel="nofollow"><img class="cl_rss_button" alt="Annotations" src="http://i3.msdn.microsoft.com/Areas/Global/Content/clear.gif" /></a>
+            <a href="/en-us/library/community-msdnwikifaq.aspx" title="FAQ" rel="nofollow">FAQ</a>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    
+    
+    <div class="Annotation">
+      <a name="1"></a>
+      <div class="AnnotationTitle h3">
+              <span>GUID for any power scheme change </span>
+                
+        </div> 
+        <div class="AnnotationBody">
+            Hi,<br />Is there any GUID for detecting a change between a user created power scheme and the Windows power scheme used for duplicating?<br /><br />For example. I create a scheme called "MyScheme" from "Balanced". When I use <strong>GUID_POWERSCHEME_PERSONALITY</strong>, calling RegisterPowerSettingNotification,<br />it doesn't detect the change between "MyScheme" and "Balanced". It's like they are the same. It would like an event to detect a change between Myscheme and Balance.<br /><br />Thanks in advance.
+        </div>
+        <div class="AnnotationHistory">
+            <a href="http://msdn.microsoft.com/en-us/library/community/history/hh448380(v=vs.85).aspx?id=1" title="History" target="_blank">History</a>
+        </div>
+        
+        <div class="HistoryGraphic">
+        <img src="http://i3.msdn.microsoft.com/Areas/Global/Content/clear.gif" class="cl_rt_cc_line_top" alt="" />
+        </div>
+        <div class="ModificationHistory">
+             <div class="AnnotationAddedContainer">
+             <a class="AddedUserAvatar" href="http://social.msdn.microsoft.com/profile/di%C3%B3genesgg/" title=""><img alt="" height="34" src="http://i1.social.s-msft.com/profile/u/avatar.jpg?displayname=di%c3%b3genesgg&amp;size=small" width="34"></img></a>
+               
+                <ul class="AddedUserData">
+                    <li>4/19/2012</li>
+                    <li><a href="http://social.msdn.microsoft.com/profile/di%C3%B3genesgg/">DiógenesGG</a> </li>
+                </ul>
+            </div>
+            
+            
+        </div>
+        
+    </div>
+    
+
+</div>
+    </div>
+    
+  </div>
+        
+  </div>
+  <div class="footer">
+    
+
+<div id="footer" class="msdn footerContainer cl_footer_slice">
+  <div class="footerLogoContainer">
+    <div class="footerContent">
+    <div class="copyright">
+      © 2012 Microsoft. All rights reserved.</div>
+    <div class="footerLogo cl_footer_logo"></div>
+    <a href="/cc300389.aspx">Terms of Use</a><span class="pipe"> | </span>
+    <a href="http://www.microsoft.com/library/toolbar/3.0/trademarks/en-us.mspx">Trademarks</a><span class="pipe"> | </span>
+    <a href="http://go.microsoft.com/fwlink/?LinkId=248681">Privacy Statement</a>
+    <span class="pipe">| </span>
+    <span class="FeedbacklinkDisabled" id="FeedbacklinkDisabled">Site Feedback</span>
+    <a id="Feedbacklink" title="Site Feedback" class="FeedbackLink" href="http://social.msdn.microsoft.com/Forums/en-US/libraryfeedback/threads">
+      Site Feedback
+        <span class="FeedbackButton clip20x21" id="FeedbackButton">
+          <img id="feedBackImg" class="cl_footer_feedback_icon" src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" alt="Site Feedback" />
+        </span>
+      </a>
+    
+  <div id="FeedbackContainer" class="FeedbackContainer">
+    <form id="siteFeedbackForm" method="post" action="/en-us/library/feedback/add/hh448380(v=vs.85).aspx">
+        <input name="__RequestVerificationToken" type="hidden" value="mDnNf438jb63MM0MNGclVRBvqu3497gXxlzvui0NMkkL3MHKBNTuzxxFK3XmvlYWsVUjzxFKPv8NAZr6WCq8DGUuc5/w6zSq+iVmgPgUL/8TfGDSNXsEzvFgjavln+PYr8rmhA==" />
+    <div class="FeedbackTitleContainer">
+        <div class="FeedbackTitle">
+            Site Feedback</div>
+        <div class="FeedbackCancel">
+            <a href="javascript:;" onclick="document.getElementById('FeedbackContainer').style.display = 'none';">x</a>
+            </div>
+    </div>
+    <div class="FeedbackData">
+        <div class="FeedbackInfoText">
+            Tell us about your experience...
+        </div>
+        <div class="QuestionText">
+            Did the page load quickly?
+        </div>
+        <div class="AnswerText">
+            
+            <span>
+                Yes<span>
+                    <input id="searchBox" name="searchBox" type="radio" value="1" /></span></span>
+            
+            <span>
+                No<span>
+                    <input id="searchBox" name="searchBox" type="radio" value="0" /></span></span>
+            
+        </div>
+        <div class="QuestionText">
+            Do you like the page design?
+        </div>
+        <div class="AnswerText">
+            
+            <span>
+                Yes<span>
+                    <input id="tabbedCode" name="tabbedCode" type="radio" value="1" /></span></span>
+            
+            <span>
+                No<span>
+                    <input id="tabbedCode" name="tabbedCode" type="radio" value="0" /></span></span>
+            
+        </div>
+        <div class="QuestionText">
+            Tell us more
+        </div>
+        <div class="FeedbackTextAreaContainer">
+            <textarea id="feedbackText" data-maxlength="4000" name="feedbackText" cols="25" rows="5" class="FeedbackTextArea"></textarea>
+            
+            <textarea id="feedbackDescription" name="feedbackDescription" cols="25" rows="10" style="display:none;">Enter description here.</textarea>
+            <input type="hidden" id="feedbackPriority" name="feedbackPriority" value="" />
+            <input type="hidden" id="feedbackSourceUrl" name="feedbackSourceUrl" value="" />
+            <input type="hidden" id="ClientIP" name="ClientIP" value="" />
+            <input type="hidden" id="ClientOS" name="ClientOS" value="" />
+            <input type="hidden" id="ClientBrowser" name="ClientBrowser" value="" />
+            <input type="hidden" id="ClientTime" name="ClientTime" value="" />
+            <input type="hidden" id="ClientTimeZone" name="ClientTimeZone" value="" />
+            
+            
+        </div>
+        <div>
+            <input id="siteFeedbackSubmit" type="submit" value="Send" class="FeedbackSubmit" onclick="submitSiteFeedback('-1');" />
+        </div>
+    </div>
+    <input type="hidden" id="returnUrl" name="returnUrl" value="http://msdn.microsoft.com/en-us/library/hh448380(v=vs.85).aspx" />
+    
+    
+    <input type="hidden" id="feedBackVersion" name="feedBackVersion" value="1" />
+    
+  </form> 
+</div>
+
+    </div>
+  </div>
+</div>
+
+  </div>
+
+    
+        <div class="MetricsContainer">
+            
+    <div class="WebtrendsContainer">
+      
+
+
+<noscript><div><img alt="DCSIMG" id="Img1" width="1" height="1" src="http://m.webtrends.com/dcsmgru7m99k7mqmgrhudo0k8_8c6m/njs.gif?dcsuri=/nojavascript&amp;WT.js=No" /></div></noscript>
+
+
+    </div>
+    
+    <div class="OmnitureContainer">
+      
+
+
+<noscript>
+  <a href="http://www.omniture.com" title="Web Analytics">
+    <img src="//msstonojsmsdn.112.2o7.net/b/ss/msstonojsmsdn/1/H.20.2--NS/0" height="1" width="1" border="0" alt="" />
+  </a>
+</noscript>
+
+
+    </div>
+    
+        </div>
+        
+
+<![CDATA[ Third party scripts and code linked to or referenced from this website are licensed to you by the parties that own such code, not by Microsoft.  See ASP.NET Ajax CDN Terms of Use – http://www.asp.net/ajaxlibrary/CDN.ashx. ]]>
+<script type="text/javascript" class="mtps-injected">
+/*<![CDATA[*/
+(function(window,document){"use strict";function preload(scripts){for(var result=[],script,e,i=0;i<scripts.length;i++)script=scripts[i],script.hasOwnProperty("url")&&(e=document.createElement("script"),e.src=script.url,script.throwaway=e),result.push(script);return result}function inject(scripts,index){var script,elem;if(index>=scripts.length){delete mtps.injectScripts;return}script=scripts[index],elem=document.createElement("script"),elem.className="mtps-injected",elem.async=!1;var isLoaded=!1,timeoutId=0,injectNextFnName="",injectNext=elem.onerror=function(){isLoaded||(isLoaded=!0,inject(scripts,index+1),window.clearTimeout(timeoutId),elem.onload=elem.onerror=elem.onreadystatechange=null,injectNextFnName&&delete mtps[injectNextFnName],elem.removeEventListener&&elem.removeEventListener("load",injectNext,!1))};elem.addEventListener?elem.addEventListener("load",injectNext,!1):elem.readyState==="uninitialized"?elem.onreadystatechange=function(){(this.readyState==="loaded"||this.readyState==="complete")&&injectNext()}:elem.onload=injectNext,script.hasOwnProperty("url")?(timeoutId=window.setTimeout(injectNext,12e4),elem.src=script.url):(injectNextFnName="_injectNextScript_"+index,mtps[injectNextFnName]=injectNext,timeoutId=window.setTimeout(injectNext,2e3),elem.text="try {\n"+script.txt+"\n} finally { MTPS."+injectNextFnName+" && MTPS."+injectNextFnName+"(); }"),parent.appendChild(elem)}var mtps=window.MTPS||(window.MTPS={}),parent=document.getElementsByTagName("head")[0];mtps.injectScripts=function(scripts){inject(preload(scripts),0)}})(window,document);
+MTPS.injectScripts([
+	{ txt: "/**/\r\n(window.MTPS || (window.MTPS = {})).cdnDomains || (window.MTPS.cdnDomains = { \r\n\t\"image\": \"http://i.msdn.microsoft.com\", \r\n\t\"js\": \"http://i2.msdn.microsoft.com\", \r\n\t\"css\": \"http://i3.msdn.microsoft.com\"\r\n});\r\n/**/" },
+	{ txt: "//\n    MTPS = window.MTPS || {};\n    MTPS.Watermarks = window.MTPS.Watermarks || {};\n    MTPS.Watermarks.SearchInput = {\n        \"control\": \"SearchInput\",\n        \"defaultValue\": \"Search MSDN with Bing\",\n        \"defaultCSS\": \"searchTextBox\",\n        \"focusCSS\": \"searchTextBoxTrue\"\n    };\n    function checkSearchBox() {\n        if (document.getElementById(\"SearchInput\").value == MTPS.Watermarks.SearchInput.defaultValue) {\n            document.getElementById(\"SearchInput\").value = \"\";\n        }\n    }\n //" },
+	{ txt: "//\n  MTPS = window.MTPS || {};\n  MTPS.TopicNodes= {\n  \n            \"_last\": \u0027\u0027\n    };\n  //" },
+	{ txt: "//\n  var literalNormalizedUrl = \u0027/en-us/library/hh448380(d=lightweight,l=en-us,v=vs.85).aspx\u0027;\n  var wt_nvr_ru = \u0027WT_NVR_RU\u0027;\n  var wt_fpcdom = \u0027.microsoft.com\u0027;\n  var wt_domlist = \u0027msdn.microsoft.com\u0027;\n  var wt_pathlist = \u0027\u0027;\n  var wt_paramlist = \u0027DCSext.mtps_devcenter\u0027;\n  var wt_siteid = \u0027MSDN\u0027;\n  var gDomain = \u0027m.webtrends.com\u0027;\n  var gDcsId = \u0027dcsmgru7m99k7mqmgrhudo0k8_8c6m\u0027;\n  var gFpc = \u0027WT_FPC\u0027;\n  if (document.cookie.indexOf(gFpc + \"=\") == -1) {\n    var wtidJs = document.createElement(\"script\");\n    wtidJs.src = \"//\" + gDomain + \"/\" + gDcsId + \"/wtid.js\";\n    document.getElementsByTagName(\"head\")[0].appendChild(wtidJs);\n  }\n  var detectedLocale = \u0027en-us\u0027;\n  var wtsp = \u0027_msdnlib_es_dev_win32com_\u0027;\n  var gTrackEvents = \u00270\u0027;\n/**/" },
+	{ txt: "/**/\n  var omni_guid = \"451272f3-347c-45e2-be36-6e5d0ec9ef75\";\n/**/" },
+	{ url: "http://i2.msdn.microsoft.com/Combined.js?resources=0:Library,1:webtrendsscript,2:omni_rsid_MSDN,3:FeedbackCounter,3:Feedback,4:SurveyBroker;/Areas/Brand/Content:0,/Areas/Global/Content/Webtrends/resources:1,/Areas/Global/Content/Omniture/resources/MSDN:2,/Areas/Epx/Shared/Content:3,/Areas/Epx/Content/Scripts:4&amp;hashKey=BAF197FF194BECF5672D03DCEECE72CA" }
+]);
+
+/*]]>*/
+</script></body>
+</html>

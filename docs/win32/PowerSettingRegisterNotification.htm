@@ -1,0 +1,1284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="ctl00_Head1"><link rel="canonical" href="http://msdn.microsoft.com/en-us/library/windows/desktop/hh769082(v=vs.85).aspx" /><title>
+	
+  PowerSettingRegisterNotification function (Windows)
+
+</title>
+    
+
+
+<link rel="alternate" media="print" href="http://msdn.microsoft.com/en-us/library/hh769082(d=printer,v=vs.85).aspx" />
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+
+<meta name="DCS.dcsuri" content="/en-us/library/hh769082(d=lightweight,l=en-us,v=vs.85).aspx" />
+
+<meta name="NormalizedUrl" content="http://msdn.microsoft.com/en-us/library/hh769082(d=lightweight,l=en-us,v=vs.85).aspx" />
+
+<meta name="VotingContextUrl" content="http://msdn.microsoft.com/en-us/library/hh769082(l=en-us,v=vs.85).aspx" />
+
+<meta name="MN" content="1C75349C-2:58:08 AM" />
+
+<meta name="Search.ShortId" content="hh769082" />
+
+<meta name="Ms.Locale" content="en-us" />
+<link rel="stylesheet" type="text/css" href="http://i3.msdn.microsoft.com/Combined.css?resources=0:LibraryView,0:Msdn_ImageSprite,0:MSDN.Header,1:FeedbackCounter,0:CodeSnippet,1:Feedback,0:Footer;/Areas/Brand/Content:0,/Areas/Epx/Shared/Content:1&amp;amp;hashKey=C9AD819F0B10C5547B4FEEA4BF2CA49A" /><link rel="stylesheet" type="text/css" href="http://i3.msdn.microsoft.com/areas/brand/content/printview.css" media="print" /></head>
+<body>
+    
+        
+        
+  <div class="header">
+    
+
+<table border="0" cellpadding="0" cellspacing="0" class="headerBar cl_lightweight_topnav_slice">
+		<tr>
+			<td class="leftSection cl_lightweight_header_leftSection_wave leftSectionImageClusterOverride">
+        <div class="tabContainer">
+          <a href="http://msdn.microsoft.com/en-us/default.aspx" title="Home" class=" headerTab">Home</a>
+          <a href="http://msdn.microsoft.com/en-us/library/default.aspx" title="Library" class="headerTabSelected cl_lightweight_selected_tab_repeatX ">Library</a>
+          <a href="http://msdn.microsoft.com/en-us/bb188199.aspx" title="Learn" class=" headerTab">Learn</a>
+          <a href="http://msdn.microsoft.com/en-us/aa570309.aspx" title="Downloads" class=" headerTab">Downloads</a>
+          <a href="http://msdn.microsoft.com/en-us/hh361695.aspx" title="Support" class=" headerTab">Support</a>
+          <a href="http://msdn.microsoft.com/en-us/aa497440.aspx" title="Community" class=" headerTab">Community</a>
+          
+        </div>
+      </td>
+			<td class="rightSection cl_lightweight_header_rightSection_wave rightSectionImageClusterOverride">
+        <div class="tabContainer">
+            
+            <a href="https://login.live.com/login.srf?wa=wsignin1.0&amp;rpsnv=11&amp;ct=1352372288&amp;rver=6.0.5276.0&amp;wp=MCLBI&amp;wlcxt=msdn%24msdn%24msdn&amp;wreply=http%3a%2f%2fmsdn.microsoft.com%2fen-us%2flibrary%2fhh769082%2528v%3dvs.85%2529.aspx&amp;lc=1033&amp;id=254354&amp;mkt=en-US" title="Sign in" rel="nofollow">Sign in </a>
+            <span class="pipe">|</span>
+            <a href="http://msdn.microsoft.com/en-us/library/preferences/locale/?returnurl=%252fen-us%252flibrary%252fhh769082(v%253dvs.85).aspx" title="United States - English" rel="nofollow">United States - English </a>
+            <span class="pipe">|</span>
+            <a class="dispinline clip15x15" href="http://msdn.microsoft.com/en-us/library/preferences/experience/?returnurl=%252fen-us%252flibrary%252fhh769082(v%253dvs.85).aspx" title="Preferences" rel="nofollow"><img class="head_gear" src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" alt="" /></a>
+            <span class="pipe">|</span>
+            <a id="exportPrintLink" class="dispinline clip30x15 moveToDown" href="/en-us/library/hh769082(d=printer,v=vs.85).aspx" title="Print/Export"><img class="head_print_noarrow" src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" alt="" /></a>
+            
+            <div id="exportPrintLinkArrowDiv" class="exportPrintLinkArrow">
+            <a id="exportPrintLinkArrow" class="dispinline clip30x15 moveToDown" href="javascript:void(0);" title="Print/Export"><img class="head_print_arrow" src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" alt="" /></a>
+            </div>
+            
+        </div>
+			</td>
+	</tr>
+</table>
+
+  </div>
+  <div class="contentPlaceHolder">
+    
+    
+  <div class="navigation" id="Navigation" style="width:280px;padding-bottom:96px;">
+    <div class="searchcontainer">
+      
+<form id="SearchForm" action="http://social.msdn.microsoft.com/search/en-us" method="get" style="margin: 0; padding: 0;" onsubmit="return checkSearchBox()">
+<div class="searchBoxContainer" style="">
+  <table class="searchBox" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td class="searchTextBoxTd">
+        <input id="SearchInput" type="text" maxlength="200" class="searchTextBox" name="query" />
+        
+      </td>
+      <td class="searchButtonTd">
+        <a href="javascript:void(0)" class="clip20x20" style="display: block; overflow: hidden; position: relative;           padding: 0; margin: 0;" onclick="javascript:if(document.getElementById('SearchInput').value == 'Search MSDN with Bing')document.getElementById('SearchInput').value=''; document.getElementById('SearchForm').submit();">
+          <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" style="position: relative;" title="Search " class="isd_search" alt="Search" /></a>
+      </td>
+    </tr>
+  </table>
+</div>
+</form>
+
+
+
+    </div>
+    <div class="navcontainer">
+      
+
+<div class="nav">
+    
+    <div id="tocnav">
+        
+        <div class="toclevel0 ancestry">
+            
+            <div class="clip5x9 nav_root">
+                <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_bullet" alt="" />
+            </div>
+            
+            <div class="nav_div_currentroot">
+                <a data-tochassubtree="true" href="/en-us/library/ms123401.aspx" id="ms310241_MSDN.10_en-us" title="MSDN Library">MSDN Library</a>
+            </div>
+            
+            <div class="clip5x9 nav_arrows">
+                <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_arrow" alt="" />
+            </div>
+            
+            <div class="nav_div_currentroot">
+                <a data-tochassubtree="true" href="/en-us/library/ee663300(v=vs.85).aspx" id="aa139672_MSDN.10_en-us" title="Windows Development">Windows Development</a>
+            </div>
+            
+            <div class="clip5x9 nav_arrows">
+                <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_arrow" alt="" />
+            </div>
+            
+            <div class="nav_div_currentroot">
+                <a data-tochassubtree="true" href="/en-us/library/ee663297(v=vs.85).aspx" id="hh309619_VS.85_en-us" title="System Services">System Services</a>
+            </div>
+            
+            <div class="clip5x9 nav_arrows">
+                <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_arrow" alt="" />
+            </div>
+            
+            <div class="nav_div_currentroot">
+                <a data-tochassubtree="true" href="/en-us/library/bb968807(v=vs.85).aspx" id="ms763443_VS.85_en-us" title="Power Management">Power Management</a>
+            </div>
+            
+            <div class="clip5x9 nav_arrows">
+                <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_arrow" alt="" />
+            </div>
+            
+            <div class="nav_div_currentroot">
+                <a data-tochassubtree="true" href="/en-us/library/aa373170(v=vs.85).aspx" id="ms763452_VS.85_en-us" title="Power Management Reference">Power Management Reference</a>
+            </div>
+            
+            <div class="clip13x9 nav_arrows">
+                <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+            </div>
+            
+            <div class="nav_div_currentroot">
+                <a data-tochassubtree="true" href="/en-us/library/aa373163(v=vs.85).aspx" id="ms763475_VS.85_en-us" title="Power Management Functions">Power Management Functions</a>
+            </div>
+            
+        </div>
+        
+        <div class="toclevel1 children" style="border-bottom: 1px solid #bbbbbb;">
+            
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372675(v=vs.85).aspx" title="CallNtPowerInformation">CallNtPowerInformation</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372676(v=vs.85).aspx" title="CanUserWritePwrScheme">CanUserWritePwrScheme</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372678(v=vs.85).aspx" title="DeletePwrScheme">DeletePwrScheme</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372680(v=vs.85).aspx" title="DevicePowerClose">DevicePowerClose</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372681(v=vs.85).aspx" title="DevicePowerEnumDevices">DevicePowerEnumDevices</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372682(v=vs.85).aspx" title="DevicePowerOpen">DevicePowerOpen</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372683(v=vs.85).aspx" title="DevicePowerSetDeviceState">DevicePowerSetDeviceState</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372687(v=vs.85).aspx" title="EnumPwrSchemes">EnumPwrSchemes</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372688(v=vs.85).aspx" title="GetActivePwrScheme">GetActivePwrScheme</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372689(v=vs.85).aspx" title="GetCurrentPowerPolicies">GetCurrentPowerPolicies</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372690(v=vs.85).aspx" title="GetDevicePowerState">GetDevicePowerState</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372691(v=vs.85).aspx" title="GetPwrCapabilities">GetPwrCapabilities</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372692(v=vs.85).aspx" title="GetPwrDiskSpindownRange">GetPwrDiskSpindownRange</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372693(v=vs.85).aspx" title="GetSystemPowerStatus">GetSystemPowerStatus</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372705(v=vs.85).aspx" title="IsPwrHibernateAllowed">IsPwrHibernateAllowed</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372706(v=vs.85).aspx" title="IsPwrShutdownAllowed">IsPwrShutdownAllowed</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372707(v=vs.85).aspx" title="IsPwrSuspendAllowed">IsPwrSuspendAllowed</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372708(v=vs.85).aspx" title="IsSystemResumeAutomatic">IsSystemResumeAutomatic</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372724(v=vs.85).aspx" title="PowerCanRestoreIndividualDefaultPowerScheme">PowerCanRestoreIndividualDefaultPowerScheme</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/dd405532(v=vs.85).aspx" title="PowerClearRequest">PowerClearRequest</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372725(v=vs.85).aspx" title="PowerCreatePossibleSetting">PowerCreatePossibleSetting</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/dd405533(v=vs.85).aspx" title="PowerCreateRequest">PowerCreateRequest</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372726(v=vs.85).aspx" title="PowerCreateSetting">PowerCreateSetting</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372727(v=vs.85).aspx" title="PowerDeleteScheme">PowerDeleteScheme</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372728(v=vs.85).aspx" title="PowerDeterminePlatformRole">PowerDeterminePlatformRole</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/hh448379(v=vs.85).aspx" title="PowerDeterminePlatformRoleEx">PowerDeterminePlatformRoleEx</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372729(v=vs.85).aspx" title="PowerDuplicateScheme">PowerDuplicateScheme</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372730(v=vs.85).aspx" title="PowerEnumerate">PowerEnumerate</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372731(v=vs.85).aspx" title="PowerGetActiveScheme">PowerGetActiveScheme</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372732(v=vs.85).aspx" title="PowerImportPowerScheme">PowerImportPowerScheme</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/hh769079(v=vs.85).aspx" title="PowerIsSettingRangeDefined">PowerIsSettingRangeDefined</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372733(v=vs.85).aspx" title="PowerReadACDefaultIndex">PowerReadACDefaultIndex</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372734(v=vs.85).aspx" title="PowerReadACValue">PowerReadACValue</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372735(v=vs.85).aspx" title="PowerReadACValueIndex">PowerReadACValueIndex</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372736(v=vs.85).aspx" title="PowerReadDCDefaultIndex">PowerReadDCDefaultIndex</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372737(v=vs.85).aspx" title="PowerReadDCValue">PowerReadDCValue</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372738(v=vs.85).aspx" title="PowerReadDCValueIndex">PowerReadDCValueIndex</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372739(v=vs.85).aspx" title="PowerReadDescription">PowerReadDescription</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372740(v=vs.85).aspx" title="PowerReadFriendlyName">PowerReadFriendlyName</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372741(v=vs.85).aspx" title="PowerReadIconResourceSpecifier">PowerReadIconResourceSpecifier</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372742(v=vs.85).aspx" title="PowerReadPossibleDescription">PowerReadPossibleDescription</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372743(v=vs.85).aspx" title="PowerReadPossibleFriendlyName">PowerReadPossibleFriendlyName</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372744(v=vs.85).aspx" title="PowerReadPossibleValue">PowerReadPossibleValue</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372745(v=vs.85).aspx" title="PowerReadSettingAttributes">PowerReadSettingAttributes</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372746(v=vs.85).aspx" title="PowerReadValueIncrement">PowerReadValueIncrement</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372747(v=vs.85).aspx" title="PowerReadValueMax">PowerReadValueMax</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372748(v=vs.85).aspx" title="PowerReadValueMin">PowerReadValueMin</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372750(v=vs.85).aspx" title="PowerReadValueUnitsSpecifier">PowerReadValueUnitsSpecifier</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/hh769080(v=vs.85).aspx" title="PowerRegisterSuspendResumeNotification">PowerRegisterSuspendResumeNotification</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372752(v=vs.85).aspx" title="PowerRemovePowerSetting">PowerRemovePowerSetting</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372754(v=vs.85).aspx" title="PowerReplaceDefaultPowerSchemes">PowerReplaceDefaultPowerSchemes</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372755(v=vs.85).aspx" title="PowerRestoreDefaultPowerSchemes">PowerRestoreDefaultPowerSchemes</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372756(v=vs.85).aspx" title="PowerRestoreIndividualDefaultPowerScheme">PowerRestoreIndividualDefaultPowerScheme</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372758(v=vs.85).aspx" title="PowerSetActiveScheme">PowerSetActiveScheme</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/dd405534(v=vs.85).aspx" title="PowerSetRequest">PowerSetRequest</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372761(v=vs.85).aspx" title="PowerSettingAccessCheck">PowerSettingAccessCheck</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/hh769081(v=vs.85).aspx" title="PowerSettingAccessCheckEx">PowerSettingAccessCheckEx</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div class="toclevel1 current">
+                    <a href="/en-us/library/hh769082(v=vs.85).aspx" title="PowerSettingRegisterNotification">PowerSettingRegisterNotification</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/hh769083(v=vs.85).aspx" title="PowerSettingUnregisterNotification">PowerSettingUnregisterNotification</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/hh769084(v=vs.85).aspx" title="PowerUnregisterSuspendResumeNotification">PowerUnregisterSuspendResumeNotification</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372763(v=vs.85).aspx" title="PowerWriteACDefaultIndex">PowerWriteACDefaultIndex</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372765(v=vs.85).aspx" title="PowerWriteACValueIndex">PowerWriteACValueIndex</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372767(v=vs.85).aspx" title="PowerWriteDCDefaultIndex">PowerWriteDCDefaultIndex</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372769(v=vs.85).aspx" title="PowerWriteDCValueIndex">PowerWriteDCValueIndex</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372772(v=vs.85).aspx" title="PowerWriteDescription">PowerWriteDescription</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372773(v=vs.85).aspx" title="PowerWriteFriendlyName">PowerWriteFriendlyName</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372778(v=vs.85).aspx" title="PowerWriteIconResourceSpecifier">PowerWriteIconResourceSpecifier</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa372779(v=vs.85).aspx" title="PowerWritePossibleDescription">PowerWritePossibleDescription</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa373116(v=vs.85).aspx" title="PowerWritePossibleFriendlyName">PowerWritePossibleFriendlyName</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa373120(v=vs.85).aspx" title="PowerWritePossibleValue">PowerWritePossibleValue</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa373127(v=vs.85).aspx" title="PowerWriteSettingAttributes">PowerWriteSettingAttributes</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa373135(v=vs.85).aspx" title="PowerWriteValueIncrement">PowerWriteValueIncrement</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa373137(v=vs.85).aspx" title="PowerWriteValueMax">PowerWriteValueMax</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa373139(v=vs.85).aspx" title="PowerWriteValueMin">PowerWriteValueMin</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa373143(v=vs.85).aspx" title="PowerWriteValueUnitsSpecifier">PowerWriteValueUnitsSpecifier</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa373189(v=vs.85).aspx" title="ReadGlobalPwrPolicy">ReadGlobalPwrPolicy</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa373190(v=vs.85).aspx" title="ReadProcessorPwrScheme">ReadProcessorPwrScheme</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa373192(v=vs.85).aspx" title="ReadPwrScheme">ReadPwrScheme</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa373196(v=vs.85).aspx" title="RegisterPowerSettingNotification">RegisterPowerSettingNotification</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/jj613321(v=vs.85).aspx" title="RegisterSuspendResumeNotification">RegisterSuspendResumeNotification</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa373199(v=vs.85).aspx" title="RequestWakeupLatency">RequestWakeupLatency</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa373200(v=vs.85).aspx" title="SetActivePwrScheme">SetActivePwrScheme</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa373201(v=vs.85).aspx" title="SetSuspendState">SetSuspendState</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa373206(v=vs.85).aspx" title="SetSystemPowerState">SetSystemPowerState</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa373208(v=vs.85).aspx" title="SetThreadExecutionState">SetThreadExecutionState</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa373237(v=vs.85).aspx" title="UnregisterPowerSettingNotification">UnregisterPowerSettingNotification</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/jj613322(v=vs.85).aspx" title="UnregisterSuspendResumeNotification">UnregisterSuspendResumeNotification</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa373250(v=vs.85).aspx" title="WriteGlobalPwrPolicy">WriteGlobalPwrPolicy</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa373251(v=vs.85).aspx" title="WriteProcessorPwrScheme">WriteProcessorPwrScheme</a>
+                </div>
+                
+                <div class="clip13x9 nav_dots_current">
+                    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="cl_nav_dots" alt="" />
+                </div>
+                
+                <div>
+                    <a href="/en-us/library/aa373253(v=vs.85).aspx" title="WritePwrScheme">WritePwrScheme</a>
+                </div>
+                
+        </div>
+        
+    </div>
+    
+    
+    
+        <img src="http://i3.msdn.microsoft.com/Areas/Global/Content/clear.gif" alt="Separator" class="communityContentNavigationSeparator cl_lt_cc_line_top" />
+    
+    <div class="communityContentNavigation">
+        <div class="communityContentNavigationHeader">
+            Community Content</div>
+        
+        <div class="communityContentNavigationPost">
+            <div class="communityContentNavigationAvatarContainer">
+                <a class="communityContentNavigationLinkAvatar" href="#CommunityContent" title="User"><img alt="Avatar" class="cl_default_avatar" src="http://i3.msdn.microsoft.com/Areas/Global/Content/clear.gif"></img></a>
+            </div>
+            
+            <div class="communityContentNavigationLinkAbstractAdvertisement">
+                <ul>
+                    <li>
+                        Add code samples and tips to enhance this topic.</li>
+                </ul>
+            </div>
+            
+        </div>
+        
+        <div class="communityContentNavigationMoreLink">
+            <a href="#CommunityContent" title="More...">More...</a></div>
+    </div>
+    
+</div>
+
+
+
+    </div>
+    
+  </div>
+  <div id="tocResizeContainer" style="visibility:hidden">
+  <a href="#" class="tocResize" id="TocResize" style="left:280px">
+    <img id="ResizeImageIncrease" class="cl_nav_resize_open" src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" title="Expand" alt="Expand" />
+      <img id="ResizeImageReset" class="cl_nav_resize_close" src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" style="display:none" title="Minimize" alt="Minimize" />
+  </a>
+  </div>
+  <div class="content">
+    
+    
+
+<div class="clip75x25 logo">
+  <a href="http://msdn.microsoft.com/en-us/default.aspx">
+    <img src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" class="msdn_body_logo" alt="MSDN" title="MSDN" />
+  </a>
+</div>
+
+    <div class="topicContainer">
+        
+    
+    
+
+    <div id="ratingCounterSeperator" class="cl_lw_vs_seperator" style="display: none;"></div>
+
+    <div id="ratingCounter">
+        <span id="rcA" class="ratingText">
+            0 out of 2 rated this helpful <span id="rateThisPrefix">- </span><a id="rateThisTopic" href="#feedback" title="Rate this topic">Rate this topic</a>
+            
+        </span>
+    </div>
+
+<div class="topic" xmlns="http://www.w3.org/1999/xhtml">
+  <h1 class="title">PowerSettingRegisterNotification function</h1>
+  
+  <div id="mainSection">
+<div class="clsServerSDKContent">
+
+</div>
+<p>Registers to receive notification when a power setting changes.</p>
+<h3>Syntax</h3>
+
+
+<div id="code-snippet-1" class="codeSnippetContainer" xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+    <div class="codeSnippetContainerTabs">
+        <div class="codeSnippetContainerTab codeSnippetContainerTabSingle" dir="ltr"><a>C++</a></div>
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" title="Copy to clipboard." href="javascript:CodeSnippet_CopyCode('CodeSnippetContainerCode_2fb9e837-3916-4590-b057-235bc5c69c0b');">Copy</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_2fb9e837-3916-4590-b057-235bc5c69c0b" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre>
+
+DWORD WINAPI PowerSettingRegisterNotification(
+  _In_   LPCGUID SettingGuid,
+  _In_   DWORD Flags,
+  _In_   HANDLE Recipient,
+  _Out_  PHPOWERNOTIFY RegistrationHandle
+);
+
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+
+<h3>Parameters</h3>
+<dl>
+<dt><em>SettingGuid</em> [in]</dt>
+<dd>
+<p>A GUID that represents the power setting.</p>
+</dd>
+<dt><em>Flags</em> [in]</dt>
+<dd>
+<p>Information about the recipient of the notification. This parameter can be one of the following values:</p>
+<table>
+<tr><th>Value</th><th>Meaning</th></tr>
+<tr><td><a id="DEVICE_NOTIFY_SERVICE_HANDLE"></a><a id="device_notify_service_handle"></a><dl>
+<dt><strong>DEVICE_NOTIFY_SERVICE_HANDLE</strong></dt>
+</dl>
+</td><td>
+<p>The <em>Recipient</em> parameter is a handle to a service.Use the <a href="http://msdn.microsoft.com/en-us/library/ms682450(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">CreateService</strong></a> or <a href="http://msdn.microsoft.com/en-us/library/ms684330(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">OpenService</strong></a> function to obtain this handle.</p>
+</td></tr>
+<tr><td><a id="DEVICE_NOTIFY_CALLBACK"></a><a id="device_notify_callback"></a><dl>
+<dt><strong>DEVICE_NOTIFY_CALLBACK</strong></dt>
+</dl>
+</td><td>
+<p>The <em>Recipient</em> parameter is a pointer to a callback function to call when the power setting changes.</p>
+</td></tr>
+</table>
+<p> </p>
+</dd>
+<dt><em>Recipient</em> [in]</dt>
+<dd>
+<p>A handle to the recipient of the notifications.</p>
+</dd>
+<dt><em>RegistrationHandle</em> [out]</dt>
+<dd>
+<p>A handle to the registration. Use this handle to unregister for notifications.</p>
+</dd>
+</dl>
+<h3>Return value</h3>
+<p>Returns ERROR_SUCCESS (zero) if the call was successful, and a nonzero value if the call failed. </p>
+<h3>Requirements</h3>
+<table>
+<tr><th>
+<p>Minimum supported client</p>
+</th><td>Windows 7 [desktop apps only]</td></tr>
+<tr><th>
+<p>Minimum supported server</p>
+</th><td>Windows Server 2008 R2 [desktop apps only]</td></tr>
+<tr><th>
+<p>Header</p>
+</th><td>
+<dl>
+<dt>Powersetting.h; </dt>
+<dt>Powrprof.h on Windows Server 2008 R2 and Windows 7</dt>
+</dl>
+</td></tr>
+<tr><th>
+<p>Library</p>
+</th><td>
+<dl>
+<dt>Powrprof.lib</dt>
+</dl>
+</td></tr>
+<tr><th>
+<p>DLL</p>
+</th><td>
+<dl>
+<dt>Powrprof.dll</dt>
+</dl>
+</td></tr>
+</table>
+<h3><a id="see_also"></a>See also</h3>
+<dl>
+<dt>
+<a href="http://msdn.microsoft.com/en-us/library/hh769083(v=vs.85).aspx"><strong xmlns="http://www.w3.org/1999/xhtml">PowerSettingUnregisterNotification</strong></a>
+</dt>
+</dl>
+<p> </p>
+<p> </p>
+<p><a href="mailto:wsddocfb@microsoft.com?subject=Documentation%20feedback [power\base]:%20PowerSettingRegisterNotification function%20 RELEASE:%20(10/16/2012)&amp;body=%0A%0APRIVACY STATEMENT%0A%0AThe doc team uses your feedback to improve the documentation. We don't use your email address for any other purpose. We'll remove your email address from our system after the issue that you are reporting is resolved. While we are working to resolve this issue, we may send you an email message to request more info about your feedback. After the issue is addressed, we may send you an email message to let you know that your feedback has been addressed.%0A%0AFor more info about Microsoft's privacy policy, see http://privacy.microsoft.com/en-us/default.aspx." title="Send comments about this topic to Microsoft">Send comments about this topic to Microsoft</a></p>
+<p>Build date: 10/16/2012</p>
+</div>
+</div>
+
+        
+
+
+
+<div id="contentFeedback">
+    <form method="post" action="/en-us/library/feedback/add/hh769082(v=vs.85).aspx">
+        <input name="__RequestVerificationToken" type="hidden" value="X1F6P+JqKcZOSDF4eqM7dW0Et5YZER4g+feDKGCBHpYfL9BmVO4QAOH3Q0Xx/jve7IpTV3shDQqX5gjl9Jis0YNDRHXTW7lsk/k1I1WeNX9A84KZ56Ed1XP7/T3JAXwvM4vvgg==" />
+    <div id="contentFeedbackContainer">
+        <div class="FeedbackTitleContainer">
+            <a name="feedback"></a>
+        Did you find this helpful?
+            <input id="rdIsUsefulYes" name="rdIsUseful" type="radio" value="1" onclick="toggleContentFeedback('Yes');" /><label for="rdIsUsefulYes">Yes</label>
+            <input id="rdIsUsefulNo" name="rdIsUseful" type="radio" value="0" onclick="toggleContentFeedback('No');" /><label for="rdIsUsefulNo">No</label>
+        
+        </div>
+        
+            <div id="contentFeedbackQAContainer">
+                
+                    <div id="feedbackListNoContainer" class="FeedbackListContainer">
+                        
+                            <div>
+                                <input id="chkbxNo201" name="chkbxNo" type="checkbox" value="201" />
+                                <label for="chkbxNo201">Not accurate</label>
+                            </div>
+                        
+                            <div>
+                                <input id="chkbxNo202" name="chkbxNo" type="checkbox" value="202" />
+                                <label for="chkbxNo202">Not enough depth</label>
+                            </div>
+                        
+                            <div>
+                                <input id="chkbxNo203" name="chkbxNo" type="checkbox" value="203" />
+                                <label for="chkbxNo203">Need more code examples</label>
+                            </div>
+                        
+                    </div>
+                
+                <div class="FeedbackTellUsMoreContainer">
+                    <textarea id="feedbackText" name="feedbackText" class="TellUsMoreTextBoxSearchLoaded" onfocus="WatermarkFocus(this, 'Tell us more...', 'TellUsMoreTextBoxSearch')" onblur="WatermarkBlur(this, 'Tell us more...', 'TellUsMoreTextBoxSearchLoaded')" onmouseover="TextBoxCharactersCounter(this, document.getElementById('feedbackTextCounter'), 1500)" onkeydown="TextBoxCharactersCounter(this, document.getElementById('feedbackTextCounter'), 1500)" onkeyup="TextBoxCharactersCounter(this, document.getElementById('feedbackTextCounter'), 1500)">Tell us more...</textarea>
+                </div>
+                <span class="counter">(<span id="feedbackTextCounter">1500</span> characters remaining)</span>
+                <input type="hidden" id="returnUrl" name="returnUrl" value="http://msdn.microsoft.com/en-us/library/hh769082(v=vs.85).aspx" />
+                <input type="submit" id="submit" value="Submit" title="Click to Submit Feedback" onclick="WatermarkOnSubmit(document.getElementById('feedbackText'), 'Tell us more...', 'TellUsMoreTextBoxSearch')" />
+                <div style="clear: both;"></div>
+            </div>  
+        
+    </div>
+    </form>
+</div>
+
+    </div>
+    
+    <div class="topicEndLine">
+    </div>
+    <div id="CommunityContent" class="CommunityContent">
+      
+<div class="CommunityContentContainer">
+    <div id="CommunityContentHeader" class="CommunityContentHeader">
+      <div class="CommunityContentHeaderTitleContainer">
+        <span class="CommunityContentHeaderTitle h1">Community Content</span>
+          
+        <a href="http://msdn.microsoft.com/en-us/library/community/add/hh769082(v=vs.85).aspx" title="Add" rel="nofollow">Add</a>
+          
+        </div>
+        <div class="CommunityContentFaq">
+            <a href="/en-us/library/community-edits.rss?topic=hh769082|en-us|VS.85" title="Annotations" rel="nofollow"><img class="cl_rss_button" alt="Annotations" src="http://i3.msdn.microsoft.com/Areas/Global/Content/clear.gif" /></a>
+            <a href="/en-us/library/community-msdnwikifaq.aspx" title="FAQ" rel="nofollow">FAQ</a>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    
+    
+
+</div>
+    </div>
+    
+  </div>
+        
+  </div>
+  <div class="footer">
+    
+
+<div id="footer" class="msdn footerContainer cl_footer_slice">
+  <div class="footerLogoContainer">
+    <div class="footerContent">
+    <div class="copyright">
+      © 2012 Microsoft. All rights reserved.</div>
+    <div class="footerLogo cl_footer_logo"></div>
+    <a href="/cc300389.aspx">Terms of Use</a><span class="pipe"> | </span>
+    <a href="http://www.microsoft.com/library/toolbar/3.0/trademarks/en-us.mspx">Trademarks</a><span class="pipe"> | </span>
+    <a href="http://go.microsoft.com/fwlink/?LinkId=248681">Privacy Statement</a>
+    <span class="pipe">| </span>
+    <span class="FeedbacklinkDisabled" id="FeedbacklinkDisabled">Site Feedback</span>
+    <a id="Feedbacklink" title="Site Feedback" class="FeedbackLink" href="http://social.msdn.microsoft.com/Forums/en-US/libraryfeedback/threads">
+      Site Feedback
+        <span class="FeedbackButton clip20x21" id="FeedbackButton">
+          <img id="feedBackImg" class="cl_footer_feedback_icon" src="http://i3.msdn.microsoft.com/Areas/Brand/Content/Msdn_ImageSprite.png" alt="Site Feedback" />
+        </span>
+      </a>
+    
+  <div id="FeedbackContainer" class="FeedbackContainer">
+    <form id="siteFeedbackForm" method="post" action="/en-us/library/feedback/add/hh769082(v=vs.85).aspx">
+        <input name="__RequestVerificationToken" type="hidden" value="5u+l8+KTowlQIvFbWskkyvdedcaU8/hg9dUYFDKCvbshWBB/AjDN1YvMqZAgzASOjNkP6DWh0YSVYAR2h4Ecx2x29YIsDvCegFOVAB4JUBmDdFEywG+XNexMVqtmP74JAIyiIg==" />
+    <div class="FeedbackTitleContainer">
+        <div class="FeedbackTitle">
+            Site Feedback</div>
+        <div class="FeedbackCancel">
+            <a href="javascript:;" onclick="document.getElementById('FeedbackContainer').style.display = 'none';">x</a>
+            </div>
+    </div>
+    <div class="FeedbackData">
+        <div class="FeedbackInfoText">
+            Tell us about your experience...
+        </div>
+        <div class="QuestionText">
+            Did the page load quickly?
+        </div>
+        <div class="AnswerText">
+            
+            <span>
+                Yes<span>
+                    <input id="searchBox" name="searchBox" type="radio" value="1" /></span></span>
+            
+            <span>
+                No<span>
+                    <input id="searchBox" name="searchBox" type="radio" value="0" /></span></span>
+            
+        </div>
+        <div class="QuestionText">
+            Do you like the page design?
+        </div>
+        <div class="AnswerText">
+            
+            <span>
+                Yes<span>
+                    <input id="tabbedCode" name="tabbedCode" type="radio" value="1" /></span></span>
+            
+            <span>
+                No<span>
+                    <input id="tabbedCode" name="tabbedCode" type="radio" value="0" /></span></span>
+            
+        </div>
+        <div class="QuestionText">
+            Tell us more
+        </div>
+        <div class="FeedbackTextAreaContainer">
+            <textarea id="feedbackText" data-maxlength="4000" name="feedbackText" cols="25" rows="5" class="FeedbackTextArea"></textarea>
+            
+            <textarea id="feedbackDescription" name="feedbackDescription" cols="25" rows="10" style="display:none;">Enter description here.</textarea>
+            <input type="hidden" id="feedbackPriority" name="feedbackPriority" value="" />
+            <input type="hidden" id="feedbackSourceUrl" name="feedbackSourceUrl" value="" />
+            <input type="hidden" id="ClientIP" name="ClientIP" value="" />
+            <input type="hidden" id="ClientOS" name="ClientOS" value="" />
+            <input type="hidden" id="ClientBrowser" name="ClientBrowser" value="" />
+            <input type="hidden" id="ClientTime" name="ClientTime" value="" />
+            <input type="hidden" id="ClientTimeZone" name="ClientTimeZone" value="" />
+            
+            
+        </div>
+        <div>
+            <input id="siteFeedbackSubmit" type="submit" value="Send" class="FeedbackSubmit" onclick="submitSiteFeedback('-1');" />
+        </div>
+    </div>
+    <input type="hidden" id="returnUrl" name="returnUrl" value="http://msdn.microsoft.com/en-us/library/hh769082(v=vs.85).aspx" />
+    
+    
+    <input type="hidden" id="feedBackVersion" name="feedBackVersion" value="1" />
+    
+  </form> 
+</div>
+
+    </div>
+  </div>
+</div>
+
+  </div>
+
+    
+        <div class="MetricsContainer">
+            
+    <div class="WebtrendsContainer">
+      
+
+
+<noscript><div><img alt="DCSIMG" id="Img1" width="1" height="1" src="http://m.webtrends.com/dcsmgru7m99k7mqmgrhudo0k8_8c6m/njs.gif?dcsuri=/nojavascript&amp;WT.js=No" /></div></noscript>
+
+
+    </div>
+    
+    <div class="OmnitureContainer">
+      
+
+
+<noscript>
+  <a href="http://www.omniture.com" title="Web Analytics">
+    <img src="//msstonojsmsdn.112.2o7.net/b/ss/msstonojsmsdn/1/H.20.2--NS/0" height="1" width="1" border="0" alt="" />
+  </a>
+</noscript>
+
+
+    </div>
+    
+        </div>
+        
+
+<![CDATA[ Third party scripts and code linked to or referenced from this website are licensed to you by the parties that own such code, not by Microsoft.  See ASP.NET Ajax CDN Terms of Use – http://www.asp.net/ajaxlibrary/CDN.ashx. ]]>
+<script type="text/javascript" class="mtps-injected">
+/*<![CDATA[*/
+(function(window,document){"use strict";function preload(scripts){for(var result=[],script,e,i=0;i<scripts.length;i++)script=scripts[i],script.hasOwnProperty("url")&&(e=document.createElement("script"),e.src=script.url,script.throwaway=e),result.push(script);return result}function inject(scripts,index){var script,elem;if(index>=scripts.length){delete mtps.injectScripts;return}script=scripts[index],elem=document.createElement("script"),elem.className="mtps-injected",elem.async=!1;var isLoaded=!1,timeoutId=0,injectNextFnName="",injectNext=elem.onerror=function(){isLoaded||(isLoaded=!0,inject(scripts,index+1),window.clearTimeout(timeoutId),elem.onload=elem.onerror=elem.onreadystatechange=null,injectNextFnName&&delete mtps[injectNextFnName],elem.removeEventListener&&elem.removeEventListener("load",injectNext,!1))};elem.addEventListener?elem.addEventListener("load",injectNext,!1):elem.readyState==="uninitialized"?elem.onreadystatechange=function(){(this.readyState==="loaded"||this.readyState==="complete")&&injectNext()}:elem.onload=injectNext,script.hasOwnProperty("url")?(timeoutId=window.setTimeout(injectNext,12e4),elem.src=script.url):(injectNextFnName="_injectNextScript_"+index,mtps[injectNextFnName]=injectNext,timeoutId=window.setTimeout(injectNext,2e3),elem.text="try {\n"+script.txt+"\n} finally { MTPS."+injectNextFnName+" && MTPS."+injectNextFnName+"(); }"),parent.appendChild(elem)}var mtps=window.MTPS||(window.MTPS={}),parent=document.getElementsByTagName("head")[0];mtps.injectScripts=function(scripts){inject(preload(scripts),0)}})(window,document);
+MTPS.injectScripts([
+	{ txt: "/**/\r\n(window.MTPS || (window.MTPS = {})).cdnDomains || (window.MTPS.cdnDomains = { \r\n\t\"image\": \"http://i.msdn.microsoft.com\", \r\n\t\"js\": \"http://i2.msdn.microsoft.com\", \r\n\t\"css\": \"http://i3.msdn.microsoft.com\"\r\n});\r\n/**/" },
+	{ txt: "//\n    MTPS = window.MTPS || {};\n    MTPS.Watermarks = window.MTPS.Watermarks || {};\n    MTPS.Watermarks.SearchInput = {\n        \"control\": \"SearchInput\",\n        \"defaultValue\": \"Search MSDN with Bing\",\n        \"defaultCSS\": \"searchTextBox\",\n        \"focusCSS\": \"searchTextBoxTrue\"\n    };\n    function checkSearchBox() {\n        if (document.getElementById(\"SearchInput\").value == MTPS.Watermarks.SearchInput.defaultValue) {\n            document.getElementById(\"SearchInput\").value = \"\";\n        }\n    }\n //" },
+	{ txt: "//\n  MTPS = window.MTPS || {};\n  MTPS.TopicNodes= {\n  \n            \"_last\": \u0027\u0027\n    };\n  //" },
+	{ txt: "//\n  var literalNormalizedUrl = \u0027/en-us/library/hh769082(d=lightweight,l=en-us,v=vs.85).aspx\u0027;\n  var wt_nvr_ru = \u0027WT_NVR_RU\u0027;\n  var wt_fpcdom = \u0027.microsoft.com\u0027;\n  var wt_domlist = \u0027msdn.microsoft.com\u0027;\n  var wt_pathlist = \u0027\u0027;\n  var wt_paramlist = \u0027DCSext.mtps_devcenter\u0027;\n  var wt_siteid = \u0027MSDN\u0027;\n  var gDomain = \u0027m.webtrends.com\u0027;\n  var gDcsId = \u0027dcsmgru7m99k7mqmgrhudo0k8_8c6m\u0027;\n  var gFpc = \u0027WT_FPC\u0027;\n  if (document.cookie.indexOf(gFpc + \"=\") == -1) {\n    var wtidJs = document.createElement(\"script\");\n    wtidJs.src = \"//\" + gDomain + \"/\" + gDcsId + \"/wtid.js\";\n    document.getElementsByTagName(\"head\")[0].appendChild(wtidJs);\n  }\n  var detectedLocale = \u0027en-us\u0027;\n  var wtsp = \u0027_msdnlib_es_dev_win32com_\u0027;\n  var gTrackEvents = \u00270\u0027;\n/**/" },
+	{ txt: "/**/\n  var omni_guid = \"853770f2-9249-4fcb-81ec-2e406a3969cc\";\n/**/" },
+	{ url: "http://i2.msdn.microsoft.com/Combined.js?resources=0:Library,1:webtrendsscript,2:omni_rsid_MSDN,3:FeedbackCounter,4:CodeSnippet,3:Feedback,5:SurveyBroker;/Areas/Brand/Content:0,/Areas/Global/Content/Webtrends/resources:1,/Areas/Global/Content/Omniture/resources/MSDN:2,/Areas/Epx/Shared/Content:3,/Areas/Global/Content:4,/Areas/Epx/Content/Scripts:5&amp;hashKey=83E8A16A0FBE3476AE6C75AB814D3ACD" }
+]);
+
+/*]]>*/
+</script></body>
+</html>
