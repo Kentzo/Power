@@ -1,7 +1,7 @@
 # coding=utf-8
 __author__ = 'kulakov.ilya@gmail.com'
 
-from abc import ABCMeta, abstractmethod, abstractproperty
+from abc import ABCMeta, abstractmethod
 import weakref
 
 
@@ -115,13 +115,32 @@ class PowerManagementBase(object):
 
     @abstractmethod
     def add_observer(self, observer):
+        """
+        Adds an observer. If observer already registered, subsequent calls are NOT counted.
+
+        You're responsible for removing observer. Otherwise observer may continue receive notifications
+        even if PowerManagement object used to register observer is deallocated.
+        """
         if not isinstance(observer, PowerManagementObserver):
             raise TypeError("observer MUST conform to power.PowerManagementObserver")
         self._weak_observers.add(weakref.ref(observer))
 
     @abstractmethod
     def remove_observer(self, observer):
+        """
+        Removes observer if it was registered. Subsequent calls for already removed observers are ignored.
+        """
         self._weak_observers.remove(weakref.ref(observer))
+
+    def remove_all_observers(self):
+        """
+        Remove all registered observers.
+        """
+        for weak_observer in self._weak_observers:
+            observer = weak_observer()
+            if observer:
+                self.remove_observer(observer)
+        self._weak_observers = set()
 
 
 class PowerManagementObserver:
