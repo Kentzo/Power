@@ -7,7 +7,7 @@
 __author__ = 'kulakov.ilya@gmail.com'
 
 from ctypes import Structure, wintypes, POINTER, windll, GetLastError, WinError, pointer, c_ubyte
-import base
+import common
 
 
 class SYSTEM_POWER_STATUS(Structure):
@@ -29,13 +29,13 @@ GetSystemPowerStatus.restype = wintypes.BOOL
 
 
 POWER_TYPE_MAP = {
-    0: base.POWER_TYPE_BATTERY,
-    1: base.POWER_TYPE_AC,
-    255: base.POWER_TYPE_AC
+    0: common.POWER_TYPE_BATTERY,
+    1: common.POWER_TYPE_AC,
+    255: common.POWER_TYPE_AC
 }
 
 
-class PowerManagement(base.PowerManagementBase):
+class PowerManagement(common.PowerManagementBase):
     def get_providing_power_source_type(self):
         power_status = SYSTEM_POWER_STATUS()
         if not GetSystemPowerStatus(pointer(power_status)):
@@ -47,25 +47,25 @@ class PowerManagement(base.PowerManagementBase):
         if not GetSystemPowerStatus(pointer(power_status)):
             raise WinError()
 
-        if POWER_TYPE_MAP[power_status.ACLineStatus] == base.POWER_TYPE_AC:
-            return base.LOW_BATTERY_WARNING_NONE
+        if POWER_TYPE_MAP[power_status.ACLineStatus] == common.POWER_TYPE_AC:
+            return common.LOW_BATTERY_WARNING_NONE
         else:
             if power_status.BatteryLifeTime != -1 and power_status.BatteryLifeTime <= 600:
-                return base.LOW_BATTERY_WARNING_FINAL
+                return common.LOW_BATTERY_WARNING_FINAL
             elif power_status.BatteryLifePercent <= 22:
-                return base.LOW_BATTERY_WARNING_EARLY
+                return common.LOW_BATTERY_WARNING_EARLY
             else:
-                return base.LOW_BATTERY_WARNING_NONE
+                return common.LOW_BATTERY_WARNING_NONE
 
     def get_time_remaining_estimate(self):
         power_status = SYSTEM_POWER_STATUS()
         if not GetSystemPowerStatus(pointer(power_status)):
             raise WinError()
 
-        if POWER_TYPE_MAP[power_status.ACLineStatus] == base.POWER_TYPE_AC:
-            return base.TIME_REMAINING_UNLIMITED
+        if POWER_TYPE_MAP[power_status.ACLineStatus] == common.POWER_TYPE_AC:
+            return common.TIME_REMAINING_UNLIMITED
         elif power_status.BatteryLifeTime == -1:
-            return base.TIME_REMAINING_UNKNOWN
+            return common.TIME_REMAINING_UNKNOWN
         else:
             return float(power_status.BatteryLifeTime) / 60
 
