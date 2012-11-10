@@ -321,7 +321,11 @@ class PowerManagement(common.PowerManagementBase):
                 info_blob = IOPSGetPowerSourceDescription(blob, source)
                 if info_blob is not None:
                     info.append(get_power_source_info(info_blob))
-            return info
+
+            if len(info) == 0:
+                return None
+            else:
+                return info
         else:
             return None
 
