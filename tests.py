@@ -3,7 +3,6 @@ __author__ = 'kulakov.ilya@gmail.com'
 
 import unittest
 import power
-from CoreFoundation import *
 
 
 class TestPowerManagementCommon(unittest.TestCase):
@@ -25,21 +24,10 @@ class TestPowerManagementCommon(unittest.TestCase):
         self.assertIsInstance(type, int)
         self.assertIn(type, [power.POWER_TYPE_AC, power.POWER_TYPE_BATTERY, power.POWER_TYPE_UPS])
 
-    def testGetExternalPowerAdapter(self):
-        info = power.PowerManagement().get_external_power_adapter_info()
-        self.assertTrue(info is None or isinstance(info, dict))
-        if info is not None:
-            self.assertTrue(info[power.POWER_ADAPTER_FAMILY_KEY] is None or isinstance(info[power.POWER_ADAPTER_FAMILY_KEY], int))
-            self.assertTrue(info[power.POWER_ADAPTER_ID_KEY] is None or isinstance(info[power.POWER_ADAPTER_FAMILY_KEY], int))
-            self.assertTrue(info[power.POWER_ADAPTER_REVISION_KEY] is None or isinstance(info[power.POWER_ADAPTER_FAMILY_KEY], int))
-            self.assertTrue(info[power.POWER_ADAPTER_SERIAL_NUMBER_KEY] is None or isinstance(info[power.POWER_ADAPTER_FAMILY_KEY], int))
-            self.assertTrue(info[power.POWER_ADAPTER_SOURCE_KEY] is None or isinstance(info[power.POWER_ADAPTER_FAMILY_KEY], int))
-            self.assertTrue(info[power.POWER_ADAPTER_WATTS_KEY] is None or isinstance(info[power.POWER_ADAPTER_FAMILY_KEY], int))
-            self.assertTrue(info[power.POWER_ADAPTER_CURRENT_KEY] is None or isinstance(info[power.POWER_ADAPTER_FAMILY_KEY], int))
 
-    def testGetPowerSourcesInfo(self):
-        info = power.PowerManagement().get_power_sources_info()
-        self.assertTrue(info is None or isinstance(info, list))
-        if info is not None:
-            for source in info:
-                pass
+class TestObserver(power.PowerManagementObserver):
+    def on_power_sources_change(self, power_management):
+        print "on_power_sources_change"
+
+    def on_time_remaining_change(self, power_management):
+        print "on_time_remaining_change"

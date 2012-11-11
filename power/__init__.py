@@ -2,9 +2,9 @@
 __author__ = 'kulakov.ilya@gmail.com'
 
 from common import *
-
-
 from sys import platform
+
+
 if platform.startswith('darwin'):
     from darwin import PowerManagement
 elif platform.startswith('win32'):
