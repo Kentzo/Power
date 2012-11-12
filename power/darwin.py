@@ -66,7 +66,6 @@ IO_POWER_SOURCES_BRIDGESUPPORT = """<?xml version='1.0'?>
     <string_constant name='kIOPSMaxCapacityKey' value='Max Capacity'/>
     <string_constant name='kIOPSMaxErrKey' value='MaxErr'/>
     <string_constant name='kIOPSNameKey' value='Name'/>
-    <string_constant name='kIOPSProvidesTimeRemaining' value='Battery Provides Time Remaining' />
     <string_constant name='kIOPSNetworkTransportType' value='Ethernet'/>
     <string_constant name='kIOPSNotifyLowBattery' value='com.apple.system.powersources.lowbattery'/>
     <string_constant name='kIOPSOffLineValue' value='Off Line'/>
@@ -81,6 +80,7 @@ IO_POWER_SOURCES_BRIDGESUPPORT = """<?xml version='1.0'?>
     <string_constant name='kIOPSPowerAdapterWattsKey' value='Watts'/>
     <string_constant name='kIOPSPowerSourceIDKey' value='Power Source ID'/>
     <string_constant name='kIOPSPowerSourceStateKey' value='Power Source State'/>
+    <string_constant name='kIOPSProvidesTimeRemaining' value='Battery Provides Time Remaining' />
     <string_constant name='kIOPSSerialTransportType' value='Serial'/>
     <string_constant name='kIOPSTimeRemainingNotificationKey' value='com.apple.system.powersources.timeremaining'/>
     <string_constant name='kIOPSTimeToEmptyKey' value='Time to Empty'/>
@@ -262,10 +262,13 @@ class PowerManagement(common.PowerManagementBase):
             if type == common.POWER_TYPE_AC:
                 return common.TIME_REMAINING_UNLIMITED
             else:
-                sources = [IOPSGetPowerSourceDescription(blob, x) for x in IOPSCopyPowerSourcesList(blob)]
-                source = next(source for source in sources if source[kIOPSIsPresentKey])
-                if source:
-                    return float(source[kIOPSTimeToEmptyKey])
+                estimate = 0.0
+                for source in IOPSCopyPowerSourcesList(blob):
+                    description = IOPSGetPowerSourceDescription(blob, source)
+                    if kIOPSIsPresentKey in description and description[kIOPSIsPresentKey] and kIOPSTimeToEmptyKey in description and description[kIOPSTimeToEmptyKey] > 0.0:
+                        estimate += float(description[kIOPSTimeToEmptyKey])
+                if estimate > 0.0:
+                    return float(estimate)
                 else:
                     return common.TIME_REMAINING_UNKNOWN
 
