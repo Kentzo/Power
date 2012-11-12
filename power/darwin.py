@@ -1,20 +1,24 @@
 # coding=utf-8
+"""
+"""
 __author__ = 'kulakov.ilya@gmail.com'
 
-import base
+import common
 import objc
 import weakref
 from Foundation import *
 
+__all__ = ['PowerManagement']
 
-#Generated in Mac OS X 10.8.2 using the following command:
-#gen_bridge_metadata -c '-l/System/Library/Frameworks/IOKit.framework/IOKit -I/System/Library/Frameworks/IOKit.framework/Headers/ps/' /System/Library/Frameworks/IOKit.framework/Headers/ps/IOPowerSources.h /System/Library/Frameworks/IOKit.framework/Headers/ps/IOPSKeys.h
+
+# Generated in Mac OS X 10.8.2 using the following command:
+# gen_bridge_metadata -c '-l/System/Library/Frameworks/IOKit.framework/IOKit -I/System/Library/Frameworks/IOKit.framework/Headers/ps/' /System/Library/Frameworks/IOKit.framework/Headers/ps/IOPowerSources.h /System/Library/Frameworks/IOKit.framework/Headers/ps/IOPSKeys.h
 #
-#Following are added manually, because public headers misses their definitions:
-#- kIOPMUPSPowerKey
-#- kIOPMBatteryPowerKey
-#- kIOPMACPowerKey
-#They were found at http://opensource.apple.com/source/IOKitUser/IOKitUser-514.16.50/pwr_mgt.subproj/IOPMLibPrivate.h
+# Following keas are added manually, because public headers misses their definitions:
+# http://opensource.apple.com/source/IOKitUser/IOKitUser-514.16.50/pwr_mgt.subproj/IOPMLibPrivate.h
+# - kIOPMUPSPowerKey
+# - kIOPMBatteryPowerKey
+# - kIOPMACPowerKey
 IO_POWER_SOURCES_BRIDGESUPPORT = """<?xml version='1.0'?>
 <!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
 <signatures version='1.0'>
@@ -32,6 +36,7 @@ IO_POWER_SOURCES_BRIDGESUPPORT = """<?xml version='1.0'?>
     <string_constant name='kIOPSCurrentKey' value='Current'/>
     <string_constant name='kIOPSDeadWarnLevelKey' value='Shutdown Level'/>
     <string_constant name='kIOPSDesignCapacityKey' value='DesignCapacity'/>
+    <string_constant name='kIOPSDesignCycleCountKey' value='DesignCycleCount' />
     <string_constant name='kIOPSDynamicStorePath' value='/IOKit/PowerSources'/>
     <string_constant name='kIOPSFailureCellImbalance' value='Cell Imbalance'/>
     <string_constant name='kIOPSFailureChargeFET' value='Charge FET'/>
@@ -61,6 +66,7 @@ IO_POWER_SOURCES_BRIDGESUPPORT = """<?xml version='1.0'?>
     <string_constant name='kIOPSMaxCapacityKey' value='Max Capacity'/>
     <string_constant name='kIOPSMaxErrKey' value='MaxErr'/>
     <string_constant name='kIOPSNameKey' value='Name'/>
+    <string_constant name='kIOPSProvidesTimeRemaining' value='Battery Provides Time Remaining' />
     <string_constant name='kIOPSNetworkTransportType' value='Ethernet'/>
     <string_constant name='kIOPSNotifyLowBattery' value='com.apple.system.powersources.lowbattery'/>
     <string_constant name='kIOPSOffLineValue' value='Off Line'/>
@@ -135,92 +141,102 @@ objc.parseBridgeSupport(IO_POWER_SOURCES_BRIDGESUPPORT,
 
 
 POWER_TYPE_MAP = {
-    kIOPMACPowerKey: base.POWER_TYPE_AC,
-    kIOPMBatteryPowerKey: base.POWER_TYPE_BATTERY,
-    kIOPMUPSPowerKey: base.POWER_TYPE_UPS
+    kIOPMACPowerKey: common.POWER_TYPE_AC,
+    kIOPMBatteryPowerKey: common.POWER_TYPE_BATTERY,
+    kIOPMUPSPowerKey: common.POWER_TYPE_UPS
 }
 
 
 WARNING_LEVEL_MAP = {
-    kIOPSLowBatteryWarningNone: base.LOW_BATTERY_WARNING_NONE,
-    kIOPSLowBatteryWarningEarly: base.LOW_BATTERY_WARNING_EARLY,
-    kIOPSLowBatteryWarningFinal: base.LOW_BATTERY_WARNING_FINAL
+    kIOPSLowBatteryWarningNone: common.LOW_BATTERY_WARNING_NONE,
+    kIOPSLowBatteryWarningEarly: common.LOW_BATTERY_WARNING_EARLY,
+    kIOPSLowBatteryWarningFinal: common.LOW_BATTERY_WARNING_FINAL
 }
 
 
 class PowerSourcesNotificationsObserver(NSObject):
     """
-    Manages NSThread instance which is used to run CFRunLoop with only source - IOPSNotificationCreateRunLoopSource.
-    It automatically schedules thread when first observer is added and stops it when last observer is removed.
+    Manages NSThread instance which is used to run NSRunLoop with only source - IOPSNotificationCreateRunLoopSource.
+    Thread is automatically spawned when first observer is added and stopped when last observer is removed.
+    Does not keep strong references to observers.
 
     Note method names break PEP8 convention to conform PyObjC naming conventions.
     """
     def init(self):
         self = super(PowerSourcesNotificationsObserver, self).init()
-        if not self:
-            return None
-        self._weak_observers = set()
-        self._thread = None
+        if self is not None:
+            self._weak_observers = []
+            self._thread = None
+            self._lock = objc.object_lock(self)
         return self
 
     def startThread(self):
-        """
-        Detached NSThread to handle notifications.
-        """
-        if self._thread:
+        """Spawns new NSThread to handle notifications."""
+        if self._thread is not None:
             return
         self._thread = NSThread.alloc().initWithTarget_selector_object_(self, 'runPowerNotificationsThread', None)
         self._thread.start()
 
     def stopThread(self):
-        """
-        Stops detached NSThread.
-        """
-        if not self._thread:
-            return
-        self.performSelector_onThread_withObject_waitUntilDone_('stopPowerNotificationsThread', self._thread, None, objc.YES)
-        self._thread = None
+        """Stops spawned NSThread."""
+        if self._thread is not None:
+            self.performSelector_onThread_withObject_waitUntilDone_('stopPowerNotificationsThread', self._thread, None, objc.YES)
+            self._thread = None
 
     def runPowerNotificationsThread(self):
-        """
-        Main method of the detached NSThread. Registers run loop source and runs current NSRunLoop.
-        """
-        @objc.callbackFor(IOPSNotificationCreateRunLoopSource)
-        def on_power_sources_change(context):
-            for weak_observer in self._weak_observers:
-                observer = weak_observer()
-                if observer:
-                    observer.on_power_sources_change(self)
-
+        """Main method of the spawned NSThread. Registers run loop source and runs current NSRunLoop."""
         pool = NSAutoreleasePool.alloc().init()
-        self._source = IOPSNotificationCreateRunLoopSource(on_power_sources_change, None)
-        CFRunLoopAddSource(CFRunLoopGetCurrent(), self._source, kCFRunLoopDefaultMode)
-        CFRunLoopRun()
+
+        @objc.callbackFor(IOPSNotificationCreateRunLoopSource)
+        def on_power_source_notification(context):
+            with self._lock:
+                for weak_observer in self._weak_observers:
+                    observer = weak_observer()
+                    if observer:
+                        observer.on_power_source_notification()
+
+        self._source = IOPSNotificationCreateRunLoopSource(on_power_source_notification, None)
+        CFRunLoopAddSource(NSRunLoop.currentRunLoop().getCFRunLoop(), self._source, kCFRunLoopDefaultMode)
+        while not NSThread.currentThread().isCancelled():
+            NSRunLoop.currentRunLoop().runMode_beforeDate_(NSDefaultRunLoopMode, NSDate.distantFuture())
         del pool
-#
+
+
     def stopPowerNotificationsThread(self):
-        """
-        Removes the only source of the thread's CFRunLoop and stops it.
-        """
-        CFRunLoopRemoveSource(CFRunLoopGetCurrent(), self._source, kCFRunLoopDefaultMode)
+        """Removes the only source from NSRunLoop and cancels thread."""
+        assert NSThread.currentThread() == self._thread
+
+        CFRunLoopSourceInvalidate(self._source)
         self._source = None
-        CFRunLoopStop(CFRunLoopGetCurrent())
+        NSThread.currentThread().cancel()
 
     def addObserver(self, observer):
-        is_first_observer = not bool(len(self._weak_observers))
-        self._weak_observers.add(weakref.ref(observer))
-        if is_first_observer and len(self._weak_observers):
-            self.startThread()
+        with self._lock:
+            self._weak_observers.append(weakref.ref(observer))
+            if len(self._weak_observers) == 1:
+                self.startThread()
 
     def removeObserver(self, observer):
-        is_last_observer = bool(len(self._weak_observers))
-        self._weak_observers.remove(weakref.ref(observer))
-        if is_last_observer and not len(self._weak_observers):
-            self.stopThread()
+        with self._lock:
+            self._weak_observers.remove(weakref.ref(observer))
+            if len(self._weak_observers) == 0:
+                self.stopThread()
 
 
-class PowerManagement(base.PowerManagementBase):
-    notifications_observer = PowerSourcesNotificationsObserver.new()
+class PowerManagement(common.PowerManagementBase):
+    notifications_observer = PowerSourcesNotificationsObserver.alloc().init()
+
+    def __init__(self, cf_run_loop=None):
+        super(PowerManagement, self).__init__()
+        self._cf_run_loop = cf_run_loop
+
+    def on_power_source_notification(self):
+        for weak_observer in self._weak_observers:
+            observer = weak_observer()
+            if observer:
+                observer.on_power_sources_change(self)
+                observer.on_time_remaining_change(self)
+
 
     def get_providing_power_source_type(self):
         providing_source = IOPSCopyPowerSourcesInfo()
@@ -232,19 +248,32 @@ class PowerManagement(base.PowerManagementBase):
         return WARNING_LEVEL_MAP[warning_level]
 
     def get_time_remaining_estimate(self):
-        return int(IOPSGetTimeRemainingEstimate())
-
-    def get_external_power_adapter_info(self):
-        return IOPSCopyExternalPowerAdapterDetails()
-
-    def get_power_sources_info(self):
-        blob = IOPSCopyPowerSourcesInfo()
-        return [IOPSGetPowerSourceDescription(blob, source) for source in IOPSCopyPowerSourcesList(blob)]
+        estimate = float(IOPSGetTimeRemainingEstimate())
+        if estimate == -1.0:
+            return common.TIME_REMAINING_UNKNOWN
+        elif estimate == -2.0:
+            return common.TIME_REMAINING_UNLIMITED
+        else:
+            return estimate / 60.0
 
     def add_observer(self, observer):
         super(PowerManagement, self).add_observer(observer)
-        PowerManagement.notifications_observer.addObserver(observer)
+        if len(self._weak_observers) == 1:
+            if not self._cf_run_loop:
+                PowerManagement.notifications_observer.addObserver(self)
+            else:
+                @objc.callbackFor(IOPSNotificationCreateRunLoopSource)
+                def on_power_sources_change(context):
+                    self.on_power_source_notification()
+
+                self._source = IOPSNotificationCreateRunLoopSource(on_power_sources_change, None)
+                CFRunLoopAddSource(self._cf_run_loop, self._source, kCFRunLoopDefaultMode)
 
     def remove_observer(self, observer):
-        PowerManagement.notifications_observer.removeObserver(observer)
         super(PowerManagement, self).remove_observer(observer)
+        if len(self._weak_observers) == 0:
+            if not self._cf_run_loop:
+                PowerManagement.notifications_observer.removeObserver(self)
+            else:
+                CFRunLoopSourceInvalidate(self._source)
+                self._source = None
