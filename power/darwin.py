@@ -239,22 +239,36 @@ class PowerManagement(common.PowerManagementBase):
 
 
     def get_providing_power_source_type(self):
-        providing_source = IOPSCopyPowerSourcesInfo()
-        power_type = IOPSGetProvidingPowerSourceType(providing_source)
-        return POWER_TYPE_MAP[power_type]
+        blob = IOPSCopyPowerSourcesInfo()
+        type = IOPSGetProvidingPowerSourceType(blob)
+        return POWER_TYPE_MAP[type]
 
     def get_low_battery_warning_level(self):
         warning_level = IOPSGetBatteryWarningLevel()
         return WARNING_LEVEL_MAP[warning_level]
 
     def get_time_remaining_estimate(self):
-        estimate = float(IOPSGetTimeRemainingEstimate())
-        if estimate == -1.0:
-            return common.TIME_REMAINING_UNKNOWN
-        elif estimate == -2.0:
-            return common.TIME_REMAINING_UNLIMITED
-        else:
-            return estimate / 60.0
+        if IOPSGetTimeRemainingEstimate is not None: # Mac OS X 10.7+
+            estimate = float(IOPSGetTimeRemainingEstimate())
+            if estimate == -1.0:
+                return common.TIME_REMAINING_UNKNOWN
+            elif estimate == -2.0:
+                return common.TIME_REMAINING_UNLIMITED
+            else:
+                return estimate / 60.0
+        else: # Mac OS X 10.6
+            blob = IOPSCopyPowerSourcesInfo()
+            type = IOPSGetProvidingPowerSourceType(blob)
+            if type == common.POWER_TYPE_AC:
+                return common.TIME_REMAINING_UNLIMITED
+            else:
+                sources = [IOPSGetPowerSourceDescription(x) for x in IOPSCopyPowerSourcesList()]
+                source = next(source for source in sources if source[kIOPSIsPresentKey])
+                if source:
+                    return float(source[kIOPSTimeToEmptyKey]) / 60.0
+                else:
+                    return common.TIME_REMAINING_UNKNOWN
+
 
     def add_observer(self, observer):
         super(PowerManagement, self).add_observer(observer)
