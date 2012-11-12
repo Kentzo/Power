@@ -255,17 +255,17 @@ class PowerManagement(common.PowerManagementBase):
             elif estimate == -2.0:
                 return common.TIME_REMAINING_UNLIMITED
             else:
-                return estimate / 60.0
+                return estimate
         else: # Mac OS X 10.6
             blob = IOPSCopyPowerSourcesInfo()
             type = IOPSGetProvidingPowerSourceType(blob)
             if type == common.POWER_TYPE_AC:
                 return common.TIME_REMAINING_UNLIMITED
             else:
-                sources = [IOPSGetPowerSourceDescription(x) for x in IOPSCopyPowerSourcesList()]
+                sources = [IOPSGetPowerSourceDescription(blob, x) for x in IOPSCopyPowerSourcesList(blob)]
                 source = next(source for source in sources if source[kIOPSIsPresentKey])
                 if source:
-                    return float(source[kIOPSTimeToEmptyKey]) / 60.0
+                    return float(source[kIOPSTimeToEmptyKey])
                 else:
                     return common.TIME_REMAINING_UNKNOWN
 

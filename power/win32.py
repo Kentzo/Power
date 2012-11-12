@@ -141,7 +141,7 @@ class PowerManagement(common.PowerManagementBase):
         elif power_status.BatteryLifeTime == -1:
             return common.TIME_REMAINING_UNKNOWN
         else:
-            return float(power_status.BatteryLifeTime) / 60
+            return float(power_status.BatteryLifeTime) / 60.0
 
     def add_observer(self, observer):
         if PowerSettingRegisterNotification is None:

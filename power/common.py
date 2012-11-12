@@ -101,7 +101,7 @@ class PowerManagementBase(object):
     @abstractmethod
     def get_time_remaining_estimate(self):
         """
-        Returns the estimated seconds remaining until all power sources (battery and/or UPS) are empty.
+        Returns the estimated minutes remaining until all power sources (battery and/or UPS) are empty.
         @return: Special values:
             - TIME_REMAINING_UNKNOWN
             - TIME_REMAINING_UNLIMITED
