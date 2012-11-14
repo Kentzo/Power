@@ -23,7 +23,7 @@ class PowerManagement(common.PowerManagementBase):
         """
         @param supply_path: Path to power supply
         @return: One of common.POWER_TYPE_*
-        @raise: Runtime error if type of power source is not supported.
+        @raise: Runtime error if type of power source is not supported
         """
         with open(os.path.join(supply_path, 'type'), 'r') as type_file:
             type = type_file.readline().strip()
@@ -88,12 +88,14 @@ class PowerManagement(common.PowerManagementBase):
             supply_path = os.path.join(POWER_SUPPLY_PATH, supply)
             try:
                 type = self.power_source_type(supply_path)
-                if type == common.POWER_TYPE_AC and self.is_ac_online(supply_path):
-                    return common.POWER_TYPE_AC
-                elif type == common.POWER_TYPE_BATTERY and self.is_battery_present(supply_path) and self.is_battery_discharging(supply_path):
-                    return common.POWER_TYPE_BATTERY
+                if type == common.POWER_TYPE_AC:
+                    if self.is_ac_online(supply_path):
+                        return common.POWER_TYPE_AC
+                elif type == common.POWER_TYPE_BATTERY:
+                    if self.is_battery_present(supply_path) and self.is_battery_discharging(supply_path):
+                        return common.POWER_TYPE_BATTERY
                 else:
-                    warnings.warn("%s is not supported.".format(type))
+                    warnings.warn("UPS is not supported.")
             except (RuntimeError, IOError) as e:
                 warnings.warn("Unable to read properties of {path}: {error}".format(path=supply_path, error=str(e)))
 
@@ -112,13 +114,15 @@ class PowerManagement(common.PowerManagementBase):
             supply_path = os.path.join(POWER_SUPPLY_PATH, supply)
             try:
                 type = self.power_source_type(supply_path)
-                if type == common.POWER_TYPE_AC and self.is_ac_online(supply_path):
-                    return common.LOW_BATTERY_WARNING_NONE
-                elif type == common.POWER_TYPE_BATTERY and self.is_battery_present(supply_path) and self.is_battery_discharging(supply_path):
-                    energy_full, energy_now, power_now = self.get_battery_state(supply_path)
-                    all_energy_full.append(energy_full)
-                    all_energy_now.append(energy_now)
-                    all_power_now.append(power_now)
+                if type == common.POWER_TYPE_AC:
+                    if self.is_ac_online(supply_path):
+                        return common.LOW_BATTERY_WARNING_NONE
+                elif type == common.POWER_TYPE_BATTERY:
+                    if self.is_battery_present(supply_path) and self.is_battery_discharging(supply_path):
+                        energy_full, energy_now, power_now = self.get_battery_state(supply_path)
+                        all_energy_full.append(energy_full)
+                        all_energy_now.append(energy_now)
+                        all_power_now.append(power_now)
                 else:
                     warnings.warn("UPS is not supported.")
             except (RuntimeError, IOError) as e:
@@ -148,18 +152,18 @@ class PowerManagement(common.PowerManagementBase):
             supply_path = os.path.join(POWER_SUPPLY_PATH, supply)
             try:
                 type = self.power_source_type(supply_path)
-                if type == common.POWER_TYPE_AC and self.is_ac_online(supply_path):
-                    return common.TIME_REMAINING_UNLIMITED
-                elif type == common.POWER_TYPE_BATTERY and self.is_battery_present(supply_path) and self.is_battery_discharging(supply_path):
-                    energy_full, energy_now, power_now = self.get_battery_state(supply_path)
-                    all_energy_now.append(energy_now)
-                    all_power_now.append(power_now)
+                if type == common.POWER_TYPE_AC:
+                    if self.is_ac_online(supply_path):
+                        return common.TIME_REMAINING_UNLIMITED
+                elif type == common.POWER_TYPE_BATTERY:
+                    if self.is_battery_present(supply_path) and self.is_battery_discharging(supply_path):
+                        energy_full, energy_now, power_now = self.get_battery_state(supply_path)
+                        all_energy_now.append(energy_now)
+                        all_power_now.append(power_now)
                 else:
-                    warnings.warn("%s is not supported.".format(type))
-            except IOError as e:
-                print "Unable to read properties of %s: %s".format(supply_path, str(e))
-            except RuntimeError as e:
-                warnings.warn(str(e))
+                    warnings.warn("UPS is not supported.")
+            except (RuntimeError, IOError) as e:
+                warnings.warn("Unable to read properties of {path}: {error}".format(path=supply_path, error=str(e)))
 
         if len(all_energy_now) > 0:
             try:
