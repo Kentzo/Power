@@ -289,7 +289,7 @@ class PowerManagement(common.PowerManagementBase):
             elif estimate == -2.0:
                 return common.TIME_REMAINING_UNLIMITED
             else:
-                return estimate
+                return estimate / 60.0
         else: # Mac OS X 10.6
             blob = IOPSCopyPowerSourcesInfo()
             type = IOPSGetProvidingPowerSourceType(blob)
