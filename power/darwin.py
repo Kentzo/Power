@@ -1,5 +1,8 @@
 # coding=utf-8
 """
+Implements PowerManagement functions using IOPowerSources.
+Requires Mac OS X 10.6+
+See doc/darwin for platform-specific details.
 """
 __author__ = 'kulakov.ilya@gmail.com'
 
@@ -7,8 +10,6 @@ import common
 import objc
 import weakref
 from Foundation import *
-
-__all__ = ['PowerManagement']
 
 
 # Generated in Mac OS X 10.8.2 using the following command:
@@ -19,6 +20,7 @@ __all__ = ['PowerManagement']
 # - kIOPMUPSPowerKey
 # - kIOPMBatteryPowerKey
 # - kIOPMACPowerKey
+# - kIOPSProvidesTimeRemaining
 IO_POWER_SOURCES_BRIDGESUPPORT = """<?xml version='1.0'?>
 <!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
 <signatures version='1.0'>
@@ -160,7 +162,7 @@ class PowerSourcesNotificationsObserver(NSObject):
     Thread is automatically spawned when first observer is added and stopped when last observer is removed.
     Does not keep strong references to observers.
 
-    Note method names break PEP8 convention to conform PyObjC naming conventions.
+    @note: Method names break PEP8 convention to conform PyObjC naming conventions
     """
     def init(self):
         self = super(PowerSourcesNotificationsObserver, self).init()
@@ -211,12 +213,22 @@ class PowerSourcesNotificationsObserver(NSObject):
         NSThread.currentThread().cancel()
 
     def addObserver(self, observer):
+        """
+        Adds weak ref to an observer.
+
+        @param observer: Instance of class that implements on_power_source_notification()
+        """
         with self._lock:
             self._weak_observers.append(weakref.ref(observer))
             if len(self._weak_observers) == 1:
                 self.startThread()
 
     def removeObserver(self, observer):
+        """
+        Removes an observer.
+
+        @param observer: Previously added observer
+        """
         with self._lock:
             self._weak_observers.remove(weakref.ref(observer))
             if len(self._weak_observers) == 0:
@@ -227,10 +239,16 @@ class PowerManagement(common.PowerManagementBase):
     notifications_observer = PowerSourcesNotificationsObserver.alloc().init()
 
     def __init__(self, cf_run_loop=None):
+        """
+        @param cf_run_loop: If provided, all notifications are posted within this loop
+        """
         super(PowerManagement, self).__init__()
         self._cf_run_loop = cf_run_loop
 
     def on_power_source_notification(self):
+        """
+        Called in response to IOPSNotificationCreateRunLoopSource() event.
+        """
         for weak_observer in self._weak_observers:
             observer = weak_observer()
             if observer:
@@ -239,15 +257,31 @@ class PowerManagement(common.PowerManagementBase):
 
 
     def get_providing_power_source_type(self):
+        """
+        Uses IOPSCopyPowerSourcesInfo and IOPSGetProvidingPowerSourceType to get providing power source type.
+        """
         blob = IOPSCopyPowerSourcesInfo()
         type = IOPSGetProvidingPowerSourceType(blob)
         return POWER_TYPE_MAP[type]
 
     def get_low_battery_warning_level(self):
+        """
+        Uses IOPSGetBatteryWarningLevel to get battery warning level.
+        """
         warning_level = IOPSGetBatteryWarningLevel()
         return WARNING_LEVEL_MAP[warning_level]
 
     def get_time_remaining_estimate(self):
+        """
+        In Mac OS X 10.7+
+        Uses IOPSGetTimeRemainingEstimate to get time remaining estimate.
+
+        In Mac OS X 10.6
+        IOPSGetTimeRemainingEstimate is not available.
+        If providing power source type is AC, returns TIME_REMAINING_UNLIMITED.
+        Otherwise looks through all power sources returned by IOPSGetProvidingPowerSourceType
+        and returns total estimate.
+        """
         if IOPSGetTimeRemainingEstimate is not None: # Mac OS X 10.7+
             estimate = float(IOPSGetTimeRemainingEstimate())
             if estimate == -1.0:
@@ -272,8 +306,11 @@ class PowerManagement(common.PowerManagementBase):
                 else:
                     return common.TIME_REMAINING_UNKNOWN
 
-
     def add_observer(self, observer):
+        """
+        Spawns thread or adds IOPSNotificationCreateRunLoopSource directly to provided cf_run_loop
+        @see: __init__
+        """
         super(PowerManagement, self).add_observer(observer)
         if len(self._weak_observers) == 1:
             if not self._cf_run_loop:
@@ -287,6 +324,9 @@ class PowerManagement(common.PowerManagementBase):
                 CFRunLoopAddSource(self._cf_run_loop, self._source, kCFRunLoopDefaultMode)
 
     def remove_observer(self, observer):
+        """
+        Stops thread and invalidates source.
+        """
         super(PowerManagement, self).remove_observer(observer)
         if len(self._weak_observers) == 0:
             if not self._cf_run_loop:

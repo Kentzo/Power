@@ -1,7 +1,7 @@
 # coding=utf-8
 """
-    Implements PowerManagement functions using /sys/class/power_supply/*
-    See doc/linux for platform-specific details.
+Implements PowerManagement functions using /sys/class/power_supply/*
+See doc/linux for platform-specific details.
 """
 __author__ = 'kulakov.ilya@gmail.com'
 
@@ -14,49 +14,68 @@ POWER_SUPPLY_PATH = '/sys/class/power_supply'
 
 
 if not os.access(POWER_SUPPLY_PATH, os.R_OK):
-    raise RuntimeError("Unable to read %s.".format(POWER_SUPPLY_PATH))
+    raise RuntimeError("Unable to read {path}.".format(path=POWER_SUPPLY_PATH))
 
 
 class PowerManagement(common.PowerManagementBase):
     @staticmethod
     def power_source_type(supply_path):
+        """
+        @param supply_path: Path to power supply
+        @return: One of common.POWER_TYPE_*
+        @raise: Runtime error if type of power source is not supported.
+        """
         with open(os.path.join(supply_path, 'type'), 'r') as type_file:
             type = type_file.readline().strip()
             if type == 'Mains':
                 return common.POWER_TYPE_AC
-            if type == 'UPS':
+            elif type == 'UPS':
                 return common.POWER_TYPE_UPS
             elif type == 'Battery':
                 return common.POWER_TYPE_BATTERY
             else:
-                raise RuntimeError("Type of %s (%s) is not supported".format(supply_path, type))
-
+                raise RuntimeError("Type of {path} ({type}) is not supported".format(path=supply_path, type=type))
 
     @staticmethod
     def is_ac_online(supply_path):
+        """
+        @param supply_path: Path to power supply
+        @return: True if ac is online. Otherwise False
+        """
         with open(os.path.join(supply_path, 'online'), 'r') as online_file:
             return online_file.readline().strip() == '1'
 
     @staticmethod
     def is_battery_present(supply_path):
+        """
+        @param supply_path: Path to power supply
+        @return: True if battery is present. Otherwise False
+        """
         with open(os.path.join(supply_path, 'present'), 'r') as present_file:
             return present_file.readline().strip() == '1'
 
     @staticmethod
     def is_battery_discharging(supply_path):
+        """
+        @param supply_path: Path to power supply
+        @return: True if ac is online. Otherwise False
+        """
         with open(os.path.join(supply_path, 'status'), 'r') as status_file:
             return status_file.readline().strip() == 'Discharging'
 
     @staticmethod
     def get_battery_state(supply_path):
-
+        """
+        @param supply_path: Path to power supply
+        @return: Tuple (energy_full, energy_now, power_now)
+        """
         with open(os.path.join(supply_path, 'energy_now'), 'r') as energy_now_file:
-            energy_now = float(energy_now_file.readline().strip())
             with open(os.path.join(supply_path, 'power_now'), 'r') as power_now_file:
-                power_now = float(power_now_file.readline().strip())
-            with open(os.path.join(supply_path, 'energy_full'), 'r') as energy_full_file:
-                energy_full = float(energy_full_file.readline().strip())
-            return energy_full, energy_now, power_now
+                with open(os.path.join(supply_path, 'energy_full'), 'r') as energy_full_file:
+                    energy_now = float(energy_now_file.readline().strip())
+                    power_now = float(power_now_file.readline().strip())
+                    energy_full = float(energy_full_file.readline().strip())
+                    return energy_full, energy_now, power_now
 
     def get_providing_power_source_type(self):
         """
@@ -75,10 +94,8 @@ class PowerManagement(common.PowerManagementBase):
                     return common.POWER_TYPE_BATTERY
                 else:
                     warnings.warn("%s is not supported.".format(type))
-            except IOError as e:
-                print "Unable to read properties of %s: %s".format(supply_path, str(e))
-            except RuntimeError as e:
-                print str(e)
+            except (RuntimeError, IOError) as e:
+                warnings.warn("Unable to read properties of {path}: {error}".format(path=supply_path, error=str(e)))
 
         return common.POWER_TYPE_AC
 
@@ -103,22 +120,28 @@ class PowerManagement(common.PowerManagementBase):
                     all_energy_now.append(energy_now)
                     all_power_now.append(power_now)
                 else:
-                    warnings.warn("%s is not supported.".format(type))
-            except IOError as e:
-                print "Unable to read properties of %s: %s".format(supply_path, str(e))
-            except RuntimeError as e:
-                print str(e)
+                    warnings.warn("UPS is not supported.")
+            except (RuntimeError, IOError) as e:
+                warnings.warn("Unable to read properties of {path}: {error}".format(path=supply_path, error=str(e)))
 
-        total_percentage = sum(all_energy_full) / sum(all_energy_now) # very naive, does not takes rate into account.
-        total_time = sum([energy_now / power_now * 60.0 for energy_now, power_now in zip(all_energy_now, all_power_now)])
-        if total_time <= 10.0:
-            return common.LOW_BATTERY_WARNING_FINAL
-        elif total_percentage <= 22.0:
-            return common.LOW_BATTERY_WARNING_EARLY
-        else:
+        try:
+            total_percentage = sum(all_energy_full) / sum(all_energy_now)
+            total_time = sum([energy_now / power_now * 60.0 for energy_now, power_now in zip(all_energy_now, all_power_now)])
+            if total_time <= 10.0:
+                return common.LOW_BATTERY_WARNING_FINAL
+            elif total_percentage <= 22.0:
+                return common.LOW_BATTERY_WARNING_EARLY
+            else:
+                return common.LOW_BATTERY_WARNING_NONE
+        except ZeroDivisionError as e:
+            warnings.warn("Unable to calculate low battery level: {error}".format(str(e)))
             return common.LOW_BATTERY_WARNING_NONE
 
     def get_time_remaining_estimate(self):
+        """
+        Looks through all power sources and returns total time remaining estimate
+        or TIME_REMAINING_UNLIMITED if ac power supply is online.
+        """
         all_energy_now = []
         all_power_now = []
         for supply in os.listdir(POWER_SUPPLY_PATH):
@@ -136,20 +159,21 @@ class PowerManagement(common.PowerManagementBase):
             except IOError as e:
                 print "Unable to read properties of %s: %s".format(supply_path, str(e))
             except RuntimeError as e:
-                print str(e)
+                warnings.warn(str(e))
 
         if len(all_energy_now) > 0:
-            return sum([energy_now / power_now * 60.0 for energy_now, power_now in zip(all_energy_now, all_power_now)])
+            try:
+                return sum([energy_now / power_now * 60.0 for energy_now, power_now in zip(all_energy_now, all_power_now)])
+            except ZeroDivisionError as e:
+                warnings.warn("Unable to calculate time remaining estimate: {error}".format(str(e)))
+                return common.TIME_REMAINING_UNKNOWN
         else:
             return common.TIME_REMAINING_UNKNOWN
 
     def add_observer(self, observer):
+        warnings.warn("Current system does not support observing.")
         pass
 
     def remove_observer(self, observer):
+        warnings.warn("Current system does not support observing.")
         pass
-
-
-
-
-
