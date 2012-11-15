@@ -14,7 +14,7 @@ setup(name="Power",
     author="Ilya Kulakov",
     author_email="kulakov.ilya@gmail.com",
     url="https://github.com/Kentzo/Power",
-    platforms=["Mac OS X 10.6+", "Windows XP+"],
+    platforms=["Mac OS X", "Windows", "Linux"],
     packages=['power'],
     scripts=['tests.py']
 )
