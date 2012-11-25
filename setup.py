@@ -2,10 +2,7 @@
 # coding=utf-8
 __author__ = 'kulakov.ilya@gmail.com'
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
+from setuptools import setup
 
 
 setup(name="Power",
@@ -25,5 +22,6 @@ setup(name="Power",
         'Topic :: System :: Power (UPS)',
         'Topic :: System :: Hardware',
         'Topic :: System :: Monitoring'
-    ]
+    ],
+    install_requires=['pyobjc-core == 2.3.2a0']
 )
