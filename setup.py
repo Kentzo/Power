@@ -3,6 +3,14 @@
 __author__ = 'kulakov.ilya@gmail.com'
 
 from setuptools import setup
+from sys import platform
+
+
+REQUIREMENTS = []
+
+
+if platform.startswith('darwin'):
+    REQUIREMENTS.append('pyobjc == 2.3')
 
 
 setup(name="Power",
@@ -23,5 +31,5 @@ setup(name="Power",
         'Topic :: System :: Hardware',
         'Topic :: System :: Monitoring'
     ],
-    install_requires=['pyobjc == 2.3']
+    install_requires=REQUIREMENTS
 )
