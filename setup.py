@@ -23,5 +23,5 @@ setup(name="Power",
         'Topic :: System :: Hardware',
         'Topic :: System :: Monitoring'
     ],
-    install_requires=['pyobjc-core == 2.3.2a0']
+    install_requires=['pyobjc == 2.3']
 )
