@@ -19,63 +19,20 @@ Usage:
 """
 __author__ = 'kulakov.ilya@gmail.com'
 
-from common import *
 from sys import platform
-import warnings
-import common
-
-
-class PowerManagementNoop(common.PowerManagementBase):
-    """
-    No-op subclass of PowerManagement.
-    It operates like AC is always attached and power sources are never changed.
-    """
-    def get_providing_power_source_type(self):
-        """
-        @return: Always POWER_TYPE_AC
-        """
-        return POWER_TYPE_AC
-
-    def get_low_battery_warning_level(self):
-        """
-        @return: Always LOW_BATTERY_WARNING_NONE
-        """
-        return LOW_BATTERY_WARNING_NONE
-
-    def get_time_remaining_estimate(self):
-        """
-        @return: Always TIME_REMAINING_UNLIMITED
-        """
-        return TIME_REMAINING_UNLIMITED
-
-    def add_observer(self, observer):
-        """
-        Does nothing.
-        """
-        pass
-
-    def remove_observer(self, observer):
-        """
-        Does nothing.
-        """
-        pass
-
-    def remove_all_observers(self):
-        """
-        Does nothing.
-        """
-        pass
+from power.common import *
 
 
 try:
     if platform.startswith('darwin'):
-        from darwin import PowerManagement
+        from power.darwin import PowerManagement
     elif platform.startswith('win32'):
-        from win32 import PowerManagement
+        from power.win32 import PowerManagement
     elif platform.startswith('linux'):
-        from linux import PowerManagement
+        from power.linux import PowerManagement
     else:
         raise RuntimeError("{platform} is not supported.".format(platform=platform))
 except RuntimeError as e:
+    import warnings
     warnings.warn("Unable to load PowerManagement for {platform}. No-op PowerManagement class is used: {error}".format(error=str(e), platform=platform))
-    from . import PowerManagementNoop as PowerManagement
+    from power.common import PowerManagementNoop as PowerManagement

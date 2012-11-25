@@ -5,9 +5,9 @@ See doc/linux for platform-specific details.
 """
 __author__ = 'kulakov.ilya@gmail.com'
 
-import common
 import os
 import warnings
+from power import common
 
 
 POWER_SUPPLY_PATH = '/sys/class/power_supply'

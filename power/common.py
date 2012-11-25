@@ -163,3 +163,45 @@ class PowerManagementObserver:
         @param power_management: Instance of PowerManagement posted notification
         """
         pass
+
+
+class PowerManagementNoop(PowerManagementBase):
+    """
+    No-op subclass of PowerManagement.
+    It operates like AC is always attached and power sources are never changed.
+    """
+    def get_providing_power_source_type(self):
+        """
+        @return: Always POWER_TYPE_AC
+        """
+        return POWER_TYPE_AC
+
+    def get_low_battery_warning_level(self):
+        """
+        @return: Always LOW_BATTERY_WARNING_NONE
+        """
+        return LOW_BATTERY_WARNING_NONE
+
+    def get_time_remaining_estimate(self):
+        """
+        @return: Always TIME_REMAINING_UNLIMITED
+        """
+        return TIME_REMAINING_UNLIMITED
+
+    def add_observer(self, observer):
+        """
+        Does nothing.
+        """
+        pass
+
+    def remove_observer(self, observer):
+        """
+        Does nothing.
+        """
+        pass
+
+    def remove_all_observers(self):
+        """
+        Does nothing.
+        """
+        pass

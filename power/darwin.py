@@ -6,10 +6,11 @@ See doc/darwin for platform-specific details.
 """
 __author__ = 'kulakov.ilya@gmail.com'
 
-import common
-import objc
 import weakref
+import warnings
+import objc
 from Foundation import *
+from power import common
 
 
 # Generated in Mac OS X 10.8.2 using the following command:
@@ -291,6 +292,7 @@ class PowerManagement(common.PowerManagementBase):
             else:
                 return estimate / 60.0
         else: # Mac OS X 10.6
+            warnings.warn("IOPSGetTimeRemainingEstimate is not preset", RuntimeWarning)
             blob = IOPSCopyPowerSourcesInfo()
             type = IOPSGetProvidingPowerSourceType(blob)
             if type == common.POWER_TYPE_AC:
