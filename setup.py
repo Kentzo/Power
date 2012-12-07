@@ -9,8 +9,9 @@ from sys import platform
 REQUIREMENTS = []
 
 
-if platform.startswith('darwin'):
-    REQUIREMENTS.append('pyobjc >= 2.5')
+# Not avaialable at PyPi yet
+# if platform.startswith('darwin'):
+    # REQUIREMENTS.append('pyobjc >= 2.5')
 
 
 setup(
