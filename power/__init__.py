@@ -19,7 +19,7 @@ Usage:
 """
 __author__ = 'kulakov.ilya@gmail.com'
 import pkg_resources
-__version__ = pkg_resources.require('power')[0].version
+__version__ = pkg_resources.get_distribution('power').version
 
 from sys import platform
 from power.common import *
