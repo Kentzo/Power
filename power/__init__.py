@@ -18,6 +18,8 @@ Usage:
     # PowerManagementObserver.register(Observer)
 """
 __author__ = 'kulakov.ilya@gmail.com'
+import pkg_resources
+__version__ = pkg_resources.require('power')[0].version
 
 from sys import platform
 from power.common import *

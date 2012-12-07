@@ -10,11 +10,12 @@ REQUIREMENTS = []
 
 
 if platform.startswith('darwin'):
-    REQUIREMENTS.append('pyobjc == 2.3')
+    REQUIREMENTS.append('pyobjc >= 2.5')
 
 
-setup(name="Power",
-    version="1.0",
+setup(
+    name="Power",
+    version="1.1",
     description="Cross-platform system power status information.",
     author="Ilya Kulakov",
     author_email="kulakov.ilya@gmail.com",
@@ -22,11 +23,13 @@ setup(name="Power",
     platforms=["Mac OS X 10.6+", "Windows XP+", "Linux 2.6+"],
     packages=['power'],
     classifiers=[
+        'Natural Language :: English',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
         'Operating System :: MacOS :: MacOS X',
         'Operating System :: Microsoft :: Windows',
         'Operating System :: POSIX :: Linux',
-        'License :: OSI Approved :: MIT License',
-        'Natural Language :: English',
         'Topic :: System :: Power (UPS)',
         'Topic :: System :: Hardware',
         'Topic :: System :: Monitoring'
