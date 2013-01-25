@@ -23,16 +23,16 @@ setup(
     platforms=["Mac OS X 10.6+", "Windows XP+", "Linux 2.6+"],
     packages=['power'],
     classifiers=[
-        'Natural Language :: English',
+        'Intended Audience :: Developers',
+        'Intended Audience :: System Administrators',
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
+        'Natural Language :: English',
         'Operating System :: MacOS :: MacOS X',
         'Operating System :: Microsoft :: Windows',
         'Operating System :: POSIX :: Linux',
-        'Topic :: System :: Power (UPS)',
-        'Topic :: System :: Hardware',
+        'Programming Language :: Python',
         'Topic :: System :: Monitoring'
+        'Topic :: System :: Power (UPS)',
     ],
     install_requires=REQUIREMENTS
 )
