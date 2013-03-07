@@ -138,7 +138,7 @@ class PowerManagement(common.PowerManagementBase):
             else:
                 return common.LOW_BATTERY_WARNING_NONE
         except ZeroDivisionError as e:
-            warnings.warn("Unable to calculate low battery level: {error}".format(str(e)))
+            warnings.warn("Unable to calculate low battery level: {error}".format(error=str(e)))
             return common.LOW_BATTERY_WARNING_NONE
 
     def get_time_remaining_estimate(self):
@@ -169,7 +169,7 @@ class PowerManagement(common.PowerManagementBase):
             try:
                 return sum([energy_now / power_now * 60.0 for energy_now, power_now in zip(all_energy_now, all_power_now)])
             except ZeroDivisionError as e:
-                warnings.warn("Unable to calculate time remaining estimate: {error}".format(str(e)))
+                warnings.warn("Unable to calculate time remaining estimate: {error}".format(error=str(e)))
                 return common.TIME_REMAINING_UNKNOWN
         else:
             return common.TIME_REMAINING_UNKNOWN
