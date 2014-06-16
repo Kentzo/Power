@@ -20,7 +20,7 @@ setup(
     author="Ilya Kulakov",
     author_email="kulakov.ilya@gmail.com",
     url="https://github.com/Kentzo/Power",
-    platforms=["Mac OS X 10.6+", "Windows XP+", "Linux 2.6+"],
+    platforms=["Mac OS X 10.6+", "Windows XP+", "Linux 2.6+", "FreeBSD"],
     packages=['power'],
     classifiers=[
         'Intended Audience :: Developers',
