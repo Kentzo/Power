@@ -27,6 +27,8 @@ from power.common import *
 try:
     if platform.startswith('darwin'):
         from power.darwin import PowerManagement
+    elif platform.startswith('freebsd'):
+        from power.freebsd import PowerManagement
     elif platform.startswith('win32'):
         from power.win32 import PowerManagement
     elif platform.startswith('linux'):
