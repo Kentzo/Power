@@ -17,8 +17,7 @@ Usage:
     #     ...
     # PowerManagementObserver.register(Observer)
 """
-__author__ = 'kulakov.ilya@gmail.com'
-__version__ = '1.2'
+__version__ = '1.3'
 
 from sys import platform
 from power.common import *
