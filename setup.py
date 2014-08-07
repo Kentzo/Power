@@ -15,7 +15,7 @@ if platform.startswith('darwin'):
 
 setup(
     name="power",
-    version="1.2",
+    version="1.3",
     description="Cross-platform system power status information.",
     author="Ilya Kulakov",
     author_email="kulakov.ilya@gmail.com",
