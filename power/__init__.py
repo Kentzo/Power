@@ -8,10 +8,10 @@ Usage:
 
     class Observer(PowerManagementObserver):
         def on_power_sources_change(self, power_management):
-            print "Power sources did change."
+            print("Power sources did change.")
 
         def on_time_remaining_change(self, power_management):
-            print "Time remaining did change."
+            print("Time remaining did change.")
 
     # class Observer(object):
     #     ...
