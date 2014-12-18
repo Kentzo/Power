@@ -9,6 +9,7 @@ __author__ = 'kulakov.ilya@gmail.com'
 import weakref
 import warnings
 import objc
+from objc import super
 from Foundation import *
 from power import common
 
