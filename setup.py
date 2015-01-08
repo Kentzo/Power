@@ -15,7 +15,7 @@ if platform.startswith('darwin'):
 
 setup(
     name="power",
-    version="1.3",
+    version="1.4",
     description="Cross-platform system power status information.",
     long_description="Library that allows you get current power source type (AC, Battery or UPS), warning level (none, <22%, <10min) and remaining minutes. You can also observe changes of power source and remaining time.",
     author="Ilya Kulakov",
