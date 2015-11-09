@@ -24,6 +24,15 @@ Represents common constants and classes for all platforms.
 @var TIME_REMAINING_UNLIMITED: Indicates that the system is connected to an external power source, without time limit.
 @type TIME_REMAINING_UNKNOWN: float
 @type TIME_REMAINING_UNLIMITED: float
+
+@type STATUS_UNKNOWN: int
+@type STATUS_AC: int
+@type STATUS_CHARGING: int
+@type STATUS_DISCHARGING: int
+@type STATUS_FULL: int
+@type STATUS_FULL_ONAC: int
+
+Updated by oskari.rauta@gmail.com
 """
 __author__ = 'kulakov.ilya@gmail.com'
 
@@ -39,6 +48,12 @@ __all__ = [
     'LOW_BATTERY_WARNING_FINAL',
     'TIME_REMAINING_UNKNOWN',
     'TIME_REMAINING_UNLIMITED',
+    'STATUS_UNKNOWN',
+    'STATUS_AC',
+    'STATUS_CHARGING',
+    'STATUS_DISCHARGING',
+    'STATUS_FULL',
+    'STATUS_FULL_ONAC',
     'PowerManagementObserver'
     ]
 
@@ -61,6 +76,17 @@ TIME_REMAINING_UNKNOWN = -1.0
 
 TIME_REMAINING_UNLIMITED = -2.0
 
+STATUS_UNKNOWN = 0
+
+STATUS_AC = 1
+
+STATUS_CHARGING = 2
+
+STATUS_DISCHARGING = 3
+
+STATUS_FULL = 4
+
+STATUS_FULL_ONAC = 5
 
 class PowerManagementBase(object):
     """
@@ -101,13 +127,32 @@ class PowerManagementBase(object):
         pass
 
     @abstractmethod
-    def get_time_remaining_estimate(self):
+    def get_ac_status(self):
         """
-        Returns the estimated minutes remaining until all power sources (battery and/or UPS) are empty.
+        Looks through all power sources.
 
-        @return: Special values:
-            - TIME_REMAINING_UNKNOWN
-            - TIME_REMAINING_UNLIMITED
+        Returns AC's current status, time remaining in minutes for all power sources either to
+        empty or to full, whether system is charging or not and average of capacity on all
+        batteries (always 100 on AC only system).
+
+	@return: Special values for status
+            - STATUS_UNKNOWN       (0 - on error)
+            - STATUS_AC            (1 - AC only system)
+            - STATUS_CHARGING      (2)
+            - STATUS_DISCHARGING   (3)
+            - STATUS_FULL          (4 - batteries are full, system not on AC)
+            - STATUS_FULL_ONAC     (5 - batteries are full, system is on AC)
+
+        @rtype: int
+
+        @return: Special values for time remaining
+            - TIME_REMAINING_UNKNOWN (-1.0)
+            - TIME_REMAINING_UNLIMITED (-2.0)
+
+        @rtype: float
+
+	@return: capacity
+
         @rtype: float
         """
         pass
@@ -182,11 +227,11 @@ class PowerManagementNoop(PowerManagementBase):
         """
         return LOW_BATTERY_WARNING_NONE
 
-    def get_time_remaining_estimate(self):
+    def get_ac_status(self):
         """
-        @return: Always TIME_REMAINING_UNLIMITED
+        @return: Always STATUS_AC, TIME_REMAINING_UNLIMITED, 100
         """
-        return TIME_REMAINING_UNLIMITED
+        return STATUS_AC, TIME_REMAINING_UNLIMITED, 100
 
     def add_observer(self, observer):
         """
