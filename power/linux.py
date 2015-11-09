@@ -102,7 +102,7 @@ class PowerManagement(common.PowerManagementBase):
                 energy_full_filename = 'energy_full'
             elif os.path.isfile(os.path.join(supply_path, 'energy_now')) and os.path.isfile(os.path.join(supply_path, 'current_now')) and os.path.isfile(os.path.join(supply_path, 'energy_full')):
                 energy_now_filename = 'energy_now'
-                power_now_filename = 'power_now'
+                power_now_filename = 'current_now'
                 energy_full_filename = 'energy_full'
         
         with open(os.path.join(supply_path, energy_now_filename), 'r') as energy_now_file:
