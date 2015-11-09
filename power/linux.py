@@ -3,9 +3,9 @@
 Implements PowerManagement functions using /sys/class/power_supply/*
 See doc/linux for platform-specific details.
 
-Updated by oskari.rauta@gmail.com
 """
 __author__ = 'kulakov.ilya@gmail.com'
+__maintainer__ = 'oskari.rauta@gmail.com'
 
 import os
 import warnings
