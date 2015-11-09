@@ -1,6 +1,7 @@
 # coding=utf-8
 """
-Provides crossplatform checking of current power source, battery warning level and battery time remaining estimate.
+Provides checking of current power source, battery warning level, ac status, battery 
+time remaining estimate and battery capacity.
 Allows you to add observer for power notifications if platform supports it.
 
 Usage:
@@ -16,24 +17,27 @@ Usage:
     # class Observer(object):
     #     ...
     # PowerManagementObserver.register(Observer)
+
+Another example:
+    import power
+
+    p = power.PowerManagement()
+
+    ac_status, time_remaining, bat_capacity = p.get_ac_status()
+
+    print('AC system status      :', ac_status)
+    print('Time remaining        :', time_remaining, 'minutes')
+    print('Capacity of batteries :', bat_capacity, '\n%')
+
 """
-__version__ = '1.4'
+__version__ = '1.5'
 
 from sys import platform
 from power.common import *
 
 
 try:
-    if platform.startswith('darwin'):
-        from power.darwin import PowerManagement
-    elif platform.startswith('freebsd'):
-        from power.freebsd import PowerManagement
-    elif platform.startswith('win32'):
-        from power.win32 import PowerManagement
-    elif platform.startswith('linux'):
-        from power.linux import PowerManagement
-    else:
-        raise RuntimeError("{platform} is not supported.".format(platform=platform))
+    from power.linux import PowerManagement
 except RuntimeError as e:
     import warnings
     warnings.warn("Unable to load PowerManagement for {platform}. No-op PowerManagement class is used: {error}".format(error=str(e), platform=platform))
