@@ -1,18 +1,13 @@
 #!/usr/bin/env python
 # coding=utf-8
 __author__ = 'kulakov.ilya@gmail.com'
-__updatedby__ = 'oskari.rauta@gmail.com'
+__maintainer__ = 'oskari.rauta@gmail.com'
 
 from setuptools import setup
 from sys import platform
 
 
 REQUIREMENTS = []
-
-
-if platform.startswith('darwin'):
-    REQUIREMENTS.append('pyobjc >= 2.5')
-
 
 setup(
     name="power",
@@ -21,6 +16,8 @@ setup(
     long_description="Library that allows you get current power source type (AC, Battery or UPS), warning level (none, <22%, <10min) and remaining minutes. You can also observe changes of power source and remaining time.",
     author="Ilya Kulakov",
     author_email="kulakov.ilya@gmail.com",
+    maintainer="Oskari Rauta",
+    maintainer_email="oskari.rauta@gmail.com",
     url="https://github.com/Kentzo/Power",
     platforms=["Linux 2.6+"],
     packages=['power'],
