@@ -32,9 +32,9 @@ Represents common constants and classes for all platforms.
 @type STATUS_FULL: int
 @type STATUS_FULL_ONAC: int
 
-Updated by oskari.rauta@gmail.com
 """
 __author__ = 'kulakov.ilya@gmail.com'
+__maintainer__ = 'oskari.rauta@gmail.com'
 
 from abc import ABCMeta, abstractmethod
 import weakref
