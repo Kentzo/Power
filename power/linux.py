@@ -19,7 +19,7 @@ if not os.access(POWER_SUPPLY_PATH, os.R_OK):
 
 class PowerManagement(common.PowerManagementBase):
     @staticmethod
-    def power_source_type(supply_path):
+    def power_source_type(supply_path=POWER_SUPPLY_PATH):
         """
         @param supply_path: Path to power supply
         @return: One of common.POWER_TYPE_*
@@ -37,7 +37,7 @@ class PowerManagement(common.PowerManagementBase):
                 raise RuntimeError("Type of {path} ({type}) is not supported".format(path=supply_path, type=type))
 
     @staticmethod
-    def is_ac_online(supply_path):
+    def is_ac_online(supply_path=POWER_SUPPLY_PATH):
         """
         @param supply_path: Path to power supply
         @return: True if ac is online. Otherwise False
@@ -46,7 +46,7 @@ class PowerManagement(common.PowerManagementBase):
             return online_file.readline().strip() == '1'
 
     @staticmethod
-    def is_battery_present(supply_path):
+    def is_battery_present(supply_path=POWER_SUPPLY_PATH):
         """
         @param supply_path: Path to power supply
         @return: True if battery is present. Otherwise False
@@ -55,7 +55,7 @@ class PowerManagement(common.PowerManagementBase):
             return present_file.readline().strip() == '1'
 
     @staticmethod
-    def is_battery_discharging(supply_path):
+    def is_battery_discharging(supply_path=POWER_SUPPLY_PATH):
         """
         @param supply_path: Path to power supply
         @return: True if ac is online. Otherwise False
@@ -64,7 +64,7 @@ class PowerManagement(common.PowerManagementBase):
             return status_file.readline().strip() == 'Discharging'
 
     @staticmethod
-    def get_battery_state(supply_path):
+    def get_battery_state(supply_path=POWER_SUPPLY_PATH):
         """
         @param supply_path: Path to power supply
         @return: Tuple (energy_full, energy_now, power_now)
