@@ -179,6 +179,22 @@ class PowerManagement(common.PowerManagementBase):
         else:
             return common.TIME_REMAINING_UNKNOWN
 
+
+    def get_remaining_percentage(self):
+        all_energy_full = []
+        all_energy_current = []
+        for supply in os.listdir(POWER_SUPPLY_PATH):
+            supply_path = os.path.join(POWER_SUPPLY_PATH, supply)
+            try:
+                supp_type = self.power_source_type(supply_path)
+                if supp_type == common.POWER_TYPE_BATTERY:
+                    energy_full, energy_now, power_now = self.get_battery_state(supply_path)
+                    all_energy_full.append(energy_full)
+                    all_energy_current.append(energy_now)
+            except (RuntimeError, IOError) as e:
+                warnings.warn("Unable to read properties of {path}: {error}".format(path=supply_path, error=str(e)))
+        return (sum(all_energy_current) / sum(all_energy_full))
+
     def add_observer(self, observer):
         warnings.warn("Current system does not support observing.")
         pass
