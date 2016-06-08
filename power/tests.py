@@ -26,6 +26,12 @@ class TestPowerManagementCommon(unittest.TestCase):
         self.assertIsInstance(type, int)
         self.assertIn(type, [power.POWER_TYPE_AC, power.POWER_TYPE_BATTERY, power.POWER_TYPE_UPS])
 
+    def testGetRemainingPercentage(self):
+        rem_percentage = power.PowerManagement().get_remaining_percentage()
+        self.assertIsNotNone(rem_percentage)
+        self.assertIsInstance(rem_percentage, float)
+        self.assertTrue(rem_percentage >= 0 and rem_percentage <= 100)
+
 
 class TestObserver(power.PowerManagementObserver):
     def on_power_sources_change(self, power_management):
