@@ -18,7 +18,7 @@ class TestPowerManagementCommon(unittest.TestCase):
         estimate = power.PowerManagement().get_time_remaining_estimate()
         self.assertIsNotNone(estimate)
         self.assertIsInstance(estimate, float)
-        self.assertTrue(estimate == -1.0 or estimate == -2.0 or estimate >= 0.0)
+        self.assertTrue(estimate == power.TIME_REMAINING_UNKNOWN or estimate == power.TIME_REMAINING_UNLIMITED or estimate >= 0.0)
 
     def testGetProvidingPowerSource(self):
         type = power.PowerManagement().get_providing_power_source_type()
