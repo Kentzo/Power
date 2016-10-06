@@ -10,3 +10,12 @@ Crossplatform (Windows, Linux, Mac OS X, FreeBSD) python module to access power 
 - Support for multiple battries
 - Power changes can be observed (Mac OS X only for now)
 - Very easy to extand to support new features or new systems
+
+
+
+Examples
+--------
+
+Until we expand the documentation please have a look in power/tests.py
+
+
