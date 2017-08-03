@@ -10,7 +10,7 @@ REQUIREMENTS = []
 
 
 if platform.startswith('darwin'):
-    REQUIREMENTS.append('pyobjc >= 2.5')
+    REQUIREMENTS.append('pyobjc-core >= 2.5')
 
 
 setup(
