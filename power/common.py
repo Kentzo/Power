@@ -133,6 +133,12 @@ class PowerManagementBase(object):
         """
         self._weak_observers.remove(weakref.ref(observer))
 
+    @abstractmethod
+    def get_remaining_percentage(self):
+        """
+        Returns the remaining percentage of power of your battery or batteries
+        """
+
     def remove_all_observers(self):
         """
         Removes all registered observers.
