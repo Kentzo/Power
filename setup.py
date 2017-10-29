@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # coding=utf-8
+import os
 import sys
 
 from setuptools import setup
@@ -16,6 +17,13 @@ TEST_REQUIREMENTS = [
     'pytest',
     'pytest-cov',
 ]
+
+
+with open(os.path.join(os.path.dirname(__file__), 'power', 'version.py')) as f:
+    VERSION = None
+    code = compile(f.read(), 'version.py', 'exec')
+    exec(code)
+    assert VERSION
 
 
 class PyTest(TestCommand):
@@ -35,7 +43,7 @@ class PyTest(TestCommand):
 
 setup(
     name="power",
-    version="1.5.dev0",
+    version=VERSION,
     description="Cross-platform system power status information.",
     long_description="Library that allows you get current power source type (AC, Battery or UPS), "
                      "warning level (none, <22%, <10min) and remaining minutes. "
