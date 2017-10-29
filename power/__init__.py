@@ -17,10 +17,11 @@ Usage:
     #     ...
     # PowerManagementObserver.register(Observer)
 """
-__version__ = '1.4'
-
 from sys import platform
 from power.common import *
+from power.version import VERSION
+
+__version__ = VERSION
 
 
 try:
