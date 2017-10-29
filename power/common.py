@@ -72,6 +72,7 @@ class PowerManagementBase(object):
     __metaclass__ = ABCMeta
 
     def __init__(self):
+        super(PowerManagementBase, self).__init__()
         self._weak_observers = []
 
     @abstractmethod
