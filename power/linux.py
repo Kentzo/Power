@@ -67,9 +67,19 @@ class PowerManagement(common.PowerManagementBase):
         @param supply_path: Path to power supply
         @return: Tuple (energy_full, energy_now, power_now)
         """
-        with open(os.path.join(supply_path, 'energy_now'), 'r') as energy_now_file:
+        try:
+            energy_now_file = open(os.path.join(supply_path, 'energy_now'), 'r')
+        except IOError:
+            energy_now_file = open(os.path.join(supply_path, 'charge_now'), 'r')
+
+        try:
+            energy_full_file = open(os.path.join(supply_path, 'energy_full'), 'r')
+        except IOError:
+            energy_full_file = open(os.path.join(supply_path, 'charge_full'), 'r')
+
+        with energy_now_file:
             with open(os.path.join(supply_path, 'power_now'), 'r') as power_now_file:
-                with open(os.path.join(supply_path, 'energy_full'), 'r') as energy_full_file:
+                with energy_full_file:
                     energy_now = float(energy_now_file.readline().strip())
                     power_now = float(power_now_file.readline().strip())
                     energy_full = float(energy_full_file.readline().strip())
