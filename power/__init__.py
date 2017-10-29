@@ -35,7 +35,7 @@ try:
         from power.linux import PowerManagement
     else:
         raise RuntimeError("{platform} is not supported.".format(platform=platform))
-except RuntimeError as e:
+except (RuntimeError, ImportError) as e:
     import warnings
     warnings.warn("Unable to load PowerManagement for {platform}. No-op PowerManagement class is used: {error}".format(error=str(e), platform=platform))
     from power.common import PowerManagementNoop as PowerManagement
