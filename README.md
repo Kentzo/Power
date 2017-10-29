@@ -1,5 +1,14 @@
 Power
 =====
+.. image:: https://travis-ci.org/Kentzo/Power.svg?branch=master
+    :target: https://travis-ci.org/Kentzo/Power
+.. image:: https://codecov.io/gh/Kentzo/Power/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/Kentzo/Power
+.. image:: https://img.shields.io/pypi/v/Power.svg
+    :target: https://pypi.python.org/pypi/Power
+.. image:: https://pyup.io/repos/github/Kentzo/Power/shield.svg
+     :target: https://pyup.io/repos/github/Kentzo/Power/
+     :alt: Updates
 
 Crossplatform (Windows, Linux, Mac OS X, FreeBSD) python module to access power capabilities of the system.
 

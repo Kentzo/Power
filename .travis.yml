@@ -1,0 +1,33 @@
+language: python
+sudo: false
+
+os:
+  - linux
+
+python:
+  - 2.7
+  - 3.4
+  - 3.5
+  - 3.6
+  - pypy
+  - pypy3
+
+install:
+  - pip install .[tests] -c requirements.txt
+  - pip install codecov flake8
+
+script:
+  - python setup.py test
+
+after_success:
+  - flake8 power
+  - codecov
+
+deploy:
+  provider: pypi
+  user: Ilya.Kulakov
+  password:
+    secure: "Lm2m4xqLGyqaSVtsHjyJKAjYxHAe+gB8TSmZZOkmSKfG+g61lAj3mtX8sAXiYzVcsFDe8cX4XvS3i/K2LoOh9dnc9EureDylvtfzjdKfLRqVjHAcHEeGLBck5tfgQXi3zKiB2EE3Pmu2pV+U0UvhpV40PgaFCroMJGJKI8shme8="
+  on:
+    tags: true
+    branch: master
