@@ -114,7 +114,7 @@ class PowerManagement(common.PowerManagementBase):
             else:
                 warnings.warn("UPS is not supported.")
         except (RuntimeError, IOError) as e:
-            warnings.warn("Unable to read system power information!")
+            warnings.warn("Unable to read system power information!", category=RuntimeWarning)
 
         try:
             total_percentage = sum(all_energy_full) / sum(all_energy_now)
@@ -126,7 +126,7 @@ class PowerManagement(common.PowerManagementBase):
             else:
                 return common.LOW_BATTERY_WARNING_NONE
         except ZeroDivisionError as e:
-            warnings.warn("Unable to calculate low battery level: {error}".format(error=str(e)))
+            warnings.warn("Unable to calculate low battery level: {0}".format(e), category=RuntimeWarning)
             return common.LOW_BATTERY_WARNING_NONE
 
 
@@ -150,13 +150,13 @@ class PowerManagement(common.PowerManagementBase):
             else:
                 warnings.warn("UPS is not supported.")
         except (RuntimeError, IOError) as e:
-            warnings.warn("Unable to read system power information!")
+            warnings.warn("Unable to read system power information!", category=RuntimeWarning)
 
         if len(all_energy_now) > 0:
             try:
                 return sum([energy_now / power_now * 60.0 for energy_now, power_now in zip(all_energy_now, all_power_now)])
             except ZeroDivisionError as e:
-                warnings.warn("Unable to calculate time remaining estimate: {error}".format(error=str(e)))
+                warnings.warn("Unable to calculate time remaining estimate: {0}".format(e), category=RuntimeWarning)
                 return common.TIME_REMAINING_UNKNOWN
         else:
             return common.TIME_REMAINING_UNKNOWN

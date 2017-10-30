@@ -88,7 +88,7 @@ def get_power_management_class():
                     warnings.warn("{0}.get_low_battery_warning_level raised:\n{1}".format(PowerManagementPlatform.__name__, traceback.format_exc()), category=RuntimeWarning)
                     return self._noop.get_low_battery_warning_level()
     except (RuntimeError, ImportError) as e:
-        warnings.warn("Unable to load PowerManagement for {0}. No-op PowerManagement class is used: {1}".format(platform, str(e)))
+        warnings.warn("Unable to load PowerManagement for {0}, no-op PowerManagement class is used instead: {1}".format(platform, e), category=RuntimeWarning)
         from power.common import PowerManagementNoop as PowerManagement
 
     return PowerManagement
