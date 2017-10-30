@@ -19,7 +19,10 @@ TEST_REQUIREMENTS = [
 ]
 
 if sys.version_info < (3,):
-    TEST_REQUIREMENTS.append('mock')
+    TEST_REQUIREMENTS.extend([
+        'mock',
+        'unittest2'
+    ])
 
 
 with open(os.path.join(os.path.dirname(__file__), 'power', 'version.py')) as f:
