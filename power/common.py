@@ -25,8 +25,6 @@ Represents common constants and classes for all platforms.
 @type TIME_REMAINING_UNKNOWN: float
 @type TIME_REMAINING_UNLIMITED: float
 """
-__author__ = 'kulakov.ilya@gmail.com'
-
 from abc import ABCMeta, abstractmethod
 import weakref
 

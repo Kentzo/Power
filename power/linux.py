@@ -3,8 +3,6 @@
 Implements PowerManagement functions using /sys/class/power_supply/*
 See doc/linux for platform-specific details.
 """
-__author__ = 'kulakov.ilya@gmail.com'
-
 import os
 import warnings
 from power import common

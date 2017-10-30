@@ -4,8 +4,6 @@ Implements PowerManagement functions using GetSystemPowerStatus.
 Requires Windows XP+.
 Observing is not supported
 """
-__author__ = 'kulakov.ilya@gmail.com'
-
 from ctypes import Structure, wintypes, POINTER, windll, WinError, pointer, WINFUNCTYPE
 import warnings
 from power import common

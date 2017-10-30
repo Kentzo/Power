@@ -4,8 +4,6 @@ Implements PowerManagement functions using IOPowerSources.
 Requires Mac OS X 10.6+
 See doc/darwin for platform-specific details.
 """
-__author__ = 'kulakov.ilya@gmail.com'
-
 import weakref
 import warnings
 import objc

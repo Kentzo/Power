@@ -3,8 +3,6 @@
 Implements PowerManagement functions using FreeBSD SYSCTL mechanism. 
 FreeBSD portion written by Tomasz CEDRO (http://www.tomek.cedro.info)
 """
-__author__ = 'cederom@tlen.pl'
-
 import os
 import warnings
 from power import common
