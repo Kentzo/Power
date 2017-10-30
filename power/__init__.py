@@ -17,7 +17,7 @@ Usage:
     #     ...
     # PowerManagementObserver.register(Observer)
 """
-from sys import platform
+import sys
 import traceback
 import warnings
 
@@ -28,16 +28,16 @@ __version__ = VERSION
 
 
 def get_platform_power_management_class():
-    if platform.startswith('darwin'):
+    if sys.platform.startswith('darwin'):
         from power.darwin import PowerManagement as PowerManagementPlatform
-    elif platform.startswith('freebsd'):
+    elif sys.platform.startswith('freebsd'):
         from power.freebsd import PowerManagement as PowerManagementPlatform
-    elif platform.startswith('win32'):
+    elif sys.platform.startswith('win32'):
         from power.win32 import PowerManagement as PowerManagementPlatform
-    elif platform.startswith('linux'):
+    elif sys.platform.startswith('linux'):
         from power.linux import PowerManagement as PowerManagementPlatform
     else:
-        raise RuntimeError("{0} is not supported.".format(platform))
+        raise RuntimeError("{0} is not supported.".format(sys.platform))
 
     return PowerManagementPlatform
 
@@ -88,7 +88,7 @@ def get_power_management_class():
                     warnings.warn("{0}.get_low_battery_warning_level raised:\n{1}".format(PowerManagementPlatform.__name__, traceback.format_exc()), category=RuntimeWarning)
                     return self._noop.get_low_battery_warning_level()
     except (RuntimeError, ImportError) as e:
-        warnings.warn("Unable to load PowerManagement for {0}, no-op PowerManagement class is used instead: {1}".format(platform, e), category=RuntimeWarning)
+        warnings.warn("Unable to load PowerManagement, no-op PowerManagement class is used instead: {0}".format(e), category=RuntimeWarning)
         from power.common import PowerManagementNoop as PowerManagement
 
     return PowerManagement
