@@ -1,6 +1,12 @@
 # coding=utf-8
 from __future__ import print_function
-import unittest.mock
+
+import unittest
+
+try:
+    import unittest.mock as mock
+except ImportError:
+    import mock
 
 import power.common
 
@@ -26,11 +32,11 @@ class TestPowerManagementCommon(unittest.TestCase):
 
     def testFallback(self):
         with self.subTest('unsupported platform'):
-            with unittest.mock.patch('sys.platform', 'planb'):
+            with mock.patch('sys.platform', 'planb'):
                 self.assertEqual(power.get_power_management_class(), power.common.PowerManagementNoop)
 
         with self.subTest('import error'):
-            with unittest.mock.patch('power.get_platform_power_management_class', side_effect=RuntimeError):
+            with mock.patch('power.get_platform_power_management_class', side_effect=RuntimeError):
                 self.assertEqual(power.get_power_management_class(), power.common.PowerManagementNoop)
 
         with self.subTest('usage error'):
@@ -50,7 +56,7 @@ class TestPowerManagementCommon(unittest.TestCase):
                 def get_low_battery_warning_level(self):
                     raise RuntimeError()
 
-            with unittest.mock.patch('power.get_platform_power_management_class', return_value=PowerManagementFaulty):
+            with mock.patch('power.get_platform_power_management_class', return_value=PowerManagementFaulty):
                 c = power.get_power_management_class()
                 self.assertTrue(issubclass(c, PowerManagementFaulty))
 

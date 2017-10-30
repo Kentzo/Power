@@ -18,6 +18,9 @@ TEST_REQUIREMENTS = [
     'pytest-cov',
 ]
 
+if sys.version_info < (3,):
+    TEST_REQUIREMENTS.append('mock')
+
 
 with open(os.path.join(os.path.dirname(__file__), 'power', 'version.py')) as f:
     VERSION = None
