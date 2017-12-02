@@ -77,13 +77,19 @@ class PowerManagement(common.PowerManagementBase):
         except IOError:
             energy_full_file = open(os.path.join(supply_path, 'charge_full'), 'r')
 
-        with energy_now_file:
+        try:
             with open(os.path.join(supply_path, 'power_now'), 'r') as power_now_file:
-                with energy_full_file:
-                    energy_now = float(energy_now_file.readline().strip())
                     power_now = float(power_now_file.readline().strip())
-                    energy_full = float(energy_full_file.readline().strip())
-                    return energy_full, energy_now, power_now
+        except IOError:
+            with open(os.path.join(supply_path, 'voltage_now'), 'r') as voltage_now_file:
+                with open(os.path.join(supply_path, 'current_now'), 'r') as current_now_file:
+                        power_now = float(current_now_file.readline().strip()) * float(voltage_now_file.readline().strip()) / 10000000
+
+        with energy_now_file:
+            with energy_full_file:
+                energy_now = float(energy_now_file.readline().strip())
+                energy_full = float(energy_full_file.readline().strip())
+                return energy_full, energy_now, power_now
 
     def get_providing_power_source_type(self):
         """
