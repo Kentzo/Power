@@ -7,7 +7,6 @@ See doc/darwin for platform-specific details.
 import weakref
 import warnings
 import objc
-from objc import super
 from Foundation import *
 from power import common
 
@@ -167,7 +166,7 @@ class PowerSourcesNotificationsObserver(NSObject):
     @note: Method names break PEP8 convention to conform PyObjC naming conventions
     """
     def init(self):
-        self = super(PowerSourcesNotificationsObserver, self).init()
+        self = objc.super(PowerSourcesNotificationsObserver, self).init()
         if self is not None:
             self._weak_observers = []
             self._thread = None
@@ -205,7 +204,6 @@ class PowerSourcesNotificationsObserver(NSObject):
             NSRunLoop.currentRunLoop().runMode_beforeDate_(NSDefaultRunLoopMode, NSDate.distantFuture())
         del pool
 
-
     def stopPowerNotificationsThread(self):
         """Removes the only source from NSRunLoop and cancels thread."""
         assert NSThread.currentThread() == self._thread
@@ -214,7 +212,7 @@ class PowerSourcesNotificationsObserver(NSObject):
         self._source = None
         NSThread.currentThread().cancel()
 
-    def addObserver(self, observer):
+    def addObserver_(self, observer):
         """
         Adds weak ref to an observer.
 
@@ -225,7 +223,7 @@ class PowerSourcesNotificationsObserver(NSObject):
             if len(self._weak_observers) == 1:
                 self.startThread()
 
-    def removeObserver(self, observer):
+    def removeObserver_(self, observer):
         """
         Removes an observer.
 
@@ -256,7 +254,6 @@ class PowerManagement(common.PowerManagementBase):
             if observer:
                 observer.on_power_sources_change(self)
                 observer.on_time_remaining_change(self)
-
 
     def get_providing_power_source_type(self):
         """
@@ -317,7 +314,7 @@ class PowerManagement(common.PowerManagementBase):
         super(PowerManagement, self).add_observer(observer)
         if len(self._weak_observers) == 1:
             if not self._cf_run_loop:
-                PowerManagement.notifications_observer.addObserver(self)
+                PowerManagement.notifications_observer.addObserver_(self)
             else:
                 @objc.callbackFor(IOPSNotificationCreateRunLoopSource)
                 def on_power_sources_change(context):
@@ -333,7 +330,7 @@ class PowerManagement(common.PowerManagementBase):
         super(PowerManagement, self).remove_observer(observer)
         if len(self._weak_observers) == 0:
             if not self._cf_run_loop:
-                PowerManagement.notifications_observer.removeObserver(self)
+                PowerManagement.notifications_observer.removeObserver_(self)
             else:
                 CFRunLoopSourceInvalidate(self._source)
                 self._source = None
