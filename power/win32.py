@@ -4,8 +4,10 @@ Implements PowerManagement functions using GetSystemPowerStatus.
 Requires Windows XP+.
 Observing is not supported
 """
-from ctypes import Structure, wintypes, POINTER, windll, WinError, pointer, WINFUNCTYPE
+import ctypes
+from ctypes import wintypes
 import warnings
+
 from power import common
 
 
@@ -15,19 +17,19 @@ from power import common
 # REQUIRED.
 GetSystemPowerStatus = None
 try:
-    GetSystemPowerStatus = windll.kernel32.GetSystemPowerStatus
+    GetSystemPowerStatus = ctypes.windll.kernel32.GetSystemPowerStatus
 
-    class SYSTEM_POWER_STATUS(Structure):
+    class SYSTEM_POWER_STATUS(ctypes.Structure):
         _fields_ = [
-            ('ACLineStatus', wintypes.c_ubyte),
-            ('BatteryFlag', wintypes.c_ubyte),
-            ('BatteryLifePercent', wintypes.c_ubyte),
-            ('Reserved1', wintypes.c_ubyte),
+            ('ACLineStatus', ctypes.c_ubyte),
+            ('BatteryFlag', ctypes.c_ubyte),
+            ('BatteryLifePercent', ctypes.c_ubyte),
+            ('Reserved1', ctypes.c_ubyte),
             ('BatteryLifeTime', wintypes.DWORD),
             ('BatteryFullLifeTime', wintypes.DWORD)
             ]
 
-    GetSystemPowerStatus.argtypes = [POINTER(SYSTEM_POWER_STATUS)]
+    GetSystemPowerStatus.argtypes = [ctypes.POINTER(SYSTEM_POWER_STATUS)]
     GetSystemPowerStatus.restype = wintypes.BOOL
 except AttributeError as e:
     raise RuntimeError("Unable to load GetSystemPowerStatus."
@@ -49,8 +51,8 @@ class PowerManagement(common.PowerManagementBase):
         @raise: WindowsError if any underlying error occures.
         """
         power_status = SYSTEM_POWER_STATUS()
-        if not GetSystemPowerStatus(pointer(power_status)):
-            raise WinError()
+        if not GetSystemPowerStatus(ctypes.pointer(power_status)):
+            raise ctypes.WinError()
         return POWER_TYPE_MAP[power_status.ACLineStatus]
 
     def get_low_battery_warning_level(self):
@@ -60,8 +62,8 @@ class PowerManagement(common.PowerManagementBase):
         @raise WindowsError if any underlying error occures.
         """
         power_status = SYSTEM_POWER_STATUS()
-        if not GetSystemPowerStatus(pointer(power_status)):
-            raise WinError()
+        if not GetSystemPowerStatus(ctypes.pointer(power_status)):
+            raise ctypes.WinError()
 
         if POWER_TYPE_MAP[power_status.ACLineStatus] == common.POWER_TYPE_AC:
             return common.LOW_BATTERY_WARNING_NONE
@@ -78,8 +80,8 @@ class PowerManagement(common.PowerManagementBase):
         Returns time remaining estimate according to GetSystemPowerStatus().BatteryLifeTime
         """
         power_status = SYSTEM_POWER_STATUS()
-        if not GetSystemPowerStatus(pointer(power_status)):
-            raise WinError()
+        if not GetSystemPowerStatus(ctypes.pointer(power_status)):
+            raise ctypes.WinError()
 
         if POWER_TYPE_MAP[power_status.ACLineStatus] == common.POWER_TYPE_AC:
             return common.TIME_REMAINING_UNLIMITED
